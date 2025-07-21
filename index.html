@@ -6,9 +6,27 @@
     <title>Muhammad Motasim Bin Shahid - Full-Stack Developer</title>
     <meta name="description" content="Senior Full-Stack Engineer with 4+ years experience. Expert in Laravel, Vue.js, React, Node.js. Available for freelance projects and collaborations.">
     <meta name="keywords" content="Full-Stack Developer, Laravel, Vue.js, React, Node.js, Freelance, Web Development">
+    <meta property="og:title" content="Muhammad Motasim Bin Shahid - Full-Stack Developer">
+    <meta property="og:description" content="Senior Full-Stack Engineer with 4+ years experience. Expert in Laravel, Vue.js, React, Node.js. Available for freelance projects and collaborations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://muhammadmotasimbinshahid.com/">
+    <meta property="og:image" content="https://muhammadmotasimbinshahid.com/assets/images/IMG_4469.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Muhammad Motasim Bin Shahid - Full-Stack Developer">
+    <meta name="twitter:description" content="Senior Full-Stack Engineer with 4+ years experience. Expert in Laravel, Vue.js, React, Node.js. Available for freelance projects and collaborations.">
+    <meta name="twitter:image" content="https://muhammadmotasimbinshahid.com/assets/images/IMG_4469.jpeg">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6GNGB62HD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C6GNGB62HD');
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -782,21 +800,22 @@
                 </div>
 
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/mnnzjrbl" method="POST">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required autocomplete="email">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required autocomplete="subject">
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required autocomplete="off"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
+                    <div id="form-success-message" style="display:none;color:green;margin-top:1rem;">Thank you! Your message has been sent.</div>
                 </div>
             </div>
         </div>
