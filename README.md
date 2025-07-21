@@ -83,7 +83,9 @@ Modify animations in `script.js` and `styles.css` to match your preferences.
 
 ## License
 
-This portfolio is open source and available under the MIT License.
+This project is licensed under the MIT License.  
+**You must retain the LICENSE file in all copies or substantial portions of the Software.**  
+If you see this project elsewhere without the license, it is a violation of copyright.
 
 ---
 

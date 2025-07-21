@@ -1586,124 +1586,124 @@ body::before {
 /* Project-specific logo backgrounds */
 .playy-project .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('new_logo.8db89fe4.svg') center/60% no-repeat;
+                url('assets/images/new_logo.8db89fe4.svg') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .adash-project .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
+                url('assets/images/hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .bionicwp-project .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('bwp-full-logo.gif') center/60% no-repeat;
+                url('assets/images/bwp-full-logo.gif') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .brandbreakers-project .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('brand-breakers-5-393x108.webp') center/60% no-repeat;
+                url('assets/images/brand-breakers-5-393x108.webp') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .eclinicx-project .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('Eclinicx_v3.png') center/60% no-repeat;
+                url('assets/images/Eclinicx_v3.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 /* Dark theme project logo backgrounds */
 [data-theme="dark"] .playy-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('new_logo.8db89fe4.svg') center/60% no-repeat;
+                url('assets/images/new_logo.8db89fe4.svg') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .adash-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
+                url('assets/images/hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .bionicwp-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('bwp-full-logo.gif') center/60% no-repeat;
+                url('assets/images/bwp-full-logo.gif') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .brandbreakers-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('brand-breakers-5-393x108.webp') center/60% no-repeat;
+                url('assets/images/brand-breakers-5-393x108.webp') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .eclinicx-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('Eclinicx_v3.png') center/60% no-repeat;
+                url('assets/images/Eclinicx_v3.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 /* Project-specific logo hover backgrounds */
 .playy-project .project-image:hover {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('new_logo.8db89fe4.svg') center/60% no-repeat;
+                url('assets/images/new_logo.8db89fe4.svg') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .adash-project .project-image:hover {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
+                url('assets/images/hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .bionicwp-project .project-image:hover {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('bwp-full-logo.gif') center/60% no-repeat;
+                url('assets/images/bwp-full-logo.gif') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .brandbreakers-project .project-image:hover {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('brand-breakers-5-393x108.webp') center/60% no-repeat;
+                url('assets/images/brand-breakers-5-393x108.webp') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .eclinicx-project .project-image:hover {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('Eclinicx_v3.png') center/60% no-repeat;
+                url('assets/images/Eclinicx_v3.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 /* Dark theme project logo hover backgrounds */
 [data-theme="dark"] .playy-project .project-image:hover {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('new_logo.8db89fe4.svg') center/60% no-repeat;
+                url('assets/images/new_logo.8db89fe4.svg') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .adash-project .project-image:hover {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
+                url('assets/images/hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .bionicwp-project .project-image:hover {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('bwp-full-logo.gif') center/60% no-repeat;
+                url('assets/images/bwp-full-logo.gif') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .brandbreakers-project .project-image:hover {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('brand-breakers-5-393x108.webp') center/60% no-repeat;
+                url('assets/images/brand-breakers-5-393x108.webp') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .eclinicx-project .project-image:hover {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('Eclinicx_v3.png') center/60% no-repeat;
+                url('assets/images/Eclinicx_v3.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
@@ -1722,111 +1722,111 @@ body::before {
 
 .bionicwp-project .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('bwp-full-logo.gif') center/60% no-repeat;
+                url('assets/images/bwp-full-logo.gif') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .brandbreakers-project .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('brand-breakers-5-393x108.webp') center/60% no-repeat;
+                url('assets/images/brand-breakers-5-393x108.webp') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .eclinicx-project .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('Eclinicx_v3.png') center/60% no-repeat;
+                url('assets/images/Eclinicx_v3.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 /* Hover effects for logo backgrounds */
 .playy-project:hover .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('new_logo.8db89fe4.svg') center/60% no-repeat;
+                url('assets/images/new_logo.8db89fe4.svg') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .adash-project:hover .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
+                url('assets/images/hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .bionicwp-project:hover .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('bwp-full-logo.gif') center/60% no-repeat;
+                url('assets/images/bwp-full-logo.gif') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .brandbreakers-project:hover .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('brand-breakers-5-393x108.webp') center/60% no-repeat;
+                url('assets/images/brand-breakers-5-393x108.webp') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 .eclinicx-project:hover .project-image {
     background: linear-gradient(135deg, rgba(46, 46, 46, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('Eclinicx_v3.png') center/60% no-repeat;
+                url('assets/images/Eclinicx_v3.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 /* Dark theme adjustments for logo backgrounds */
 [data-theme="dark"] .playy-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('new_logo.8db89fe4.svg') center/60% no-repeat;
+                url('assets/images/new_logo.8db89fe4.svg') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .adash-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
+                url('assets/images/hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .bionicwp-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('bwp-full-logo.gif') center/60% no-repeat;
+                url('assets/images/bwp-full-logo.gif') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .brandbreakers-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('brand-breakers-5-393x108.webp') center/60% no-repeat;
+                url('assets/images/brand-breakers-5-393x108.webp') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .eclinicx-project .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(74, 144, 226, 0.9) 100%), 
-                url('Eclinicx_v3.png') center/60% no-repeat;
+                url('assets/images/Eclinicx_v3.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .playy-project:hover .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('new_logo.8db89fe4.svg') center/60% no-repeat;
+                url('assets/images/new_logo.8db89fe4.svg') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .adash-project:hover .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
+                url('assets/images/hopeandhealingforlife_Logo-e1610045733511.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .bionicwp-project:hover .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('bwp-full-logo.gif') center/60% no-repeat;
+                url('assets/images/bwp-full-logo.gif') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .brandbreakers-project:hover .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('brand-breakers-5-393x108.webp') center/60% no-repeat;
+                url('assets/images/brand-breakers-5-393x108.webp') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
 [data-theme="dark"] .eclinicx-project:hover .project-image {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(74, 144, 226, 0.7) 100%), 
-                url('Eclinicx_v3.png') center/60% no-repeat;
+                url('assets/images/Eclinicx_v3.png') center/60% no-repeat;
     background-blend-mode: overlay;
 }
 
