@@ -160,60 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
 });
 
-// Contact form handling with enhanced validation
-// const contactForm = document.getElementById('contactForm');
-// if (contactForm) {
-//     contactForm.addEventListener('submit', function(e) {
-//         e.preventDefault();
-        
-//         // Get form data
-//         const formData = new FormData(this);
-//         const name = formData.get('name');
-//         const email = formData.get('email');
-//         const subject = formData.get('subject');
-//         const message = formData.get('message');
-        
-//         // Enhanced validation
-//         if (!name || !email || !subject || !message) {
-//             showNotification('Please fill in all fields', 'error');
-//             return;
-//         }
-        
-//         if (!isValidEmail(email)) {
-//             showNotification('Please enter a valid email address', 'error');
-//             return;
-//         }
-        
-//         if (name.length < 2) {
-//             showNotification('Name must be at least 2 characters long', 'error');
-//             return;
-//         }
-        
-//         if (subject.length < 5) {
-//             showNotification('Subject must be at least 5 characters long', 'error');
-//             return;
-//         }
-        
-//         if (message.length < 10) {
-//             showNotification('Message must be at least 10 characters long', 'error');
-//             return;
-//         }
-        
-//         // Simulate form submission with loading state
-//         const submitBtn = this.querySelector('button[type="submit"]');
-//         const originalText = submitBtn.textContent;
-//         submitBtn.textContent = 'Sending...';
-//         submitBtn.disabled = true;
-        
-//         setTimeout(() => {
-//             showNotification('Thank you! Your message has been sent successfully.', 'success');
-//             this.reset();
-//             submitBtn.textContent = originalText;
-//             submitBtn.disabled = false;
-//         }, 2000);
-//     });
-// }
-
 // Enhanced email validation
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

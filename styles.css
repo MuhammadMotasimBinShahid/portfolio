@@ -70,10 +70,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Smooth animations for all elements */
-* {
     transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -81,7 +77,9 @@
                 box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html {
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
 }
@@ -98,10 +96,7 @@ body {
 body::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: 
         radial-gradient(circle at 20% 80%, rgba(46, 46, 46, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
@@ -2018,6 +2013,10 @@ body::before {
     text-align: center;
     padding: 2rem 0;
     border-top: 1px solid var(--border-color);
+    width: 100%;
+    margin-left: 0;
+    padding: 1rem 0;
+    box-sizing: border-box;
 }
 
 /* Responsive Design */
@@ -2125,11 +2124,66 @@ body::before {
 
     .contact-content {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1rem;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contact-item {
+        padding: 0.75rem 0.5rem;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .social-links {
+        justify-content: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 1rem;
+        padding: 0.75rem;
     }
 
     .project-stats {
         grid-template-columns: 1fr;
+    }
+
+    .about-avatar {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: none;
+    }
+
+    .btn-outline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+        min-width: 60%;
     }
 }
 
@@ -2155,6 +2209,15 @@ body::before {
         width: 100%;
         max-width: 250px;
         text-align: center;
+    }
+
+    .section-title,
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
     }
 }
 
@@ -2190,3 +2253,8 @@ html {
     opacity: 1;
     transform: translateY(0);
 } 
+
+/* Utility: Prevent long content overflow */
+.contact-item p, .contact-item {
+  word-break: break-all;
+}
