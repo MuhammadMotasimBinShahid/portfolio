@@ -29,7 +29,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/octicons/19.8.0/build.css" rel="stylesheet">
   <style>
-    :root{--pointer-x:0;--pointer-y:0;--hero-scroll:0px}
+    :root{--pointer-x:0;--pointer-y:0;--hero-scroll:0px;--hero-rotate-x:0deg;--hero-rotate-y:0deg}
     body{background:
       radial-gradient(circle at 12% 18%, rgba(88,166,255,.12), transparent 26%),
       radial-gradient(circle at 82% 14%, rgba(217,74,69,.14), transparent 24%),
@@ -62,15 +62,11 @@
     .hero-orb.two{right:3rem;bottom:2rem;width:19rem;height:19rem;background:radial-gradient(circle, rgba(88,166,255,.36), transparent 72%);animation-delay:-4s}
     .hero-mesh{position:absolute;inset:18% 2% 10% 44%;border:1px solid rgba(88,166,255,.14);border-radius:36px;background-image:linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);background-size:34px 34px;box-shadow:inset 0 0 80px rgba(88,166,255,.08),0 0 60px rgba(13,17,23,.35);opacity:.42}
     .hero-copy{max-width:42rem}
-    .hero-kicker{display:inline-flex;align-items:center;gap:.65rem;padding:.55rem .9rem;border:1px solid rgba(148,163,184,.16);border-radius:999px;background:rgba(12,17,24,.56);box-shadow:0 12px 34px rgba(0,0,0,.18);color:#cbd5e1;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
-    .hero-kicker::before{content:"";width:.55rem;height:.55rem;border-radius:999px;background:linear-gradient(135deg, #D94A45, #58A6FF);box-shadow:0 0 18px rgba(217,74,69,.45)}
-    .hero-heading{max-width:10.8ch;font-size:clamp(3.6rem, 7vw, 5.9rem);line-height:.94;letter-spacing:-.06em;text-wrap:balance}
+    .hero-heading{max-width:11.8ch;font-size:clamp(3.15rem, 6vw, 5.15rem);line-height:.95;letter-spacing:-.055em;text-wrap:balance}
     .hero-heading .hero-emphasis{display:block;background:linear-gradient(120deg, #ffffff 0%, #ffd6cf 55%, #ff998c 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero-heading .hero-accent{display:block;color:#d9e9ff}
-    .hero-support{max-width:38rem;color:#cbd5e1;font-size:clamp(1.05rem, 1vw + .92rem, 1.34rem);line-height:1.65}
-    .hero-terminal{max-width:42rem;margin-top:1.65rem;border-color:rgba(88,166,255,.16);background:linear-gradient(180deg, rgba(14,18,25,.96), rgba(10,14,20,.94));box-shadow:0 24px 70px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.04)}
-    .hero-terminal .bar{background:rgba(255,255,255,.02)}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.7rem}
+    .hero-support{max-width:36rem;color:#cbd5e1;font-size:clamp(1rem, .75vw + .95rem, 1.22rem);line-height:1.7}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.9rem}
     .hero-btn-primary,.hero-btn-secondary,.hero-btn-ghost{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 1.2rem;border-radius:16px;font-weight:600;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
     .hero-btn-primary{background:linear-gradient(135deg, #eb564d, #d94a45);color:#fff;box-shadow:0 20px 45px rgba(217,74,69,.32)}
     .hero-btn-secondary{border:1px solid rgba(148,163,184,.22);background:rgba(12,17,24,.62);color:#f8fafc}
@@ -80,60 +76,90 @@
     .hero-link-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.1rem}
     .hero-link-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem .95rem;border:1px solid rgba(148,163,184,.16);border-radius:999px;background:rgba(12,17,24,.52);color:#cbd5e1;transition:transform .25s ease, border-color .25s ease, color .25s ease}
     .hero-link-chip:hover{transform:translateY(-2px);border-color:rgba(88,166,255,.25);color:#fff}
-    .hero-proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin-top:1.5rem;max-width:38rem}
-    .hero-proof-chip{padding:1rem 1.05rem;border:1px solid rgba(48,54,61,.82);border-radius:20px;background:linear-gradient(180deg, rgba(13,17,23,.84), rgba(8,11,18,.88));box-shadow:0 18px 40px rgba(0,0,0,.18)}
-    .hero-proof-chip small{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#94A3B8}
-    .hero-proof-chip strong{display:block;margin-top:.45rem;color:#f8fafc;font-size:1rem}
-    .hero-visual{position:relative;min-height:40rem;perspective:1800px;transform-style:preserve-3d;display:flex;align-items:center}
-    .hero-main-panel{position:relative;z-index:3;--tilt-base:translateZ(60px);width:100%;padding:1.6rem;border-radius:30px;border:1px solid rgba(48,54,61,.92);background:linear-gradient(180deg, rgba(13,17,23,.94), rgba(9,13,20,.97));box-shadow:0 34px 90px rgba(0,0,0,.36)}
+    .hero-visual{position:relative;min-height:32rem;padding:1.8rem 5.1rem 1.9rem 1.6rem;perspective:1800px;transform-style:preserve-3d;display:flex;align-items:center;justify-content:flex-end;transform:rotateX(var(--hero-rotate-x)) rotateY(var(--hero-rotate-y));transition:transform .45s cubic-bezier(.22,1,.36,1)}
+    .hero-visual::before{content:"";position:absolute;inset:14% 8% 8% 14%;border-radius:38px;background:radial-gradient(circle at 30% 26%, rgba(217,74,69,.12), transparent 36%),radial-gradient(circle at 72% 60%, rgba(88,166,255,.12), transparent 34%);filter:blur(26px);pointer-events:none;z-index:0}
+    .hero-main-panel{position:relative;z-index:3;width:100%;max-width:44rem;margin-left:auto;padding:1.55rem;border-radius:30px;border:1px solid rgba(48,54,61,.92);background:linear-gradient(180deg, rgba(13,17,23,.94), rgba(9,13,20,.97));box-shadow:0 34px 90px rgba(0,0,0,.36)}
     .hero-main-panel::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.08), transparent 28%, rgba(217,74,69,.08) 68%, transparent 100%);pointer-events:none}
-    .hero-panel-top{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:center}
-    .hero-avatar-shell{position:relative;width:8.25rem;height:8.25rem;padding:.38rem;border-radius:999px;background:conic-gradient(from 180deg, rgba(217,74,69,.9), rgba(88,166,255,.84), rgba(217,74,69,.9));box-shadow:0 0 0 1px rgba(255,255,255,.05),0 22px 58px rgba(0,0,0,.34)}
+    .hero-panel-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.15rem;align-items:center}
+    .hero-avatar-shell{position:relative;width:7.35rem;height:7.35rem;padding:.34rem;border-radius:999px;background:conic-gradient(from 180deg, rgba(217,74,69,.9), rgba(88,166,255,.84), rgba(217,74,69,.9));box-shadow:0 0 0 1px rgba(255,255,255,.05),0 22px 58px rgba(0,0,0,.34)}
     .hero-avatar-shell::before{content:"";position:absolute;inset:-16px;border-radius:999px;background:radial-gradient(circle, rgba(217,74,69,.18), transparent 70%);filter:blur(12px)}
     .hero-avatar-shell img{position:relative;z-index:1;width:100%;height:100%;border-radius:999px;object-fit:cover;border:2px solid rgba(13,17,23,.84)}
     .hero-panel-kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#94A3B8}
-    .hero-panel-title{margin-top:.35rem;font-size:1.72rem;line-height:1.05;font-weight:700;color:#f8fafc}
-    .hero-panel-subtitle{margin-top:.45rem;color:#cbd5e1;font-size:1.02rem}
-    .hero-panel-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
-    .hero-panel-pills span{padding:.4rem .72rem;border-radius:999px;border:1px solid rgba(148,163,184,.14);background:rgba(88,166,255,.06);font-size:.78rem;color:#dbeafe}
-    .hero-panel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.45rem}
-    .hero-panel-card{padding:1rem 1.05rem 1.1rem;border:1px solid rgba(48,54,61,.82);border-radius:20px;background:linear-gradient(180deg, rgba(13,17,23,.84), rgba(8,11,18,.9));min-height:8.6rem}
+    .hero-panel-title{margin-top:.35rem;max-width:15ch;font-size:1.52rem;line-height:1.08;font-weight:700;color:#f8fafc;text-wrap:balance}
+    .hero-panel-subtitle{margin-top:.45rem;color:#cbd5e1;font-size:.98rem;line-height:1.55}
+    .hero-panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:1.3rem}
+    .hero-panel-card{padding:1rem 1.05rem 1.1rem;border:1px solid rgba(48,54,61,.82);border-radius:20px;background:linear-gradient(180deg, rgba(13,17,23,.84), rgba(8,11,18,.9));min-height:7.2rem}
+    .hero-panel-card-wide{grid-column:1 / -1}
     .hero-panel-card small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
     .hero-panel-card p{margin-top:.6rem;font-size:.95rem;line-height:1.55;color:#e2e8f0}
-    .hero-float-card{position:absolute;z-index:4;width:min(11.25rem, 32vw);padding:.8rem .9rem;border:1px solid rgba(48,54,61,.9);border-radius:20px;background:linear-gradient(180deg, rgba(10,14,21,.94), rgba(18,24,34,.94));box-shadow:0 24px 60px rgba(0,0,0,.3);backdrop-filter:blur(16px);animation:floatCard 7s ease-in-out infinite}
-    .hero-float-card::before{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.12), transparent 40%, rgba(217,74,69,.12));opacity:.6;pointer-events:none}
-    .hero-float-card small{position:relative;display:block;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:#94A3B8}
-    .hero-float-card strong{position:relative;display:block;margin-top:.45rem;font-size:1rem;color:#F8FAFC}
-    .hero-float-card p{position:relative;margin-top:.3rem;font-size:.75rem;color:#94A3B8;line-height:1.42}
-    .hero-float-a{top:6%;right:-3%;transform:rotate(6deg)}
-    .hero-float-b{top:48%;left:-4%;transform:rotate(-7deg);animation-delay:-1.3s}
-    .hero-float-c{right:4%;bottom:-2%;width:min(12.2rem, 34vw);transform:rotate(5deg);animation-delay:-2.2s}
+    .hero-float-card{position:absolute;z-index:2;width:11rem;padding:.8rem .9rem;border:1px solid rgba(48,54,61,.88);border-radius:24px;background:linear-gradient(180deg, rgba(10,14,21,.96), rgba(18,24,34,.92));box-shadow:0 26px 68px rgba(0,0,0,.28);backdrop-filter:blur(16px);pointer-events:none;transform-style:preserve-3d;will-change:transform;animation:floatCard 8s ease-in-out infinite}
+    .hero-float-card::before{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.12), transparent 40%, rgba(217,74,69,.1));opacity:.72;pointer-events:none}
+    .hero-float-card small,.hero-float-card strong,.hero-float-card p{position:relative;z-index:1}
+    .hero-float-card small{display:block;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
+    .hero-float-card strong{display:block;margin-top:.42rem;font-size:1rem;line-height:1.16;color:#f8fafc}
+    .hero-float-card p{margin-top:.32rem;font-size:.74rem;line-height:1.4;color:#94A3B8}
+    .hero-float-feature{top:-.9rem;right:-1.55rem;--float-base:rotate(4deg) translate3d(0,0,24px)}
+    .hero-float-feature::before{background:linear-gradient(135deg, rgba(88,166,255,.16), transparent 44%, rgba(217,74,69,.09))}
+    .hero-float-ai{left:-4.4rem;bottom:-1.7rem;width:9.4rem;--float-base:rotate(-4deg) translate3d(0,0,18px);animation-delay:-3.2s}
+    .hero-float-ai::before{background:linear-gradient(135deg, rgba(217,74,69,.16), transparent 42%, rgba(88,166,255,.1))}
+    .section-lead{max-width:44rem;color:#94A3B8;font-size:1rem;line-height:1.75}
+    .feature-frame{padding:1.4rem;border:1px solid rgba(48,54,61,.85);border-radius:30px;background:linear-gradient(180deg, rgba(13,17,23,.95), rgba(9,13,20,.96));box-shadow:0 30px 80px rgba(0,0,0,.28)}
+    .feature-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(18rem,.8fr);gap:1.25rem}
+    .feature-kicker{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem .85rem;border-radius:999px;background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.18);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#cbd5e1}
+    .feature-title{margin-top:1rem;font-size:clamp(2rem, 2vw + 1.3rem, 3rem);line-height:1;letter-spacing:-.04em;color:#fff}
+    .feature-copy{margin-top:1rem;max-width:40rem;color:#cbd5e1;line-height:1.75}
+    .feature-side{display:grid;gap:.85rem}
+    .feature-stat{padding:1rem 1.05rem;border:1px solid rgba(48,54,61,.8);border-radius:22px;background:linear-gradient(180deg, rgba(22,27,34,.7), rgba(10,14,20,.88))}
+    .feature-stat small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
+    .feature-stat p{margin-top:.55rem;color:#e2e8f0;line-height:1.65}
+    .signal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    .signal-card{padding:1.05rem 1.1rem;border:1px solid rgba(48,54,61,.82);border-radius:24px;background:linear-gradient(180deg, rgba(13,17,23,.82), rgba(9,13,20,.88))}
+    .signal-card small{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#94A3B8}
+    .signal-card p{margin-top:.55rem;color:#cbd5e1;line-height:1.65}
+    .skill-matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem}
+    .skill-card{padding:1.2rem;border:1px solid rgba(48,54,61,.82);border-radius:24px;background:linear-gradient(180deg, rgba(13,17,23,.82), rgba(9,13,20,.9));box-shadow:0 18px 45px rgba(0,0,0,.16)}
+    .skill-card h3{font-size:1.02rem;font-weight:600;color:#fff}
+    .skill-card p{margin-top:.55rem;color:#94A3B8;line-height:1.65}
+    .skill-chip-list{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}
+    .skill-chip-list span{display:inline-flex;align-items:center;padding:.45rem .75rem;border-radius:999px;border:1px solid rgba(88,166,255,.14);background:rgba(88,166,255,.06);font-size:.82rem;color:#e2e8f0}
+    .cta-band{display:grid;grid-template-columns:minmax(0,1.1fr) auto;gap:1.2rem;align-items:center;padding:1.4rem 1.5rem;border:1px solid rgba(48,54,61,.85);border-radius:28px;background:linear-gradient(135deg, rgba(13,17,23,.96), rgba(22,27,34,.9));box-shadow:0 24px 70px rgba(0,0,0,.24)}
+    .cta-band h3{font-size:clamp(1.6rem, 1.1vw + 1.1rem, 2.2rem);line-height:1.05;letter-spacing:-.04em;color:#fff}
+    .cta-band-actions{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:flex-end}
+    .cta-btn-primary,.cta-btn-secondary{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.15rem;border-radius:16px;font-weight:600;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+    .cta-btn-primary{background:linear-gradient(135deg, #eb564d, #d94a45);color:#fff;box-shadow:0 16px 36px rgba(217,74,69,.28)}
+    .cta-btn-secondary{border:1px solid rgba(148,163,184,.22);background:rgba(12,17,24,.6);color:#f8fafc}
+    .cta-btn-primary:hover,.cta-btn-secondary:hover{transform:translateY(-2px)}
     .tilt-card{position:relative;transform:perspective(1400px) var(--tilt-base, translateZ(0)) rotateX(var(--tilt-rotate-x, 0deg)) rotateY(var(--tilt-rotate-y, 0deg));transform-style:preserve-3d;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .35s ease;will-change:transform}
     .tilt-card::before{content:"";position:absolute;inset:1px;border-radius:inherit;background:radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255,255,255,.12), transparent 35%),radial-gradient(circle at top right, rgba(88,166,255,.12), transparent 42%),radial-gradient(circle at bottom left, rgba(217,74,69,.1), transparent 42%);opacity:0;transition:opacity .25s ease;pointer-events:none}
     .tilt-card.is-tilting{box-shadow:0 26px 60px rgba(0,0,0,.34);border-color:rgba(88,166,255,.22)!important}
     .tilt-card.is-tilting::before,.tilt-card:hover::before{opacity:1}
     .tilt-card > *{position:relative;z-index:1}
     @keyframes floatCard{
-      0%,100%{transform:translate3d(0,0,0)}
-      50%{transform:translate3d(0,-14px,18px)}
+      0%,100%{transform:var(--float-base, translate3d(0,0,0))}
+      50%{transform:var(--float-base, translate3d(0,0,0)) translate3d(0,-10px,16px)}
     }
     @keyframes drift{
       0%{transform:translate3d(0,0,0) scale(1)}
       100%{transform:translate3d(18px,-18px,0) scale(1.08)}
     }
+    @media (max-width: 1280px){
+      .hero-float-card{display:none}
+      .hero-visual{padding:1rem 0 1.25rem}
+      .hero-main-panel{max-width:100%}
+    }
     @media (max-width: 767px){
       .hero-stage{padding-top:1rem}
-      .hero-heading{max-width:100%;font-size:clamp(3rem, 13vw, 4.1rem)}
+      .hero-heading{max-width:100%;font-size:clamp(2.9rem, 12.5vw, 4rem)}
       .hero-support{max-width:100%}
-      .hero-proof-grid,.hero-panel-grid{grid-template-columns:1fr}
-      .hero-visual{min-height:auto;display:grid;gap:1rem;margin-top:1.25rem}
+      .hero-panel-grid{grid-template-columns:1fr}
+      .feature-grid,.signal-grid,.skill-matrix,.cta-band{grid-template-columns:1fr}
+      .cta-band-actions{justify-content:flex-start}
+      .hero-visual{min-height:auto;display:grid;gap:1rem;margin-top:1.25rem;padding:1rem 0 0}
       .hero-panel-top{grid-template-columns:1fr;justify-items:start}
-      .hero-float-card{position:relative;top:auto;right:auto;bottom:auto;left:auto;width:100%;transform:none;animation:none}
-      .hero-float-b,.hero-float-c{display:none}
       .hero-mesh{inset:20% 2% 8% 2%;opacity:.24}
     }
     @media (prefers-reduced-motion: reduce){
-      .depth-layer,.tilt-card,.hero-float-card,.hero-orb{animation:none!important;transition:none!important}
+      .depth-layer,.tilt-card,.hero-orb,.hero-float-card{animation:none!important;transition:none!important}
     }
   </style>
   <!-- SEO & Social -->
@@ -216,50 +242,18 @@
         <div class="hero-mesh depth-layer" style="--depth:.08;--base-transform:translate3d(0,0,0) rotateX(74deg) rotateZ(-18deg)"></div>
       </div>
       <div class="container mx-auto px-4 py-20 hero-stage">
-        <div class="grid md:grid-cols-[minmax(0,1.06fr)_minmax(360px,.94fr)] gap-12 xl:gap-16 items-center">
+        <div class="grid md:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] gap-12 xl:gap-14 items-center">
           <div class="hero-copy relative z-10">
-            <div data-reveal class="hero-kicker">Full-Stack Engineer • Laravel / Node.js • Vue / React</div>
-            <h1 data-reveal class="hero-heading mt-6 font-extrabold tracking-tight text-white">
-              Full-Stack Engineer building
-              <span class="hero-emphasis">Laravel and Node.js</span>
-              <span class="hero-accent">with Vue and React.</span>
+            <h1 data-reveal class="hero-heading font-extrabold tracking-tight text-white">
+              Full-Stack Engineer
+              <span class="hero-emphasis">for Laravel and Node.js</span>
+              <span class="hero-accent">platforms shipped with Vue and React.</span>
             </h1>
-            <p data-reveal class="hero-support mt-6">I build SaaS platforms, APIs, and data-heavy products that need clear architecture, reliable delivery, and frontend and backend work that stays aligned as the product grows.</p>
-            <div data-reveal class="hero-proof-grid">
-              <div class="hero-proof-chip">
-                <small>Focus</small>
-                <strong>Product + Platform Delivery</strong>
-              </div>
-              <div class="hero-proof-chip">
-                <small>Core Stack</small>
-                <strong>Laravel, Node.js, Vue, React</strong>
-              </div>
-              <div class="hero-proof-chip">
-                <small>Typical Work</small>
-                <strong>APIs, integrations, reporting, realtime</strong>
-              </div>
-              <div class="hero-proof-chip">
-                <small>Current Track</small>
-                <strong>MSc at TU Chemnitz</strong>
-              </div>
-            </div>
-            <div data-reveal class="code-terminal overflow-hidden hero-terminal">
-              <div class="bar">
-                <span class="dot" style="background:#ff5f56"></span>
-                <span class="dot" style="background:#ffbd2e"></span>
-                <span class="dot" style="background:#27c93f"></span>
-                <span class="text-xs text-slate-400 ml-2">bash — ~/projects/portfolio</span>
-                </div>
-              <pre class="text-sm text-slate-200 p-4"><code>$ focus
-Laravel + Node.js backend systems
-Vue + React product interfaces
-APIs, integrations, reporting, and realtime flows
-Shipping production software since 2021</code></pre>
-            </div>
+            <p data-reveal class="hero-support mt-6">I build SaaS products, APIs, internal tools, and reporting-heavy workflows where backend systems, integrations, and frontend delivery need to stay aligned.</p>
             <div data-reveal class="hero-actions">
               <a href="#projects" class="hero-btn-primary">View Projects</a>
               <a href="#contact" class="hero-btn-secondary">Contact Me</a>
-              <a id="cvDownloadHero" href="#" class="hero-btn-ghost"><i class="fas fa-download"></i>Download CV</a>
+                  <a id="cvDownloadHero" href="Muhammad_Motasim_FullStack_Developer_CV.pdf" target="_blank" rel="noopener" class="hero-btn-ghost"><i class="fas fa-download"></i>Download CV</a>
             </div>
             <div data-reveal class="hero-link-row">
               <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener" class="hero-link-chip"><i class="fab fa-linkedin-in"></i>LinkedIn</a>
@@ -268,22 +262,17 @@ Shipping production software since 2021</code></pre>
             </div>
           </div>
           <div class="hero-visual">
-            <div class="hero-float-card hero-float-a" aria-hidden="true">
-              <small>Backend Systems</small>
-              <strong>Laravel / Node.js</strong>
-              <p>APIs, queues, integrations, reports.</p>
+            <div class="hero-float-card hero-float-feature" aria-hidden="true">
+              <small>Featured Build</small>
+              <strong>PLAYY.Music</strong>
+              <p>Social music, events, and PR flows.</p>
             </div>
-            <div class="hero-float-card hero-float-b" aria-hidden="true">
-              <small>Frontend Delivery</small>
-              <strong>Vue / React</strong>
-              <p>Dashboards, admin tooling, product flows.</p>
+            <div class="hero-float-card hero-float-ai" aria-hidden="true">
+              <small>AI Workflows</small>
+              <strong>Cursor / n8n</strong>
+              <p>Agents, automation, and IDE loops.</p>
             </div>
-            <div class="hero-float-card hero-float-c" aria-hidden="true">
-              <small>Typical Work</small>
-              <strong>Realtime + Data</strong>
-              <p>Analytics, workflows, jobs, operations.</p>
-            </div>
-            <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card hero-main-panel js-tilt">
+            <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card hero-main-panel">
               <div class="hero-panel-top">
                 <div class="hero-avatar-shell">
                   <img src="assets/images/IMG_4469.jpeg" alt="Muhammad Motasim Bin Shahid" width="132" height="132" fetchpriority="high" />
@@ -291,29 +280,19 @@ Shipping production software since 2021</code></pre>
                 <div class="flex-1">
                   <div class="hero-panel-kicker">Portfolio Snapshot</div>
                   <h3 class="hero-panel-title">Muhammad Motasim Bin Shahid</h3>
-                  <p class="hero-panel-subtitle">Senior Full-Stack Engineer focused on product delivery across backend systems and frontend applications.</p>
-                  <div class="hero-panel-pills">
-                    <span>Laravel</span>
-                    <span>Node.js</span>
-                    <span>Vue</span>
-                    <span>React</span>
-                  </div>
+                  <p class="hero-panel-subtitle">Senior full-stack engineer focused on product delivery across backend systems and frontend applications.</p>
                 </div>
               </div>
               <div class="hero-panel-grid">
                 <div class="hero-panel-card">
-                  <small>Core Focus</small>
-                  <p>SaaS platforms, integrations, reporting workflows, and data-heavy product experiences.</p>
+                  <small>What I Ship</small>
+                  <p>Backend APIs, integrations, admin tooling, reporting, and product-facing flows.</p>
                 </div>
                 <div class="hero-panel-card">
-                  <small>Typical Scope</small>
-                  <p>Backend APIs, admin tooling, realtime features, frontend delivery, and product operations.</p>
+                  <small>Product Shape</small>
+                  <p>SaaS platforms, marketplaces, internal tools, and workflow-heavy applications.</p>
                 </div>
-                <div class="hero-panel-card">
-                  <small>Current Track</small>
-                  <p>MSc in Automotive Software Engineering at TU Chemnitz while continuing full-stack product work.</p>
-                </div>
-                <div class="hero-panel-card">
+                <div class="hero-panel-card hero-panel-card-wide">
                   <small>Build Style</small>
                   <p>Clear architecture, practical shipping, and systems that stay maintainable after launch.</p>
                 </div>
@@ -331,42 +310,46 @@ Shipping production software since 2021</code></pre>
         <!-- Intro + Stats (from backup) -->
         <div class="space-y-6">
           <div data-reveal>
-            <div class="code-terminal overflow-hidden">
+            <div class="code-terminal overflow-hidden js-tilt">
               <div class="bar">
                 <span class="dot" style="background:#ff5f56"></span>
                 <span class="dot" style="background:#ffbd2e"></span>
                 <span class="dot" style="background:#27c93f"></span>
                 <span class="text-xs text-slate-400 ml-2">bash — ~/about</span>
               </div>
-              <pre class="text-sm leading-6 text-slate-200 p-4 min-h-[260px]"><code>I'm a full-stack engineer who works across product, platform, and integration layers. Most of my recent work has been on Laravel and Node.js backends paired with Vue or React frontends for SaaS products, internal tools, and reporting-heavy systems.
+              <pre class="text-sm leading-6 text-slate-200 p-4 min-h-[320px]"><code>I build the kind of software teams rely on after launch.
 
-I’m currently pursuing an MSc in Automotive Software Engineering at TU Chemnitz. I do my best work where product requirements, backend architecture, and day-to-day delivery all need to line up cleanly.</code></pre>
+I'm Muhammad Motasim Bin Shahid, a full-stack engineer working mainly with Laravel and Node.js on the backend and Vue or React on the frontend. I build SaaS platforms, APIs, internal tools, and data-heavy workflows where clear architecture and steady execution matter.
+
+Over the last few years, I've shipped product and platform work across music and social commerce, marketing analytics, telehealth, digital identity, and hosting. That has meant owning APIs, realtime features, reporting, payments, admin tooling, and integrations in live systems that had to keep working under real product pressure.
+
+I'm looking for senior full-stack work where I can own meaningful scope end to end, stay close to product decisions, and keep building systems that scale without getting messy.</code></pre>
             </div>
           </div>
 
           <div data-reveal class="grid grid-cols-2 gap-3">
-            <div class="gh-ach">
+            <div class="gh-ach js-tilt">
               <div class="gh-icon"><i class="fas fa-code"></i></div>
               <div>
                 <div class="font-semibold">Product + Platform</div>
                 <div class="text-sm text-slate-400">Frontend, backend, and delivery</div>
               </div>
             </div>
-            <div class="gh-ach">
+            <div class="gh-ach js-tilt">
               <div class="gh-icon"><i class="fas fa-project-diagram"></i></div>
               <div>
                 <div class="font-semibold">MSc at TU Chemnitz</div>
                 <div class="text-sm text-slate-400">Automotive Software Engineering</div>
               </div>
             </div>
-            <div class="gh-ach">
+            <div class="gh-ach js-tilt">
               <div class="gh-icon"><i class="fas fa-users"></i></div>
               <div>
                 <div class="font-semibold">Since 2021</div>
                 <div class="text-sm text-slate-400">Production Engineering Work</div>
               </div>
             </div>
-            <div class="gh-ach">
+            <div class="gh-ach js-tilt">
               <div class="gh-icon"><i class="fas fa-trophy"></i></div>
               <div>
                 <div class="font-semibold">Core Focus</div>
@@ -378,10 +361,10 @@ I’m currently pursuing an MSc in Automotive Software Engineering at TU Chemnit
 
         <!-- Competencies + Education (from backup) -->
         <div class="space-y-6">
-          <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card">
+          <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card js-tilt">
             <h3 class="font-semibold mb-4"><i class="fas fa-graduation-cap mr-2"></i>Education &amp; Achievements</h3>
             <div class="space-y-5">
-              <article class="rounded-xl p-0 border panel overflow-hidden">
+              <article class="rounded-xl p-0 border panel overflow-hidden js-tilt">
                 <div class="px-4 py-3 border-b border-githubBorder flex items-center justify-between">
                   <div class="flex items-center gap-2 text-slate-300"><span class="octicon octicon-repo"></span><span class="font-semibold">Master of Science — Automotive Software Engineering</span></div>
                   <span class="text-xs px-2 py-0.5 rounded border border-githubBorder">Current</span>
@@ -396,7 +379,7 @@ I’m currently pursuing an MSc in Automotive Software Engineering at TU Chemnit
                 </div>
               </article>
 
-              <article class="rounded-xl p-0 border panel overflow-hidden">
+              <article class="rounded-xl p-0 border panel overflow-hidden js-tilt">
                 <div class="px-4 py-3 border-b border-githubBorder flex items-center justify-between">
                   <div class="flex items-center gap-2 text-slate-300"><span class="octicon octicon-repo"></span><span class="font-semibold">BSc — Computer Science (Software Engineering)</span></div>
                   <span class="text-xs px-2 py-0.5 rounded border border-githubBorder">Dean's Award</span>
@@ -420,7 +403,7 @@ I’m currently pursuing an MSc in Automotive Software Engineering at TU Chemnit
     <!-- Experience -->
     <section id="experience" class="container mx-auto px-4 py-16">
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8">Experience</h2>
-      <div data-reveal class="code-terminal overflow-hidden shadow-card">
+      <div data-reveal class="code-terminal overflow-hidden shadow-card js-tilt">
         <div class="bar">
           <span class="dot" style="background:#ff5f56"></span>
           <span class="dot" style="background:#ffbd2e"></span>
@@ -523,99 +506,156 @@ I’m currently pursuing an MSc in Automotive Software Engineering at TU Chemnit
         </div>
     </section>
 
+    <!-- Featured Work -->
+    <section id="featured-work" class="container mx-auto px-4 py-16">
+      <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
+        <div>
+          <h2 data-reveal class="text-2xl md:text-3xl font-bold">Featured Build Overview</h2>
+          <p data-reveal class="section-lead mt-3">A tighter product summary for PLAYY based on the documented build overview rather than broad portfolio shorthand.</p>
+        </div>
+      </div>
+      <div data-reveal class="feature-frame js-tilt">
+        <div class="feature-grid">
+          <div>
+            <div class="feature-kicker">Featured Build</div>
+            <h3 class="feature-title">PLAYY.Music</h3>
+            <p class="feature-copy">PLAYY.Music is a social music platform that combines artist pages, community features, discovery, events, and commerce in one product.</p>
+            <p class="feature-copy">The build spans public landing experiences for music, media, records, and PR campaigns, plus account flows, artist profiles, social feeds, forums, marketplace pages, event purchasing, realtime messaging, and payments.</p>
+            <div class="mt-6 flex flex-wrap gap-2 text-xs text-slate-300">
+              <span class="label-chip">Vue SPA</span>
+              <span class="label-chip">PR Campaigns</span>
+              <span class="label-chip">Marketplace</span>
+              <span class="label-chip">Events</span>
+              <span class="label-chip">Realtime Messaging</span>
+            </div>
+          </div>
+          <div class="feature-side">
+            <div class="feature-stat">
+              <small>Who It Serves</small>
+              <p>Independent artists and creators first, with fan, label, and promoter-facing surfaces visible in the product.</p>
+            </div>
+            <div class="feature-stat">
+              <small>Build Overview</small>
+              <p>Landing pages, profiles, social and forum features, music discovery, PR campaign flows, marketplace pages, and event operations inside one application.</p>
+            </div>
+            <div class="feature-stat">
+              <small>Frontend Architecture</small>
+              <p>Vue 2.7 SPA with Vue Router, Vuex state, axios-based API wrappers, Stream chat and call integrations, and Stripe payment handling.</p>
+            </div>
+            <div class="feature-stat">
+              <small>Review Note</small>
+              <p>The documented repo evidence covers the client application. I can walk through product scope, delivery ownership, and the broader system context in technical review.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="signal-grid mt-6">
+        <div data-reveal class="signal-card js-tilt">
+          <small>Private Production Work</small>
+          <p>Most of my strongest recent work lives in company or client codebases, so this portfolio focuses on shipped scope and engineering ownership rather than public repo volume.</p>
+        </div>
+        <div data-reveal class="signal-card js-tilt">
+          <small>Public Review Paths</small>
+          <p>GitHub and GitLab are here as supplemental review material. For real product work, the better signal is architecture, delivery history, and how I explain tradeoffs.</p>
+        </div>
+        <div data-reveal class="signal-card js-tilt">
+          <small>Best Use Of This Site</small>
+          <p>Use the case study, experience timeline, and contact section together if you are screening for senior full-stack product work.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Skills -->
     <section id="skills" class="container mx-auto px-4 py-16">
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-tools"></span> Skills</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div data-reveal>
-          <h3 class="font-semibold mb-3">Frontend</h3>
-          <div class="code-terminal overflow-hidden">
-            <div class="bar">
-              <span class="dot" style="background:#ff5f56"></span>
-              <span class="dot" style="background:#ffbd2e"></span>
-              <span class="dot" style="background:#27c93f"></span>
-              <span class="text-xs text-slate-400 ml-2">bash — ~/skills/frontend</span>
-            </div>
-            <pre class="text-sm text-slate-200 p-4"><code>$ skills frontend
-Vue 2/3, NuxtJS, Vuex/Pinia, Vuetify, Vite, React, NextJS, Material‑UI, Tailwind, SCSS, TypeScript, ES6+, a11y</code></pre>
+      <p data-reveal class="section-lead mb-8">Focused on the stack and problem spaces I want to keep being hired for.</p>
+      <div class="skill-matrix">
+        <article data-reveal class="skill-card js-tilt">
+          <h3>Frontend Delivery</h3>
+          <p>Interfaces for dashboards, admin tools, and product-facing flows.</p>
+          <div class="skill-chip-list">
+            <span>Vue 2/3</span>
+            <span>Nuxt</span>
+            <span>React</span>
+            <span>Next.js</span>
+            <span>TypeScript</span>
+            <span>Three.js</span>
+            <span>Tailwind</span>
           </div>
-        </div>
-        <div data-reveal>
-          <h3 class="font-semibold mb-3">Backend</h3>
-          <div class="code-terminal overflow-hidden">
-            <div class="bar">
-              <span class="dot" style="background:#ff5f56"></span>
-              <span class="dot" style="background:#ffbd2e"></span>
-              <span class="dot" style="background:#27c93f"></span>
-              <span class="text-xs text-slate-400 ml-2">bash — ~/skills/backend</span>
-            </div>
-            <pre class="text-sm text-slate-200 p-4"><code>$ skills backend
-Laravel 8–11, PHP, Node.js, NestJS, Express, RESTful APIs, GraphQL, Microservices, MySQL, PostgreSQL, MongoDB, Redis</code></pre>
+        </article>
+        <article data-reveal class="skill-card js-tilt">
+          <h3>Backend Systems</h3>
+          <p>API design, business logic, background jobs, and data-heavy application backends.</p>
+          <div class="skill-chip-list">
+            <span>Laravel</span>
+            <span>PHP</span>
+            <span>Node.js</span>
+            <span>NestJS</span>
+            <span>Express</span>
+            <span>Redis</span>
           </div>
-        </div>
-        <div data-reveal>
-          <h3 class="font-semibold mb-3">DevOps &amp; Cloud</h3>
-          <div class="code-terminal overflow-hidden">
-            <div class="bar">
-              <span class="dot" style="background:#ff5f56"></span>
-              <span class="dot" style="background:#ffbd2e"></span>
-              <span class="dot" style="background:#27c93f"></span>
-              <span class="text-xs text-slate-400 ml-2">bash — ~/skills/devops</span>
-            </div>
-            <pre class="text-sm text-slate-200 p-4"><code>$ skills devops
-AWS, CI/CD, Docker, Kubernetes (basic), Nginx, Apache, SSL/TLS, Load Balancing, Monitoring/Logging, Backups, Reliability</code></pre>
+        </article>
+        <article data-reveal class="skill-card js-tilt">
+          <h3>Data &amp; Infrastructure</h3>
+          <p>Persistence, delivery pipelines, and production support for live systems.</p>
+          <div class="skill-chip-list">
+            <span>MySQL</span>
+            <span>PostgreSQL</span>
+            <span>MongoDB</span>
+            <span>AWS</span>
+            <span>Docker</span>
+            <span>CI/CD</span>
           </div>
-        </div>
-        <div data-reveal class="md:col-span-2">
-          <h3 class="font-semibold mb-3">Tools &amp; Integrations</h3>
-          <div class="code-terminal overflow-hidden">
-            <div class="bar">
-              <span class="dot" style="background:#ff5f56"></span>
-              <span class="dot" style="background:#ffbd2e"></span>
-              <span class="dot" style="background:#27c93f"></span>
-              <span class="text-xs text-slate-400 ml-2">bash — ~/skills/tools</span>
-            </div>
-            <pre class="text-sm text-slate-200 p-4"><code>$ skills tools
-Stripe, Pusher, Getstream, Twilio, NFC, Google Analytics/Ads, OAuth 2.0 / JWT, API Gateway, Payment Gateways, Social APIs</code></pre>
+        </article>
+        <article data-reveal class="skill-card js-tilt">
+          <h3>Integrations</h3>
+          <p>Payment, communication, analytics, and third-party product workflows.</p>
+          <div class="skill-chip-list">
+            <span>Stripe</span>
+            <span>Pusher</span>
+            <span>Twilio</span>
+            <span>OAuth / JWT</span>
+            <span>Google APIs</span>
+            <span>Wallet Passes</span>
           </div>
-        </div>
-        <div data-reveal>
-          <h3 class="font-semibold mb-3">Methods &amp; Practices</h3>
-          <div class="code-terminal overflow-hidden">
-            <div class="bar">
-              <span class="dot" style="background:#ff5f56"></span>
-              <span class="dot" style="background:#ffbd2e"></span>
-              <span class="dot" style="background:#27c93f"></span>
-              <span class="text-xs text-slate-400 ml-2">bash — ~/skills/methods</span>
-            </div>
-            <pre class="text-sm text-slate-200 p-4"><code>$ skills methods
-Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Database &amp; API Design, Responsive UI, Accessible UI</code></pre>
+        </article>
+        <article data-reveal class="skill-card js-tilt">
+          <h3>Engineering Practice</h3>
+          <p>The way I tend to work when the product and engineering side both matter.</p>
+          <div class="skill-chip-list">
+            <span>API Design</span>
+            <span>Code Review</span>
+            <span>Testing</span>
+            <span>Performance</span>
+            <span>Security</span>
+            <span>Product Delivery</span>
           </div>
-        </div>
-        </div>
+        </article>
+        <article data-reveal class="skill-card js-tilt">
+          <h3>AI Agents &amp; Tooling</h3>
+          <p>Applied use of AI-assisted IDE workflows, plugins, and agent-style tooling inside day-to-day delivery and review work.</p>
+          <div class="skill-chip-list">
+            <span>Cursor</span>
+            <span>Claude</span>
+            <span>Lovable</span>
+            <span>AI Agents</span>
+            <span>AI Plugins</span>
+            <span>Agentic IDEs</span>
+            <span>n8n</span>
+            <span>Workflow Automation</span>
+            <span>Prompt-to-Code</span>
+            <span>Code Review Loops</span>
+          </div>
+        </article>
+      </div>
     </section>
 
     <!-- Selected Projects (custom) -->
     <section id="projects" class="container mx-auto px-4 py-16">
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-repo"></span> Selected Projects</h2>
+      <p data-reveal class="section-lead mb-8">Shorter snapshots of other shipped work. The featured case study above is the best place to start if you want depth.</p>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a data-reveal href="https://playy.co.uk/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
-          <div class="font-semibold text-lg mb-4">PLAYY Platform</div>
-          <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Music and social commerce platform built for artists, fan engagement, and monetization.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Laravel APIs, Vue product flows, realtime messaging, payments, and supporting third-party integrations.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Laravel, Vue 2, Redis, AWS.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Helped ship and operate a live product used by 300+ artists across 15+ countries.</div>
-          </div>
-          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
-            <span class="label-chip">Laravel</span>
-            <span class="label-chip">Vue 2</span>
-            <span class="label-chip">Redis</span>
-            <span class="label-chip">AWS</span>
-          </div>
-        </a>
-
-        <a data-reveal href="https://brandbreakerscard.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+        <a data-reveal href="https://brandbreakerscard.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block js-tilt">
           <div class="font-semibold text-lg mb-4">Brand Breakers</div>
           <div class="space-y-3 text-sm text-slate-300">
             <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>NFC-based digital business card product with shareable profiles, wallet passes, and admin tooling.</div>
@@ -631,7 +671,7 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
           </div>
         </a>
 
-        <a data-reveal href="https://adash.io/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+        <a data-reveal href="https://adash.io/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block js-tilt">
           <div class="font-semibold text-lg mb-4">aDash</div>
           <div class="space-y-3 text-sm text-slate-300">
             <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>SEO and marketing analytics platform for reporting across search, ads, and social channels.</div>
@@ -647,7 +687,7 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
           </div>
         </a>
 
-        <a data-reveal href="https://www.bionicwp.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+        <a data-reveal href="https://www.bionicwp.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block js-tilt">
           <div class="font-semibold text-lg mb-4">BionicWP</div>
           <div class="space-y-3 text-sm text-slate-300">
             <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Managed WordPress hosting platform built for performance, support, and operational scale.</div>
@@ -663,7 +703,7 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
           </div>
         </a>
 
-        <a data-reveal href="https://eclinicx.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+        <a data-reveal href="https://eclinicx.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block js-tilt">
           <div class="font-semibold text-lg mb-4">eClinicX</div>
           <div class="space-y-3 text-sm text-slate-300">
             <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Telehealth product for appointments, consultations, and patient record workflows.</div>
@@ -679,6 +719,21 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
           </div>
         </a>
         </div>
+    </section>
+
+    <section class="container mx-auto px-4 pb-16">
+      <div data-reveal class="cta-band js-tilt">
+        <div>
+          <div class="feature-kicker">Next Step</div>
+          <h3 class="mt-4">Need the deeper version?</h3>
+          <p class="section-lead mt-4">Most recent production work is private. I can walk through architecture, ownership, and delivery decisions in a recruiter, client, or technical review conversation.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="#contact" class="cta-btn-primary">Contact Me</a>
+          <a href="Muhammad_Motasim_FullStack_Developer_CV.pdf" target="_blank" rel="noopener" class="cta-btn-secondary">View CV</a>
+          <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="cta-btn-secondary">View GitLab</a>
+        </div>
+      </div>
     </section>
 
     <!-- Projects (GitHub Repositories) -->
@@ -708,7 +763,7 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
                 <div class="text-xs uppercase tracking-[0.2em] text-slate-500">Recruiters / Hiring Managers</div>
                 <p class="mt-2 text-sm text-slate-300">Review my background quickly with the CV and LinkedIn summary.</p>
                 <div class="mt-3 flex flex-wrap gap-2">
-                  <a id="cvDownload" href="#" class="px-4 py-2 rounded bg-brand text-white hover:shadow-card"><i class="fas fa-download mr-2"></i>Download CV</a>
+                  <a id="cvDownload" href="Muhammad_Motasim_FullStack_Developer_CV.pdf" target="_blank" rel="noopener" class="px-4 py-2 rounded bg-brand text-white hover:shadow-card"><i class="fas fa-download mr-2"></i>Download CV</a>
                   <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">View LinkedIn</a>
                 </div>
               </div>

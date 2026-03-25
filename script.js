@@ -258,9 +258,10 @@ function showNotification(message, type = 'info') {
 function initHeroDepth() {
     const hero = document.getElementById('home');
     if (!hero) return;
+    const heroVisual = hero.querySelector('.hero-visual');
 
     const updateScrollDepth = () => {
-        const depthShift = Math.max(-32, window.scrollY * -0.08);
+        const depthShift = Math.max(-20, window.scrollY * -0.05);
         hero.style.setProperty('--hero-scroll', `${depthShift}px`);
     };
 
@@ -271,17 +272,48 @@ function initHeroDepth() {
         return;
     }
 
+    let frameId = null;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    const applyHeroMotion = () => {
+        currentX += (targetX - currentX) * 0.12;
+        currentY += (targetY - currentY) * 0.12;
+
+        hero.style.setProperty('--pointer-x', currentX.toFixed(3));
+        hero.style.setProperty('--pointer-y', currentY.toFixed(3));
+
+        if (heroVisual) {
+            heroVisual.style.setProperty('--hero-rotate-x', `${(-currentY * 0.9).toFixed(2)}deg`);
+            heroVisual.style.setProperty('--hero-rotate-y', `${(currentX * 1.35).toFixed(2)}deg`);
+        }
+
+        const stillMoving = Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001;
+        if (stillMoving) {
+            frameId = window.requestAnimationFrame(applyHeroMotion);
+        } else {
+            frameId = null;
+        }
+    };
+
+    const queueHeroMotion = () => {
+        if (frameId !== null) return;
+        frameId = window.requestAnimationFrame(applyHeroMotion);
+    };
+
     hero.addEventListener('pointermove', (event) => {
         const rect = hero.getBoundingClientRect();
-        const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-        const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-        hero.style.setProperty('--pointer-x', x.toFixed(3));
-        hero.style.setProperty('--pointer-y', y.toFixed(3));
+        targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+        targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+        queueHeroMotion();
     });
 
     hero.addEventListener('pointerleave', () => {
-        hero.style.setProperty('--pointer-x', '0');
-        hero.style.setProperty('--pointer-y', '0');
+        targetX = 0;
+        targetY = 0;
+        queueHeroMotion();
     });
 }
 
@@ -306,8 +338,8 @@ function bindTiltCard(card) {
         const rect = card.getBoundingClientRect();
         const px = (event.clientX - rect.left) / rect.width;
         const py = (event.clientY - rect.top) / rect.height;
-        const rotateY = (px - 0.5) * 8;
-        const rotateX = (0.5 - py) * 8;
+        const rotateY = (px - 0.5) * 6;
+        const rotateX = (0.5 - py) * 6;
 
         card.style.setProperty('--tilt-rotate-x', `${rotateX.toFixed(2)}deg`);
         card.style.setProperty('--tilt-rotate-y', `${rotateY.toFixed(2)}deg`);
@@ -322,7 +354,7 @@ function bindTiltCard(card) {
 }
 
 function initTiltCards(root = document) {
-    const tiltTargets = root.querySelectorAll('.js-tilt, .panel, .code-terminal, .gh-ach');
+    const tiltTargets = root.querySelectorAll('.js-tilt');
     tiltTargets.forEach(bindTiltCard);
 }
 
@@ -502,6 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- GitHub Repo Cards (lightweight public fetch) ---
 async function loadGithubRepos() {
     const username = 'MuhammadMotasimBinShahid';
+    const pinnedRepoNames = ['mini-form-builder'];
     const repoSection = document.getElementById('repos');
     const repoGrid = document.getElementById('repoGrid');
     if (!repoGrid || !repoSection) return;
@@ -512,10 +545,23 @@ async function loadGithubRepos() {
         const all = await res.json();
         if (!Array.isArray(all)) return;
 
-        const selected = all
-            .filter((repo) => !repo.fork && !repo.archived && !repo.disabled && repo.description)
-            .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at)))
-            .slice(0, 6);
+        const eligible = all
+            .filter((repo) => !repo.fork && !repo.archived && !repo.disabled && repo.description);
+
+        const byRelevance = (a, b) => {
+            return (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at));
+        };
+
+        const pinned = pinnedRepoNames
+            .map((name) => eligible.find((repo) => repo.name === name))
+            .filter(Boolean);
+
+        const selected = [
+            ...pinned,
+            ...eligible
+                .filter((repo) => !pinnedRepoNames.includes(repo.name))
+                .sort(byRelevance),
+        ].slice(0, 6);
 
         if (selected.length === 0) return;
 
