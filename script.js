@@ -34,6 +34,8 @@ class ThemeManager {
 
 // Initialize theme manager
 const themeManager = new ThemeManager();
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 
 // CV Download functionality
 function initCvDownload() {
@@ -158,6 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize CV download functionality
     initCvDownload();
+    initHeroDepth();
+    initTiltCards();
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = String(new Date().getFullYear());
+    }
     // Track primary CTA clicks (GA4)
     const viewWork = document.querySelector('a[href="#projects"]');
     if (viewWork) viewWork.addEventListener('click', () => {
@@ -247,27 +255,76 @@ function showNotification(message, type = 'info') {
 
 // (Removed typing animation for Tailwind template hero)
 
-// Parallax effect for hero section
-let ticking = false;
+function initHeroDepth() {
+    const hero = document.getElementById('home');
+    if (!hero) return;
 
-function updateParallax() {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const rate = scrolled * -0.5;
-        hero.style.transform = `translateY(${rate}px)`;
+    const updateScrollDepth = () => {
+        const depthShift = Math.max(-32, window.scrollY * -0.08);
+        hero.style.setProperty('--hero-scroll', `${depthShift}px`);
+    };
+
+    updateScrollDepth();
+    window.addEventListener('scroll', updateScrollDepth, { passive: true });
+
+    if (!(hasFinePointer.matches && !prefersReducedMotion.matches)) {
+        return;
     }
-    ticking = false;
+
+    hero.addEventListener('pointermove', (event) => {
+        const rect = hero.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+        const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+        hero.style.setProperty('--pointer-x', x.toFixed(3));
+        hero.style.setProperty('--pointer-y', y.toFixed(3));
+    });
+
+    hero.addEventListener('pointerleave', () => {
+        hero.style.setProperty('--pointer-x', '0');
+        hero.style.setProperty('--pointer-y', '0');
+    });
 }
 
-function requestTick() {
-    if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
+function bindTiltCard(card) {
+    if (card.dataset.tiltBound === 'true') return;
+    card.dataset.tiltBound = 'true';
+    card.classList.add('tilt-card');
+
+    if (!(hasFinePointer.matches && !prefersReducedMotion.matches)) {
+        return;
     }
+
+    const resetTilt = () => {
+        card.style.setProperty('--tilt-rotate-x', '0deg');
+        card.style.setProperty('--tilt-rotate-y', '0deg');
+        card.style.setProperty('--glow-x', '50%');
+        card.style.setProperty('--glow-y', '50%');
+        card.classList.remove('is-tilting');
+    };
+
+    card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width;
+        const py = (event.clientY - rect.top) / rect.height;
+        const rotateY = (px - 0.5) * 8;
+        const rotateX = (0.5 - py) * 8;
+
+        card.style.setProperty('--tilt-rotate-x', `${rotateX.toFixed(2)}deg`);
+        card.style.setProperty('--tilt-rotate-y', `${rotateY.toFixed(2)}deg`);
+        card.style.setProperty('--glow-x', `${(px * 100).toFixed(2)}%`);
+        card.style.setProperty('--glow-y', `${(py * 100).toFixed(2)}%`);
+        card.classList.add('is-tilting');
+    });
+
+    card.addEventListener('pointerleave', resetTilt);
+    card.addEventListener('pointercancel', resetTilt);
+    resetTilt();
 }
 
-window.addEventListener('scroll', requestTick);
+function initTiltCards(root = document) {
+    const tiltTargets = root.querySelectorAll('.js-tilt, .panel, .code-terminal, .gh-ach');
+    tiltTargets.forEach(bindTiltCard);
+}
 
 // (Removed old hover JS; Tailwind handles hover effects)
 
@@ -445,18 +502,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- GitHub Repo Cards (lightweight public fetch) ---
 async function loadGithubRepos() {
     const username = 'MuhammadMotasimBinShahid';
+    const repoSection = document.getElementById('repos');
     const repoGrid = document.getElementById('repoGrid');
-    if (!repoGrid) return;
+    if (!repoGrid || !repoSection) return;
 
     try {
         const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
+        if (!res.ok) return;
         const all = await res.json();
         if (!Array.isArray(all)) return;
 
-        // Pick top 6 by stars, then recent
         const selected = all
+            .filter((repo) => !repo.fork && !repo.archived && !repo.disabled && repo.description)
             .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at)))
             .slice(0, 6);
+
+        if (selected.length === 0) return;
 
         const makeCard = (r) => {
             const lang = r.language || '—';
@@ -469,7 +530,7 @@ async function loadGithubRepos() {
             card.href = r.html_url;
             card.target = '_blank';
             card.rel = 'noopener';
-            card.className = 'rounded-lg p-4 border border-slate-200 dark:border-githubBorder bg-white/70 dark:bg-githubPanel/70 hover:bg-slate-50 dark:hover:bg-githubPanel transition block';
+            card.className = 'rounded-lg p-4 border border-slate-200 dark:border-githubBorder bg-white/70 dark:bg-githubPanel/70 hover:bg-slate-50 dark:hover:bg-githubPanel transition block js-tilt';
             card.innerHTML = `
                 <div class="font-semibold mb-1 text-slate-900 dark:text-white">${r.name}</div>
                 <div class="text-sm text-slate-600 dark:text-slate-300 mb-3">${desc}</div>
@@ -483,292 +544,16 @@ async function loadGithubRepos() {
             return card;
         };
 
+        repoGrid.innerHTML = '';
         selected.forEach(r => repoGrid.appendChild(makeCard(r)));
+        initTiltCards(repoGrid);
+        repoSection.hidden = false;
     } catch (e) {
-        // Silent fail in case of API rate limit
-        // Optional: show fallback message
+        repoSection.hidden = true;
     }
 }
 
 document.addEventListener('DOMContentLoaded', loadGithubRepos);
-
-// Inject heatmap color variables for GitLab heatmap
-const ghHeatmapStyle = document.createElement('style');
-ghHeatmapStyle.textContent = `
-  :root{--gl-level-0:#fee2e2;--gl-level-1:#fecaca;--gl-level-2:#fca5a5;--gl-level-3:#f87171;--gl-level-4:#ef4444}
-  .dark{--gl-level-0:#201a1a;--gl-level-1:#3a2020;--gl-level-2:#632b2a;--gl-level-3:#a73a36;--gl-level-4:#D94A45}
-`;
-document.head.appendChild(ghHeatmapStyle);
-
-// Tooltip styles for heatmaps
-const glTooltipStyle = document.createElement('style');
-glTooltipStyle.textContent = `
-  .gl-tooltip{position:fixed;background:rgba(13,17,23,.95);color:#e5e7eb;border:1px solid #30363D;padding:6px 8px;border-radius:6px;font-size:12px;line-height:1;pointer-events:none;z-index:10000;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.35)}
-`;
-document.head.appendChild(glTooltipStyle);
-
-// Removed GitHub Highlights heatmap usage
-
-// --- GitLab Activity Heatmap (public profile calendar) ---
-async function renderGitlabHeatmap() {
-    const container = document.getElementById('gitlabHeatmap');
-    if (!container) return;
-
-    const username = 'muhammadmotasimbin.shahid';
-    const direct = `https://gitlab.com/users/${username}/calendar.json`;
-    const fallbacks = [
-        direct,
-        `https://cors.isomorphic-git.org/${direct}`,
-        // Jina reader proxy (CORS-friendly, returns text)
-        `https://r.jina.ai/https://gitlab.com/users/${username}/calendar.json`
-    ];
-
-    function formatDate(date) {
-        const y = date.getFullYear();
-        const m = String(date.getMonth() + 1).padStart(2, '0');
-        const d = String(date.getDate()).padStart(2, '0');
-        return `${y}-${m}-${d}`;
-    }
-
-    function computeLevels(map, days) {
-        const today = new Date();
-        let max = 0;
-        for (let i = days - 1; i >= 0; i--) {
-            const dt = new Date(today);
-            dt.setDate(dt.getDate() - i);
-            const v = Number(map[formatDate(dt)] || 0);
-            if (v > max) max = v;
-        }
-        return { max };
-    }
-
-    function intensity(count, t) {
-        if (!count) return 0;
-        const step = Math.max(1, Math.ceil(t.max / 4));
-        return Math.min(4, Math.ceil(count / step));
-    }
-
-    function buildGrid(map) {
-        container.innerHTML = '';
-        const wrapper = document.createElement('div');
-        // Inline styles to avoid relying on Tailwind for dynamically-added classes
-        wrapper.style.display = 'grid';
-        const gapPx = 2;
-        const paddingPx = 12;
-        const containerWidth = container.clientWidth || 600;
-        // Show last N months (mobile: 5 months, desktop: 7 months)
-        const today = new Date();
-        const isMobile = (typeof window !== 'undefined' && window.matchMedia) ? window.matchMedia('(max-width: 768px)').matches : (containerWidth < 640);
-        const weekGutterPx = isMobile ? 6 : 8;
-        const monthsToShow = isMobile ? 4 : 6; // previous months count; + current month = 5 (mobile) or 7 (desktop)
-        const firstMonthFirstDay = new Date(today.getFullYear(), today.getMonth() - monthsToShow, 1);
-        firstMonthFirstDay.setHours(0,0,0,0);
-        // Align start to the SUNDAY ON or AFTER the first day of the first month
-        // so the grid top row is Sunday and Monday appears on row 2
-        const d = firstMonthFirstDay.getDay(); // 0=Sun
-        const forwardToSunday = (0 - d + 7) % 7; // 0..6 forward
-        const startDate = new Date(firstMonthFirstDay);
-        startDate.setDate(firstMonthFirstDay.getDate() + forwardToSunday);
-        const days = Math.max(7, Math.ceil((today - startDate) / (1000*60*60*24)) + 1);
-        const columns = Math.ceil(days / 7);
-        const fullCells = columns * 7; // include placeholders to complete the last week
-        const cellMin = isMobile ? 8 : 12;
-        const cellMax = isMobile ? 12 : 18;
-        const cellPx = Math.max(cellMin, Math.min(cellMax, Math.floor((containerWidth - paddingPx * 2 - gapPx * (columns - 1)) / columns)));
-        wrapper.style.gridTemplateColumns = `repeat(${columns + 1}, ${cellPx}px)`; // +1 for week labels column
-        wrapper.style.gridTemplateRows = `repeat(7, ${cellPx}px)`;
-        wrapper.style.gridAutoFlow = 'column';
-        wrapper.style.gap = `${gapPx}px`;
-        wrapper.style.padding = `${paddingPx}px`;
-        wrapper.style.alignItems = 'start';
-        wrapper.style.justifyItems = 'center';
-        container.style.position = 'relative';
-        container.style.overflow = 'hidden';
-        container.style.minHeight = '0px';
-
-        // Month labels row
-        const header = document.createElement('div');
-        header.style.display = 'grid';
-        header.style.gridTemplateColumns = `${cellPx + weekGutterPx}px repeat(${columns}, ${cellPx}px)`;
-        header.style.gap = `${gapPx}px`;
-        header.style.margin = `${paddingPx}px ${paddingPx}px 10px ${paddingPx}px`;
-        // first empty cell (corner)
-        const blank = document.createElement('div');
-        header.appendChild(blank);
-        for (let c = 0; c < columns; c++) {
-            const colDate = new Date(startDate);
-            colDate.setDate(startDate.getDate() + c * 7);
-            const prevColDate = new Date(startDate.getTime() + (c - 1) * 7 * 86400000);
-            const monthChanged = c === 0 || prevColDate.getMonth() !== colDate.getMonth();
-            const el = document.createElement('div');
-            el.style.width = `${cellPx}px`;
-            el.style.height = `${cellPx}px`;
-            el.style.color = '#94a3b8';
-            el.style.fontSize = '10px';
-            el.style.lineHeight = `${cellPx}px`;
-            el.style.textAlign = 'left';
-            el.style.whiteSpace = 'nowrap';
-            el.style.overflow = 'visible';
-            el.style.transform = 'translateX(-2px)';
-            // Suppress any labels prior to the first month we want to show
-            const labelAllowed = colDate >= firstMonthFirstDay;
-            el.textContent = monthChanged && labelAllowed ? colDate.toLocaleString('en-US', { month: 'short' }) : '';
-            header.appendChild(el);
-        }
-        container.appendChild(header);
-
-        // Grid container
-        const grid = document.createElement('div');
-        grid.style.display = 'grid';
-        grid.style.gridTemplateColumns = `${cellPx + weekGutterPx}px repeat(${columns}, ${cellPx}px)`;
-        grid.style.gridTemplateRows = `repeat(7, ${cellPx}px)`;
-        grid.style.gridAutoFlow = 'column';
-        grid.style.gap = `${gapPx}px`;
-        grid.style.margin = `0 ${paddingPx}px ${paddingPx}px ${paddingPx}px`;
-
-        // Build list of dates from start to end, including future placeholders
-        const dates = [];
-        for (let d = 0; d < fullCells; d++) {
-            const dt = new Date(startDate);
-            dt.setDate(startDate.getDate() + d);
-            dates.push(dt);
-        }
-
-        // Compute thresholds only for past days (<= today)
-        const threshDays = dates.filter(dt => dt <= today).length;
-        const thresholds = computeLevels(map, threshDays);
-
-        // Weekday labels (M on 2nd row, W on 4th, F on 6th)
-        const weekdayLabels = ['', 'M', '', 'W', '', 'F', ''];
-        for (let r = 0; r < 7; r++) {
-            const lab = document.createElement('div');
-            lab.style.width = `${cellPx}px`;
-            lab.style.height = `${cellPx}px`;
-            lab.style.color = '#94a3b8';
-            lab.style.fontSize = '10px';
-            lab.style.lineHeight = `${cellPx}px`;
-            lab.style.textAlign = 'center';
-            lab.textContent = weekdayLabels[r];
-            grid.appendChild(lab);
-        }
-
-        dates.forEach((dt) => {
-            const key = formatDate(dt);
-            const isFuture = dt > today;
-            const count = isFuture ? 0 : Number(map[key] || 0);
-            const level = intensity(count, thresholds);
-            const cell = document.createElement('div');
-            cell.style.width = `${cellPx}px`;
-            cell.style.height = `${cellPx}px`;
-            cell.style.borderRadius = '2px';
-            cell.style.background = `var(--gl-level-${level})`;
-            cell.style.border = '1px solid rgba(48,54,61,0.35)';
-            if (isFuture) {
-                cell.style.opacity = '0.15';
-            } else {
-                cell.setAttribute('data-date', key);
-                cell.setAttribute('data-count', String(count));
-            }
-            grid.appendChild(cell);
-        });
-
-        // Tooltip on hover
-        const tooltip = document.createElement('div');
-        tooltip.className = 'gl-tooltip';
-        tooltip.style.display = 'none';
-        document.body.appendChild(tooltip);
-
-        grid.addEventListener('mousemove', (e) => {
-            const target = e.target;
-            if (!(target instanceof HTMLElement)) return;
-            const date = target.getAttribute('data-date');
-            const count = target.getAttribute('data-count');
-            if (date && count !== null) {
-                tooltip.textContent = `${count} contributions — ${new Date(date).toDateString()}`;
-                tooltip.style.display = 'block';
-                tooltip.style.left = e.clientX + 12 + 'px';
-                tooltip.style.top = e.clientY + 12 + 'px';
-            } else {
-                tooltip.style.display = 'none';
-            }
-        });
-        grid.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-
-        container.appendChild(grid);
-    }
-
-    async function fetchWithFallbacks(urls) {
-        for (const u of urls) {
-            try {
-                const res = await fetch(u, { credentials: 'omit' });
-                if (!res.ok) continue;
-                const contentType = res.headers.get('content-type') || '';
-                if (contentType.includes('application/json')) {
-                    return await res.json();
-                }
-                const txt = await res.text();
-                try {
-                    return JSON.parse(txt);
-                } catch {
-                    // Attempt to extract date:count pairs from text using regex
-                    const map = {};
-                    const re = /(\d{4}-\d{2}-\d{2})\"?\s*:\s*(\d+)/g;
-                    let m;
-                    while ((m = re.exec(txt)) !== null) {
-                        map[m[1]] = Number(m[2]);
-                    }
-                    if (Object.keys(map).length > 0) return map;
-                    continue;
-                }
-            } catch (_) {
-                continue;
-            }
-        }
-        throw new Error('All sources failed');
-    }
-
-    try {
-        const data = await fetchWithFallbacks(fallbacks);
-        let byDate = {};
-        if (data && typeof data === 'object' && !Array.isArray(data) && data.contributions && typeof data.contributions === 'object') {
-            byDate = data.contributions;
-        } else if (data && typeof data === 'object' && !Array.isArray(data)) {
-            byDate = data;
-        } else if (Array.isArray(data)) {
-            data.forEach(item => {
-                const date = item?.date || item?.[0];
-                const count = item?.contributions ?? item?.count ?? item?.[1] ?? 0;
-                if (date) byDate[date] = count;
-            });
-        }
-        if (!byDate || Object.keys(byDate).length === 0) {
-            // If GitLab returns empty (private activity), synthesize a subtle pattern so the UI isn't blank
-            const synth = {};
-            const today = new Date();
-            for (let i = 0; i < 90; i++) {
-                const dt = new Date(today);
-                dt.setDate(dt.getDate() - i);
-                const key = formatDate(dt);
-                synth[key] = Math.floor(Math.random() * 2); // light activity
-            }
-            buildGrid(synth);
-        } else {
-            buildGrid(byDate);
-        }
-
-        if (!window.__glHeatmapResizerAttached) {
-            window.__glHeatmapResizerAttached = true;
-            window.addEventListener('resize', debounce(() => {
-                if (container) buildGrid(byDate);
-            }, 100));
-        }
-    } catch (e) {
-        // Fallback: render a very light placeholder grid to avoid a blank panel
-        container.innerHTML = '<div style="padding:12px" class="text-xs text-slate-400">Could not load GitLab public activity. <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="underline">View profile</a>.</div>';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', renderGitlabHeatmap);
 
 // Add keyboard navigation support
 document.addEventListener('keydown', (e) => {
@@ -832,4 +617,4 @@ function toggleExperience(button) {
         button.innerHTML = 'Show Less <i class="fas fa-chevron-up" style="margin-left: 0.25rem; font-size: 0.8rem; transition: transform 0.3s ease;"></i>';
         button.classList.add('expanded');
     }
-} 
+}

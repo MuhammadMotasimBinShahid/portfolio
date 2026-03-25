@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Motasim Bin Shahid — Senior Full‑Stack Software Engineer</title>
+  <title>Muhammad Motasim Bin Shahid — Full-Stack Engineer | Laravel, Node.js, Vue, React</title>
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -29,6 +29,13 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/octicons/19.8.0/build.css" rel="stylesheet">
   <style>
+    :root{--pointer-x:0;--pointer-y:0;--hero-scroll:0px}
+    body{background:
+      radial-gradient(circle at 12% 18%, rgba(88,166,255,.12), transparent 26%),
+      radial-gradient(circle at 82% 14%, rgba(217,74,69,.14), transparent 24%),
+      radial-gradient(circle at 56% 70%, rgba(88,166,255,.08), transparent 28%),
+      linear-gradient(180deg, #0b1118 0%, #0d1117 55%, #0b1016 100%);
+      background-attachment:fixed}
     .code-terminal{background:rgba(22,27,34,.9);border:1px solid #30363D;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
     .code-terminal .bar{height:36px;border-bottom:1px solid #30363D;display:flex;align-items:center;padding:0 12px;gap:8px}
     .code-terminal .dot{width:10px;height:10px;border-radius:50%}
@@ -44,17 +51,101 @@
     /* GitHub-like language dots for tech stacks */
     .tech{display:inline-flex;align-items:center;gap:6px;color:#94A3B8}
     .tech .dot{width:12px;height:12px;border-radius:50%;background:var(--tech-color,#2A2F36)}
+    .hero-shell{isolation:isolate;overflow:hidden;perspective:1600px}
+    .hero-shell::before{content:"";position:absolute;inset:0;background:linear-gradient(112deg, rgba(13,17,23,.12) 0%, rgba(217,74,69,.16) 46%, rgba(88,166,255,.09) 100%);pointer-events:none;z-index:0}
+    .hero-shell::after{content:"";position:absolute;inset:6rem 0 auto 0;height:34rem;background:radial-gradient(circle at 16% 28%, rgba(217,74,69,.18), transparent 30%),radial-gradient(circle at 70% 62%, rgba(88,166,255,.14), transparent 28%);filter:blur(44px);pointer-events:none;z-index:0}
+    .hero-stage{position:relative;z-index:1}
+    .hero-ambient{position:absolute;inset:-8% -6% 0;pointer-events:none;z-index:0}
+    .depth-layer{transform-style:preserve-3d;transform:var(--base-transform, translate3d(0,0,0)) translate3d(calc(var(--pointer-x, 0) * var(--depth, .1) * 22px), calc(var(--pointer-y, 0) * var(--depth, .1) * 18px + var(--hero-scroll, 0px) * var(--depth, .1)), calc(var(--depth, .1) * 120px));transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform}
+    .hero-orb{position:absolute;border-radius:9999px;filter:blur(24px);mix-blend-screen;opacity:.6;animation:drift 18s ease-in-out infinite alternate}
+    .hero-orb.one{top:2rem;left:-2rem;width:20rem;height:20rem;background:radial-gradient(circle, rgba(217,74,69,.52), transparent 72%)}
+    .hero-orb.two{right:3rem;bottom:2rem;width:19rem;height:19rem;background:radial-gradient(circle, rgba(88,166,255,.36), transparent 72%);animation-delay:-4s}
+    .hero-mesh{position:absolute;inset:18% 2% 10% 44%;border:1px solid rgba(88,166,255,.14);border-radius:36px;background-image:linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);background-size:34px 34px;box-shadow:inset 0 0 80px rgba(88,166,255,.08),0 0 60px rgba(13,17,23,.35);opacity:.42}
+    .hero-copy{max-width:42rem}
+    .hero-kicker{display:inline-flex;align-items:center;gap:.65rem;padding:.55rem .9rem;border:1px solid rgba(148,163,184,.16);border-radius:999px;background:rgba(12,17,24,.56);box-shadow:0 12px 34px rgba(0,0,0,.18);color:#cbd5e1;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
+    .hero-kicker::before{content:"";width:.55rem;height:.55rem;border-radius:999px;background:linear-gradient(135deg, #D94A45, #58A6FF);box-shadow:0 0 18px rgba(217,74,69,.45)}
+    .hero-heading{max-width:10.8ch;font-size:clamp(3.6rem, 7vw, 5.9rem);line-height:.94;letter-spacing:-.06em;text-wrap:balance}
+    .hero-heading .hero-emphasis{display:block;background:linear-gradient(120deg, #ffffff 0%, #ffd6cf 55%, #ff998c 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-heading .hero-accent{display:block;color:#d9e9ff}
+    .hero-support{max-width:38rem;color:#cbd5e1;font-size:clamp(1.05rem, 1vw + .92rem, 1.34rem);line-height:1.65}
+    .hero-terminal{max-width:42rem;margin-top:1.65rem;border-color:rgba(88,166,255,.16);background:linear-gradient(180deg, rgba(14,18,25,.96), rgba(10,14,20,.94));box-shadow:0 24px 70px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.04)}
+    .hero-terminal .bar{background:rgba(255,255,255,.02)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.7rem}
+    .hero-btn-primary,.hero-btn-secondary,.hero-btn-ghost{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 1.2rem;border-radius:16px;font-weight:600;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+    .hero-btn-primary{background:linear-gradient(135deg, #eb564d, #d94a45);color:#fff;box-shadow:0 20px 45px rgba(217,74,69,.32)}
+    .hero-btn-secondary{border:1px solid rgba(148,163,184,.22);background:rgba(12,17,24,.62);color:#f8fafc}
+    .hero-btn-ghost{color:#e2e8f0}
+    .hero-btn-primary:hover,.hero-btn-secondary:hover,.hero-btn-ghost:hover{transform:translateY(-2px)}
+    .hero-btn-secondary:hover{border-color:rgba(88,166,255,.26);box-shadow:0 18px 38px rgba(0,0,0,.22)}
+    .hero-link-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.1rem}
+    .hero-link-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem .95rem;border:1px solid rgba(148,163,184,.16);border-radius:999px;background:rgba(12,17,24,.52);color:#cbd5e1;transition:transform .25s ease, border-color .25s ease, color .25s ease}
+    .hero-link-chip:hover{transform:translateY(-2px);border-color:rgba(88,166,255,.25);color:#fff}
+    .hero-proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin-top:1.5rem;max-width:38rem}
+    .hero-proof-chip{padding:1rem 1.05rem;border:1px solid rgba(48,54,61,.82);border-radius:20px;background:linear-gradient(180deg, rgba(13,17,23,.84), rgba(8,11,18,.88));box-shadow:0 18px 40px rgba(0,0,0,.18)}
+    .hero-proof-chip small{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#94A3B8}
+    .hero-proof-chip strong{display:block;margin-top:.45rem;color:#f8fafc;font-size:1rem}
+    .hero-visual{position:relative;min-height:40rem;perspective:1800px;transform-style:preserve-3d;display:flex;align-items:center}
+    .hero-main-panel{position:relative;z-index:3;--tilt-base:translateZ(60px);width:100%;padding:1.6rem;border-radius:30px;border:1px solid rgba(48,54,61,.92);background:linear-gradient(180deg, rgba(13,17,23,.94), rgba(9,13,20,.97));box-shadow:0 34px 90px rgba(0,0,0,.36)}
+    .hero-main-panel::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.08), transparent 28%, rgba(217,74,69,.08) 68%, transparent 100%);pointer-events:none}
+    .hero-panel-top{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:center}
+    .hero-avatar-shell{position:relative;width:8.25rem;height:8.25rem;padding:.38rem;border-radius:999px;background:conic-gradient(from 180deg, rgba(217,74,69,.9), rgba(88,166,255,.84), rgba(217,74,69,.9));box-shadow:0 0 0 1px rgba(255,255,255,.05),0 22px 58px rgba(0,0,0,.34)}
+    .hero-avatar-shell::before{content:"";position:absolute;inset:-16px;border-radius:999px;background:radial-gradient(circle, rgba(217,74,69,.18), transparent 70%);filter:blur(12px)}
+    .hero-avatar-shell img{position:relative;z-index:1;width:100%;height:100%;border-radius:999px;object-fit:cover;border:2px solid rgba(13,17,23,.84)}
+    .hero-panel-kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#94A3B8}
+    .hero-panel-title{margin-top:.35rem;font-size:1.72rem;line-height:1.05;font-weight:700;color:#f8fafc}
+    .hero-panel-subtitle{margin-top:.45rem;color:#cbd5e1;font-size:1.02rem}
+    .hero-panel-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+    .hero-panel-pills span{padding:.4rem .72rem;border-radius:999px;border:1px solid rgba(148,163,184,.14);background:rgba(88,166,255,.06);font-size:.78rem;color:#dbeafe}
+    .hero-panel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.45rem}
+    .hero-panel-card{padding:1rem 1.05rem 1.1rem;border:1px solid rgba(48,54,61,.82);border-radius:20px;background:linear-gradient(180deg, rgba(13,17,23,.84), rgba(8,11,18,.9));min-height:8.6rem}
+    .hero-panel-card small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
+    .hero-panel-card p{margin-top:.6rem;font-size:.95rem;line-height:1.55;color:#e2e8f0}
+    .hero-float-card{position:absolute;z-index:4;width:min(11.25rem, 32vw);padding:.8rem .9rem;border:1px solid rgba(48,54,61,.9);border-radius:20px;background:linear-gradient(180deg, rgba(10,14,21,.94), rgba(18,24,34,.94));box-shadow:0 24px 60px rgba(0,0,0,.3);backdrop-filter:blur(16px);animation:floatCard 7s ease-in-out infinite}
+    .hero-float-card::before{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.12), transparent 40%, rgba(217,74,69,.12));opacity:.6;pointer-events:none}
+    .hero-float-card small{position:relative;display:block;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:#94A3B8}
+    .hero-float-card strong{position:relative;display:block;margin-top:.45rem;font-size:1rem;color:#F8FAFC}
+    .hero-float-card p{position:relative;margin-top:.3rem;font-size:.75rem;color:#94A3B8;line-height:1.42}
+    .hero-float-a{top:6%;right:-3%;transform:rotate(6deg)}
+    .hero-float-b{top:48%;left:-4%;transform:rotate(-7deg);animation-delay:-1.3s}
+    .hero-float-c{right:4%;bottom:-2%;width:min(12.2rem, 34vw);transform:rotate(5deg);animation-delay:-2.2s}
+    .tilt-card{position:relative;transform:perspective(1400px) var(--tilt-base, translateZ(0)) rotateX(var(--tilt-rotate-x, 0deg)) rotateY(var(--tilt-rotate-y, 0deg));transform-style:preserve-3d;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .35s ease;will-change:transform}
+    .tilt-card::before{content:"";position:absolute;inset:1px;border-radius:inherit;background:radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255,255,255,.12), transparent 35%),radial-gradient(circle at top right, rgba(88,166,255,.12), transparent 42%),radial-gradient(circle at bottom left, rgba(217,74,69,.1), transparent 42%);opacity:0;transition:opacity .25s ease;pointer-events:none}
+    .tilt-card.is-tilting{box-shadow:0 26px 60px rgba(0,0,0,.34);border-color:rgba(88,166,255,.22)!important}
+    .tilt-card.is-tilting::before,.tilt-card:hover::before{opacity:1}
+    .tilt-card > *{position:relative;z-index:1}
+    @keyframes floatCard{
+      0%,100%{transform:translate3d(0,0,0)}
+      50%{transform:translate3d(0,-14px,18px)}
+    }
+    @keyframes drift{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      100%{transform:translate3d(18px,-18px,0) scale(1.08)}
+    }
+    @media (max-width: 767px){
+      .hero-stage{padding-top:1rem}
+      .hero-heading{max-width:100%;font-size:clamp(3rem, 13vw, 4.1rem)}
+      .hero-support{max-width:100%}
+      .hero-proof-grid,.hero-panel-grid{grid-template-columns:1fr}
+      .hero-visual{min-height:auto;display:grid;gap:1rem;margin-top:1.25rem}
+      .hero-panel-top{grid-template-columns:1fr;justify-items:start}
+      .hero-float-card{position:relative;top:auto;right:auto;bottom:auto;left:auto;width:100%;transform:none;animation:none}
+      .hero-float-b,.hero-float-c{display:none}
+      .hero-mesh{inset:20% 2% 8% 2%;opacity:.24}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .depth-layer,.tilt-card,.hero-float-card,.hero-orb{animation:none!important;transition:none!important}
+    }
   </style>
   <!-- SEO & Social -->
   <meta name="author" content="Muhammad Motasim Bin Shahid">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="Senior Full‑Stack Software Engineer in Germany. Vue/React, JavaScript/TypeScript, Node/Laravel, AWS. Building performant web apps, scalable systems, and delightful UX.">
+  <meta name="description" content="Full-Stack Engineer building Laravel and Node.js backends with Vue and React frontends for SaaS platforms, APIs, and data-heavy products.">
   <link rel="canonical" href="https://muhammadmotasimbinshahid.com/">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <meta name="keywords" content="Senior Full‑Stack Software Engineer, Vue, React, Node, Laravel, JavaScript, TypeScript, Portfolio">
   <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)">
-  <meta property="og:title" content="Muhammad Motasim Bin Shahid — Senior Full‑Stack Software Engineer">
-  <meta property="og:description" content="Senior Full‑Stack Software Engineer in Germany. Vue/React, JavaScript/TypeScript, Node/Laravel, AWS. Building performant web apps, scalable systems, and delightful UX.">
+  <meta property="og:title" content="Muhammad Motasim Bin Shahid — Full-Stack Engineer | Laravel, Node.js, Vue, React">
+  <meta property="og:description" content="Full-Stack Engineer building Laravel and Node.js backends with Vue and React frontends for SaaS platforms, APIs, and data-heavy products.">
     <meta property="og:site_name" content="Muhammad Motasim Bin Shahid">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://muhammadmotasimbinshahid.com/">
@@ -62,8 +153,8 @@
     <meta property="og:image:alt" content="Portrait of Muhammad Motasim Bin Shahid">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Muhammad Motasim Bin Shahid — Senior Full‑Stack Software Engineer">
-  <meta name="twitter:description" content="Senior Full‑Stack Software Engineer in Germany. Vue/React, JavaScript/TypeScript, Node/Laravel, AWS. Building performant web apps, scalable systems, and delightful UX.">
+  <meta name="twitter:title" content="Muhammad Motasim Bin Shahid — Full-Stack Engineer | Laravel, Node.js, Vue, React">
+  <meta name="twitter:description" content="Full-Stack Engineer building Laravel and Node.js backends with Vue and React frontends for SaaS platforms, APIs, and data-heavy products.">
     <meta name="twitter:image" content="https://muhammadmotasimbinshahid.com/assets/images/IMG_4469.jpeg">
     <meta name="twitter:image:alt" content="Portrait of Muhammad Motasim Bin Shahid">
   <script type="application/ld+json">
@@ -73,9 +164,8 @@
     "name": "Muhammad Motasim Bin Shahid",
     "url": "https://muhammadmotasimbinshahid.com/",
     "image": "https://muhammadmotasimbinshahid.com/assets/images/IMG_4469.jpeg",
-    "jobTitle": "Senior Full‑Stack Software Engineer",
-    "address": {"@type": "PostalAddress", "addressLocality": "Chemnitz", "addressCountry": "DE"},
-    "description": "Senior Full‑Stack Software Engineer in Germany. Vue/React, JavaScript/TypeScript, Node/Laravel, AWS. Building performant web apps, scalable systems, and delightful UX.",
+    "jobTitle": "Full-Stack Engineer",
+    "description": "Full-Stack Engineer building Laravel and Node.js backends with Vue and React frontends for SaaS platforms, APIs, and data-heavy products.",
     "sameAs": [
       "https://linkedin.com/in/muhammad-motasim",
       "https://github.com/MuhammadMotasimBinShahid",
@@ -118,50 +208,120 @@
 
   <main>
     <!-- Hero -->
-    <section id="home" class="relative">
+    <section id="home" class="relative hero-shell">
       <div class="absolute inset-0 bg-gradient-to-b from-brand/10 via-transparent to-transparent dark:from-brand/20 pointer-events-none"></div>
-      <div class="container mx-auto px-4 py-20">
-        <div class="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <h1 data-reveal class="text-4xl/tight md:text-5xl/tight font-extrabold tracking-tight mb-4">Building reliable, elegant software.</h1>
-            <p data-reveal class="text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6">I'm Muhammad Motasim Bin Shahid — Senior Full‑Stack Software Engineer focused on performant web apps, data‑heavy systems, and delightful user experiences.</p>
-            <div data-reveal class="code-terminal overflow-hidden">
+      <div class="hero-ambient" aria-hidden="true">
+        <div class="hero-orb one"></div>
+        <div class="hero-orb two"></div>
+        <div class="hero-mesh depth-layer" style="--depth:.08;--base-transform:translate3d(0,0,0) rotateX(74deg) rotateZ(-18deg)"></div>
+      </div>
+      <div class="container mx-auto px-4 py-20 hero-stage">
+        <div class="grid md:grid-cols-[minmax(0,1.06fr)_minmax(360px,.94fr)] gap-12 xl:gap-16 items-center">
+          <div class="hero-copy relative z-10">
+            <div data-reveal class="hero-kicker">Full-Stack Engineer • Laravel / Node.js • Vue / React</div>
+            <h1 data-reveal class="hero-heading mt-6 font-extrabold tracking-tight text-white">
+              Full-Stack Engineer building
+              <span class="hero-emphasis">Laravel and Node.js</span>
+              <span class="hero-accent">with Vue and React.</span>
+            </h1>
+            <p data-reveal class="hero-support mt-6">I build SaaS platforms, APIs, and data-heavy products that need clear architecture, reliable delivery, and frontend and backend work that stays aligned as the product grows.</p>
+            <div data-reveal class="hero-proof-grid">
+              <div class="hero-proof-chip">
+                <small>Focus</small>
+                <strong>Product + Platform Delivery</strong>
+              </div>
+              <div class="hero-proof-chip">
+                <small>Core Stack</small>
+                <strong>Laravel, Node.js, Vue, React</strong>
+              </div>
+              <div class="hero-proof-chip">
+                <small>Typical Work</small>
+                <strong>APIs, integrations, reporting, realtime</strong>
+              </div>
+              <div class="hero-proof-chip">
+                <small>Current Track</small>
+                <strong>MSc at TU Chemnitz</strong>
+              </div>
+            </div>
+            <div data-reveal class="code-terminal overflow-hidden hero-terminal">
               <div class="bar">
                 <span class="dot" style="background:#ff5f56"></span>
                 <span class="dot" style="background:#ffbd2e"></span>
                 <span class="dot" style="background:#27c93f"></span>
                 <span class="text-xs text-slate-400 ml-2">bash — ~/projects/portfolio</span>
                 </div>
-              <pre class="text-sm text-slate-200 p-4"><code>$ npx create-idea\n$ git commit -m "feat: ship delightful UX"\n$ kubectl rollout status deploy/web\n✔ Done. uptime 99.9%</code></pre>
-                    </div>
-            <div data-reveal class="flex flex-wrap items-center gap-3 mt-4">
-              <a href="#projects" class="px-5 py-2.5 rounded bg-brand text-white hover:shadow-card">View Work</a>
-              <a href="#contact" class="px-5 py-2.5 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">Let’s Collaborate</a>
-              <a id="cvDownloadHero" href="#" class="px-4 py-2.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fas fa-download mr-2"></i>CV</a>
+              <pre class="text-sm text-slate-200 p-4"><code>$ focus
+Laravel + Node.js backend systems
+Vue + React product interfaces
+APIs, integrations, reporting, and realtime flows
+Shipping production software since 2021</code></pre>
             </div>
-            <ul class="mt-6 flex flex-wrap gap-6 text-sm text-slate-600 dark:text-slate-400">
-              <li><span class="font-semibold text-slate-900 dark:text-white">4+ Years</span> Experience</li>
-              <li><span class="font-semibold text-slate-900 dark:text-white">10+</span> Projects</li>
-              <li><span class="font-semibold text-slate-900 dark:text-white">99.9%</span> Uptime shipped</li>
-            </ul>
-                    </div>
-          <div>
-            <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card">
-              <div class="md:flex md:items-start md:gap-6">
-                <img class="w-32 h-32 rounded-full object-cover ring-4 ring-white dark:ring-slate-800" style="border-radius:9999px; object-fit:cover; aspect-ratio:1 / 1;" src="assets/images/IMG_4469.jpeg" alt="Muhammad Motasim Bin Shahid" width="128" height="128" fetchpriority="high" />
-                <div class="mt-4 md:mt-0 flex-1">
-                <h3 class="font-semibold text-lg">Muhammad Motasim Bin Shahid</h3>
-                <p class="text-slate-600 dark:text-slate-300">Senior Full‑Stack Engineer</p>
-                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1"><i class="fas fa-location-dot mr-1"></i>Chemnitz, Germany</p>
-                  <div class="mt-5 rounded-lg border border-githubBorder overflow-hidden">
-                    <div id="gitlabHeatmap" class="bg-githubPanel min-h-[150px]"></div>
+            <div data-reveal class="hero-actions">
+              <a href="#projects" class="hero-btn-primary">View Projects</a>
+              <a href="#contact" class="hero-btn-secondary">Contact Me</a>
+              <a id="cvDownloadHero" href="#" class="hero-btn-ghost"><i class="fas fa-download"></i>Download CV</a>
+            </div>
+            <div data-reveal class="hero-link-row">
+              <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener" class="hero-link-chip"><i class="fab fa-linkedin-in"></i>LinkedIn</a>
+              <a href="https://github.com/MuhammadMotasimBinShahid" target="_blank" rel="noopener" class="hero-link-chip"><i class="fab fa-github"></i>GitHub</a>
+              <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="hero-link-chip"><i class="fab fa-gitlab"></i>GitLab</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-float-card hero-float-a" aria-hidden="true">
+              <small>Backend Systems</small>
+              <strong>Laravel / Node.js</strong>
+              <p>APIs, queues, integrations, reports.</p>
+            </div>
+            <div class="hero-float-card hero-float-b" aria-hidden="true">
+              <small>Frontend Delivery</small>
+              <strong>Vue / React</strong>
+              <p>Dashboards, admin tooling, product flows.</p>
+            </div>
+            <div class="hero-float-card hero-float-c" aria-hidden="true">
+              <small>Typical Work</small>
+              <strong>Realtime + Data</strong>
+              <p>Analytics, workflows, jobs, operations.</p>
+            </div>
+            <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card hero-main-panel js-tilt">
+              <div class="hero-panel-top">
+                <div class="hero-avatar-shell">
+                  <img src="assets/images/IMG_4469.jpeg" alt="Muhammad Motasim Bin Shahid" width="132" height="132" fetchpriority="high" />
+                </div>
+                <div class="flex-1">
+                  <div class="hero-panel-kicker">Portfolio Snapshot</div>
+                  <h3 class="hero-panel-title">Muhammad Motasim Bin Shahid</h3>
+                  <p class="hero-panel-subtitle">Senior Full-Stack Engineer focused on product delivery across backend systems and frontend applications.</p>
+                  <div class="hero-panel-pills">
+                    <span>Laravel</span>
+                    <span>Node.js</span>
+                    <span>Vue</span>
+                    <span>React</span>
                   </div>
                 </div>
               </div>
-                    </div>
+              <div class="hero-panel-grid">
+                <div class="hero-panel-card">
+                  <small>Core Focus</small>
+                  <p>SaaS platforms, integrations, reporting workflows, and data-heavy product experiences.</p>
                 </div>
+                <div class="hero-panel-card">
+                  <small>Typical Scope</small>
+                  <p>Backend APIs, admin tooling, realtime features, frontend delivery, and product operations.</p>
+                </div>
+                <div class="hero-panel-card">
+                  <small>Current Track</small>
+                  <p>MSc in Automotive Software Engineering at TU Chemnitz while continuing full-stack product work.</p>
+                </div>
+                <div class="hero-panel-card">
+                  <small>Build Style</small>
+                  <p>Clear architecture, practical shipping, and systems that stay maintainable after launch.</p>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- About -->
@@ -178,9 +338,9 @@
                 <span class="dot" style="background:#27c93f"></span>
                 <span class="text-xs text-slate-400 ml-2">bash — ~/about</span>
               </div>
-              <pre class="text-sm leading-6 text-slate-200 p-4 min-h-[260px]"><code>I'm a dedicated Senior Full‑Stack Engineer with over 4 years of professional experience building scalable web applications and enterprise solutions. Currently pursuing my Master's in Automotive Software Engineering at TU Chemnitz with EU work authorization, I combine cutting‑edge web technologies with automotive software expertise.
+              <pre class="text-sm leading-6 text-slate-200 p-4 min-h-[260px]"><code>I'm a full-stack engineer who works across product, platform, and integration layers. Most of my recent work has been on Laravel and Node.js backends paired with Vue or React frontends for SaaS products, internal tools, and reporting-heavy systems.
 
-My expertise spans modern JavaScript frameworks, microservices architecture, and Agile/Scrum methodologies. I've successfully led development teams and delivered projects for international markets, with proven experience in DevOps and team leadership.</code></pre>
+I’m currently pursuing an MSc in Automotive Software Engineering at TU Chemnitz. I do my best work where product requirements, backend architecture, and day-to-day delivery all need to line up cleanly.</code></pre>
             </div>
           </div>
 
@@ -188,29 +348,29 @@ My expertise spans modern JavaScript frameworks, microservices architecture, and
             <div class="gh-ach">
               <div class="gh-icon"><i class="fas fa-code"></i></div>
               <div>
-                <div class="font-semibold">4+ Years</div>
-                <div class="text-sm text-slate-400">Professional Experience</div>
+                <div class="font-semibold">Product + Platform</div>
+                <div class="text-sm text-slate-400">Frontend, backend, and delivery</div>
               </div>
             </div>
             <div class="gh-ach">
               <div class="gh-icon"><i class="fas fa-project-diagram"></i></div>
               <div>
-                <div class="font-semibold">10+ Projects</div>
-                <div class="text-sm text-slate-400">Successfully Delivered</div>
+                <div class="font-semibold">MSc at TU Chemnitz</div>
+                <div class="text-sm text-slate-400">Automotive Software Engineering</div>
               </div>
             </div>
             <div class="gh-ach">
               <div class="gh-icon"><i class="fas fa-users"></i></div>
               <div>
-                <div class="font-semibold">5+ Teams</div>
-                <div class="text-sm text-slate-400">Led & Mentored</div>
+                <div class="font-semibold">Since 2021</div>
+                <div class="text-sm text-slate-400">Production Engineering Work</div>
               </div>
             </div>
             <div class="gh-ach">
               <div class="gh-icon"><i class="fas fa-trophy"></i></div>
               <div>
-                <div class="font-semibold">Dean's Award</div>
-                <div class="text-sm text-slate-400">Academic Excellence</div>
+                <div class="font-semibold">Core Focus</div>
+                <div class="text-sm text-slate-400">SaaS, APIs, Data Workflows</div>
               </div>
             </div>
           </div>
@@ -219,7 +379,7 @@ My expertise spans modern JavaScript frameworks, microservices architecture, and
         <!-- Competencies + Education (from backup) -->
         <div class="space-y-6">
           <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card">
-            <h3 class="font-semibold mb-4"><i class="fas fa-graduation-cap mr-2"></i>Education & Achievements</h3>
+            <h3 class="font-semibold mb-4"><i class="fas fa-graduation-cap mr-2"></i>Education &amp; Achievements</h3>
             <div class="space-y-5">
               <article class="rounded-xl p-0 border panel overflow-hidden">
                 <div class="px-4 py-3 border-b border-githubBorder flex items-center justify-between">
@@ -273,13 +433,11 @@ My expertise spans modern JavaScript frameworks, microservices architecture, and
             <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
               <div>
                 <div class="font-semibold leading-tight">Full Stack Developer · PLAYY</div>
-                <div class="text-sm text-slate-400">Music & social commerce platform • Realtime messaging • Payments</div>
+                <div class="text-sm text-slate-400">Full-time • Music and social commerce platform • Laravel, Vue, Redis, AWS</div>
                 <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Built a music & social commerce platform serving 300+ artists across 15+ countries with 50M+ total streams.</li>
-            <li>Architected real‑time messaging with WebSockets and Redis; reduced message latency by 80%.</li>
-            <li>Designed modular Laravel APIs with Sanctum auth; handled 10K+ concurrent users securely.</li>
-                  <li>Optimized DB queries and introduced Redis caching; improved performance by ~60%.</li>
-            <li>Integrated payment gateways and social APIs; expanded platform capabilities by 200%.</li>
+                  <li>Own product and platform work across artist onboarding, commerce flows, social interactions, and realtime messaging for a platform used by 300+ artists across 15+ countries.</li>
+            <li>Build and maintain Laravel APIs, Vue interfaces, Redis-backed jobs, and WebSocket flows that support day-to-day product operations.</li>
+            <li>Deliver integrations across payments and external services while keeping the platform practical to operate as the product grows.</li>
           </ul>
               </div>
               <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Apr 2024 — Present · Remote</div>
@@ -289,14 +447,27 @@ My expertise spans modern JavaScript frameworks, microservices architecture, and
           <li>
             <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
               <div>
-                <div class="font-semibold leading-tight">Full Stack Developer · dotX</div>
-                <div class="text-sm text-slate-400">NFC digital cards • Wallet passes • Contacts sync • Analytics</div>
+                <div class="font-semibold leading-tight">Software Developer (JavaScript) · Mindrift</div>
+                <div class="text-sm text-slate-400">Part-time • QA and AI training • JavaScript evaluation</div>
                 <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Developed NFC digital business card platform with 50+ templates used by 10K+ professionals.</li>
-            <li>Implemented Apple/Google Wallet passes and one‑tap sharing; 99.9% success rate.</li>
-                  <li>Automated Outlook/Google Contacts sync; reduced manual entry by ~90%.</li>
-                  <li>Built affiliate features and analytics dashboards driving recurring revenue.</li>
-                  <li>Integrated scheduling and calendar flows; improved meeting efficiency by ~70%.</li>
+                  <li>Reviewed JavaScript-focused tasks and model outputs for correctness, edge cases, and instruction adherence.</li>
+                  <li>Wrote reference solutions and QA notes to improve the reliability of coding evaluations and training data.</li>
+                  <li>Worked part-time on quality-sensitive technical review where precision mattered more than volume.</li>
+          </ul>
+              </div>
+              <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Aug 2025 — Dec 2025 · Remote</div>
+            </div>
+          </li>
+
+          <li>
+            <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
+              <div>
+                <div class="font-semibold leading-tight">Full Stack Developer · dotX</div>
+                <div class="text-sm text-slate-400">Part-time • NFC digital cards • Wallet passes • Analytics</div>
+                <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
+                  <li>Built product and admin workflows for NFC digital business cards, Apple Wallet and Google Wallet passes, QR sharing, and reporting.</li>
+            <li>Delivered Laravel and Vue 3 features for contact sync, scheduling, imports, and business-facing analytics.</li>
+                  <li>Supported a live product alongside a full-time role with delivery focused on practical customer workflows.</li>
           </ul>
               </div>
               <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Apr 2024 — Apr 2025 · Remote</div>
@@ -307,13 +478,11 @@ My expertise spans modern JavaScript frameworks, microservices architecture, and
             <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
               <div>
                 <div class="font-semibold leading-tight">Senior Full‑Stack Engineer · Septem Systems</div>
-                <div class="text-sm text-slate-400">Hosting platform • Vue 3/NestJS • CI/CD • Observability</div>
+                <div class="text-sm text-slate-400">Hosting platform • Vue 3, NestJS, TypeScript • CI/CD</div>
                 <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Shipped enterprise WordPress hosting platform with microservices.</li>
-                  <li>Achieved 90+ PageSpeed and 99.9% uptime through performance and reliability work.</li>
-                  <li>Led a 5‑engineer team; improved code quality by 30% and reduced bugs by 50%.</li>
-                  <li>Implemented CI/CD with Docker & AWS; deployments −60%, manual errors −95%.</li>
-                  <li>Added monitoring and alerting; incident response time −70%.</li>
+                  <li>Led delivery across a small engineering team for an enterprise WordPress hosting platform serving the US market.</li>
+                  <li>Built Vue 3 and NestJS features across customer-facing workflows, internal tools, and supporting services in a microservice environment.</li>
+                  <li>Improved release consistency and operational visibility through CI/CD, Docker and AWS deployment work, and monitoring.</li>
           </ul>
               </div>
               <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Jun 2023 — Oct 2023 · Lahore</div>
@@ -324,13 +493,11 @@ My expertise spans modern JavaScript frameworks, microservices architecture, and
             <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
               <div>
                 <div class="font-semibold leading-tight">Full‑Stack Software Engineer · Septem Systems</div>
-                <div class="text-sm text-slate-400">aDash • Nuxt/Laravel • ML insights • Realtime dashboards</div>
+                <div class="text-sm text-slate-400">aDash • Nuxt, Laravel, Redis • Marketing analytics</div>
                 <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Built aDash — SEO platform processing 10M+ datapoints daily for 200+ clients.</li>
-            <li>Unified analytics from GA, Ads, Facebook, YouTube and 15+ sources.</li>
-            <li>Introduced ML‑based insights; improved rankings by ~40% on average.</li>
-            <li>Automated weekly performance reports; saved 20+ hours/client/month.</li>
-            <li>Real‑time dashboards with interactive charts; user engagement +150%.</li>
+                  <li>Built product features for aDash, an SEO and marketing analytics platform combining data from Google Analytics, Ads, Facebook, YouTube, and other channels.</li>
+            <li>Developed Nuxt and Laravel dashboards, scheduled data ingestion, and reporting workflows for data-heavy client accounts.</li>
+            <li>Reduced manual reporting effort by automating recurring summaries and surfacing insight workflows inside the product.</li>
           </ul>
               </div>
               <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Nov 2021 — May 2023 · Lahore</div>
@@ -341,13 +508,11 @@ My expertise spans modern JavaScript frameworks, microservices architecture, and
             <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
               <div>
                 <div class="font-semibold leading-tight">Web Developer · PI Technologies SMG</div>
-                <div class="text-sm text-slate-400">eClinicX • Telehealth • Scheduling • HIPAA</div>
+                <div class="text-sm text-slate-400">eClinicX • Telehealth • Scheduling • Patient records</div>
                 <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Developed eClinicX — online doctor consultation platform serving 500+ providers and 10K+ patients.</li>
-                  <li>Built secure scheduling and medical record‑keeping; reduced booking time by 75%.</li>
-                  <li>Integrated video conferencing and e‑prescriptions; 1,000+ virtual consults/month.</li>
-                  <li>Ensured HIPAA‑compliant data security and encrypted transmission.</li>
-                  <li>Improved accessibility with responsive offline‑capable UI.</li>
+                  <li>Built scheduling, consultation, and medical record workflows for an online doctor consultation product.</li>
+                  <li>Worked across Laravel and Nuxt to deliver appointments, video consultations, notifications, and provider and patient interfaces.</li>
+                  <li>Focused on responsive UI and secure handling of healthcare data in a workflow-heavy product.</li>
                 </ul>
               </div>
               <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Jun 2021 — Jan 2022 · Lahore</div>
@@ -389,7 +554,7 @@ Laravel 8–11, PHP, Node.js, NestJS, Express, RESTful APIs, GraphQL, Microservi
           </div>
         </div>
         <div data-reveal>
-          <h3 class="font-semibold mb-3">DevOps & Cloud</h3>
+          <h3 class="font-semibold mb-3">DevOps &amp; Cloud</h3>
           <div class="code-terminal overflow-hidden">
             <div class="bar">
               <span class="dot" style="background:#ff5f56"></span>
@@ -402,7 +567,7 @@ AWS, CI/CD, Docker, Kubernetes (basic), Nginx, Apache, SSL/TLS, Load Balancing, 
           </div>
         </div>
         <div data-reveal class="md:col-span-2">
-          <h3 class="font-semibold mb-3">Tools & Integrations</h3>
+          <h3 class="font-semibold mb-3">Tools &amp; Integrations</h3>
           <div class="code-terminal overflow-hidden">
             <div class="bar">
               <span class="dot" style="background:#ff5f56"></span>
@@ -415,7 +580,7 @@ Stripe, Pusher, Getstream, Twilio, NFC, Google Analytics/Ads, OAuth 2.0 / JWT, A
           </div>
         </div>
         <div data-reveal>
-          <h3 class="font-semibold mb-3">Methods & Practices</h3>
+          <h3 class="font-semibold mb-3">Methods &amp; Practices</h3>
           <div class="code-terminal overflow-hidden">
             <div class="bar">
               <span class="dot" style="background:#ff5f56"></span>
@@ -424,7 +589,7 @@ Stripe, Pusher, Getstream, Twilio, NFC, Google Analytics/Ads, OAuth 2.0 / JWT, A
               <span class="text-xs text-slate-400 ml-2">bash — ~/skills/methods</span>
             </div>
             <pre class="text-sm text-slate-200 p-4"><code>$ skills methods
-Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Database & API Design, Responsive UI, Accessible UI</code></pre>
+Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Database &amp; API Design, Responsive UI, Accessible UI</code></pre>
           </div>
         </div>
         </div>
@@ -434,127 +599,90 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
     <section id="projects" class="container mx-auto px-4 py-16">
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-repo"></span> Selected Projects</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a data-reveal href="https://playy.co.uk/" target="_blank" rel="noopener" class="rounded-lg p-4 border panel hover:bg-githubPanel/80 transition block">
-          <div class="font-semibold mb-1">PLAYY Platform</div>
-          <div class="text-sm text-slate-300 mb-3">Music + social commerce platform serving 300+ artists across 15+ countries with 50M+ total streams. Built with Vue + Laravel + AWS.</div>
-          <div class="flex items-center gap-4 text-xs text-slate-400">
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#41B883]"></span>Vue</span>
-              <span class="inline-flex items-center gap-1"><i class="fas fa-cloud mr-1"></i>AWS</span>
-              <span class="inline-flex items-center gap-1"><i class="fas fa-star mr-1"></i>Featured</span>
-            </div>
-          <div class="mt-3 flex flex-wrap gap-4 text-xs text-slate-400">
-            <span class="tech"><span class="dot" style="--tech-color:#F55247"></span>Laravel</span>
-            <span class="tech"><span class="dot" style="--tech-color:#42b883"></span>Vue 2</span>
-            <span class="tech"><span class="dot" style="--tech-color:#42b883"></span>Vuex</span>
-            <span class="tech"><i class="fas fa-signal"></i>WebSockets</span>
-            <span class="tech"><i class="fa-brands fa-redis"></i>Redis</span>
-            <span class="tech"><i class="fas fa-shield-halved"></i>Sanctum</span>
-            <span class="tech"><i class="fas fa-database"></i>MySQL</span>
-            <span class="tech"><i class="fas fa-credit-card"></i>Payments</span>
+        <a data-reveal href="https://playy.co.uk/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+          <div class="font-semibold text-lg mb-4">PLAYY Platform</div>
+          <div class="space-y-3 text-sm text-slate-300">
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Music and social commerce platform built for artists, fan engagement, and monetization.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Laravel APIs, Vue product flows, realtime messaging, payments, and supporting third-party integrations.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Laravel, Vue 2, Redis, AWS.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Helped ship and operate a live product used by 300+ artists across 15+ countries.</div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+            <span class="label-chip">Laravel</span>
+            <span class="label-chip">Vue 2</span>
+            <span class="label-chip">Redis</span>
+            <span class="label-chip">AWS</span>
           </div>
         </a>
 
-        <a data-reveal href="https://brandbreakerscard.com/" target="_blank" rel="noopener" class="rounded-lg p-4 border panel hover:bg-githubPanel/80 transition block">
-          <div class="font-semibold mb-1">Brand Breakers</div>
-          <div class="text-sm text-slate-300 mb-3">NFC digital business cards with Apple/Google Wallet, admin portals, and analytics. Built with Vue 3 + Laravel.</div>
-          <div class="flex items-center gap-4 text-xs text-slate-400">
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#41B883]"></span>Vue</span>
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#F55247]"></span>Laravel</span>
-              <span class="inline-flex items-center gap-1"><i class="fas fa-wallet mr-1"></i>Wallet</span>
-            </div>
-          <div class="mt-3 flex flex-wrap gap-4 text-xs text-slate-400">
-            <span class="tech"><span class="dot" style="--tech-color:#F55247"></span>Laravel 11</span>
-            <span class="tech"><span class="dot" style="--tech-color:#41B883"></span>Vue 3</span>
-            <span class="tech"><i class="fas fa-bolt"></i>Vite</span>
-            <span class="tech"><i class="fas fa-store"></i>Pinia</span>
-            <span class="tech"><i class="fas fa-database"></i>MySQL</span>
-            <span class="tech"><i class="fas fa-plug"></i>REST API</span>
-            <span class="tech"><i class="fas fa-wave-square"></i>NFC</span>
-            <span class="tech"><i class="fas fa-qrcode"></i>QR</span>
-            <span class="tech"><i class="fab fa-apple"></i>Apple Wallet</span>
-            <span class="tech"><i class="fab fa-google"></i>Google Wallet</span>
-            <span class="tech"><i class="fas fa-file-csv"></i>CSV</span>
-            <span class="tech"><i class="fas fa-robot"></i>reCAPTCHA</span>
-            <span class="tech"><i class="fas fa-shield-halved"></i>Security</span>
+        <a data-reveal href="https://brandbreakerscard.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+          <div class="font-semibold text-lg mb-4">Brand Breakers</div>
+          <div class="space-y-3 text-sm text-slate-300">
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>NFC-based digital business card product with shareable profiles, wallet passes, and admin tooling.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Vue 3 and Laravel features for card management, Apple Wallet and Google Wallet passes, analytics, and contact workflows.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Laravel 11, Vue 3, MySQL, Wallet integrations.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Turned digital cards into a product with trackable sharing, reusable templates, and business-facing admin flows.</div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+            <span class="label-chip">Laravel 11</span>
+            <span class="label-chip">Vue 3</span>
+            <span class="label-chip">MySQL</span>
+            <span class="label-chip">Wallet Passes</span>
           </div>
         </a>
 
-        <a data-reveal href="https://adash.io/" target="_blank" rel="noopener" class="rounded-lg p-4 border panel hover:bg-githubPanel/80 transition block">
-          <div class="font-semibold mb-1">aDash</div>
-          <div class="text-sm text-slate-300 mb-3">SEO analytics platform processing 10M+ datapoints daily with ML insights and real‑time dashboards. Nuxt + Laravel + Redis.</div>
-          <div class="flex items-center gap-4 text-xs text-slate-400">
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#00DC82]"></span>Nuxt</span>
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#F55247]"></span>Laravel</span>
-              <span class="inline-flex items-center gap-1"><i class="fas fa-database mr-1"></i>Redis</span>
-            </div>
-          <div class="mt-3 flex flex-wrap gap-4 text-xs text-slate-400">
-            <span class="tech"><span class="dot" style="--tech-color:#00DC82"></span>NuxtJS</span>
-            <span class="tech"><span class="dot" style="--tech-color:#1867C0"></span>Vuetify</span>
-            <span class="tech"><span class="dot" style="--tech-color:#41B883"></span>Vuex</span>
-            <span class="tech"><span class="dot" style="--tech-color:#F55247"></span>Laravel</span>
-            <span class="tech"><i class="fas fa-clock"></i>Schedulers</span>
-            <span class="tech"><i class="fas fa-diagram-project"></i>Webhooks</span>
-            <span class="tech"><i class="fas fa-chart-line"></i>Google Analytics</span>
-            <span class="tech"><i class="fas fa-bullhorn"></i>Google Ads</span>
-            <span class="tech"><i class="fas fa-briefcase"></i>Google My Business</span>
-            <span class="tech"><i class="fab fa-facebook"></i>Facebook</span>
-            <span class="tech"><i class="fab fa-youtube"></i>YouTube</span>
-            <span class="tech"><i class="fas fa-key"></i>Keyword Tracking</span>
+        <a data-reveal href="https://adash.io/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+          <div class="font-semibold text-lg mb-4">aDash</div>
+          <div class="space-y-3 text-sm text-slate-300">
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>SEO and marketing analytics platform for reporting across search, ads, and social channels.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Nuxt and Laravel dashboards, scheduled ingestion flows, and reporting features for data-heavy client accounts.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Nuxt, Laravel, Redis, third-party data APIs.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Centralized scattered reporting into one workflow and reduced manual analysis through scheduled product-driven summaries.</div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+            <span class="label-chip">Nuxt</span>
+            <span class="label-chip">Laravel</span>
+            <span class="label-chip">Redis</span>
+            <span class="label-chip">Data APIs</span>
           </div>
         </a>
 
-        <a data-reveal href="https://www.bionicwp.com/" target="_blank" rel="noopener" class="rounded-lg p-4 border panel hover:bg-githubPanel/80 transition block">
-          <div class="font-semibold mb-1">BionicWP</div>
-          <div class="text-sm text-slate-300 mb-3">Enterprise WordPress hosting platform with microservices for the US market. Vue 3 + NestJS + TypeScript.</div>
-          <div class="flex items-center gap-4 text-xs text-slate-400">
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#41B883]"></span>Vue</span>
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#E0234E]"></span>NestJS</span>
-              <span class="inline-flex items-center gap-1"><i class="fas fa-server mr-1"></i>Microservices</span>
-            </div>
-          <div class="mt-3 flex flex-wrap gap-4 text-xs text-slate-400">
-            <span class="tech"><span class="dot" style="--tech-color:#41B883"></span>Vue 3</span>
-            <span class="tech"><i class="fas fa-code"></i>NestJS</span>
-            <span class="tech"><i class="fas fa-code"></i>TypeScript</span>
-            <span class="tech"><span class="dot" style="--tech-color:#F59E0B"></span>Pinia</span>
-            <span class="tech"><i class="fas fa-fire"></i>Firebase</span>
-            <span class="tech"><i class="fab fa-stripe"></i>Stripe</span>
-            <span class="tech"><i class="fas fa-leaf"></i>MongoDB</span>
-            <span class="tech"><i class="fas fa-database"></i>MySQL</span>
-            <span class="tech"><i class="fas fa-plug"></i>REST API</span>
-            <span class="tech"><i class="fas fa-diagram-project"></i>Webhooks</span>
-            <span class="tech"><i class="fas fa-gift"></i>Rewardful</span>
-            <span class="tech"><i class="fas fa-envelope"></i>Postmark</span>
-            <span class="tech"><i class="fa-brands fa-redis"></i>Redis</span>
-            <span class="tech"><i class="fas fa-cloud"></i>CDN</span>
+        <a data-reveal href="https://www.bionicwp.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+          <div class="font-semibold text-lg mb-4">BionicWP</div>
+          <div class="space-y-3 text-sm text-slate-300">
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Managed WordPress hosting platform built for performance, support, and operational scale.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Vue 3 and NestJS features across customer workflows, internal tooling, billing-related flows, and supporting services.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Vue 3, NestJS, TypeScript, Docker.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Helped ship a platform where frontend delivery, service design, and release discipline all had to work together.</div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+            <span class="label-chip">Vue 3</span>
+            <span class="label-chip">NestJS</span>
+            <span class="label-chip">TypeScript</span>
+            <span class="label-chip">Docker</span>
           </div>
         </a>
 
-        <a data-reveal href="https://eclinicx.com/" target="_blank" rel="noopener" class="rounded-lg p-4 border panel hover:bg-githubPanel/80 transition block">
-          <div class="font-semibold mb-1">eClinicX</div>
-          <div class="text-sm text-slate-300 mb-3">Online doctor consultation with secure scheduling, video, and HIPAA‑compliant records. Laravel + Nuxt.</div>
-          <div class="flex items-center gap-4 text-xs text-slate-400">
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#F55247]"></span>Laravel</span>
-              <span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-[#00DC82]"></span>Nuxt</span>
-              <span class="inline-flex items-center gap-1"><i class="fas fa-video mr-1"></i>Telehealth</span>
-            </div>
-          <div class="mt-3 flex flex-wrap gap-4 text-xs text-slate-400">
-            <span class="tech"><span class="dot" style="--tech-color:#F55247"></span>Laravel</span>
-            <span class="tech"><span class="dot" style="--tech-color:#00DC82"></span>Nuxt</span>
-            <span class="tech"><span class="dot" style="--tech-color:#1867C0"></span>Vuetify</span>
-            <span class="tech"><span class="dot" style="--tech-color:#41B883"></span>Vuex</span>
-            <span class="tech"><i class="fas fa-bolt"></i>Pusher</span>
-            <span class="tech"><i class="fas fa-database"></i>MySQL</span>
-            <span class="tech"><i class="fas fa-plug"></i>REST API</span>
-            <span class="tech"><i class="fas fa-calendar-check"></i>Scheduling</span>
-            <span class="tech"><i class="fas fa-file-lines"></i>Records</span>
-            <span class="tech"><i class="fas fa-user-shield"></i>HIPAA</span>
+        <a data-reveal href="https://eclinicx.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block">
+          <div class="font-semibold text-lg mb-4">eClinicX</div>
+          <div class="space-y-3 text-sm text-slate-300">
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Telehealth product for appointments, consultations, and patient record workflows.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Laravel and Nuxt features for scheduling, video consultation flows, notifications, and provider and patient interfaces.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Laravel, Nuxt, MySQL, Pusher.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Delivered a workflow-heavy healthcare product where secure data handling and usability both mattered.</div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+            <span class="label-chip">Laravel</span>
+            <span class="label-chip">Nuxt</span>
+            <span class="label-chip">MySQL</span>
+            <span class="label-chip">Pusher</span>
           </div>
         </a>
         </div>
     </section>
 
     <!-- Projects (GitHub Repositories) -->
-    <section id="repos" class="container mx-auto px-4 py-12">
+    <section id="repos" class="container mx-auto px-4 py-12" hidden>
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-repo"></span> GitHub Repositories</h2>
       <div id="repoGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
@@ -570,16 +698,42 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
             <span class="text-xs text-slate-400 ml-2">bash — ~/contact/info</span>
           </div>
           <div class="p-4">
-            <ul class="space-y-2">
-              <li><i class="fas fa-envelope mr-2"></i>muhammadmotasimbin.shahid@gmail.com</li>
-              <li><i class="fas fa-phone mr-2"></i>+49 1521 264 5064</li>
-              <li><i class="fas fa-location-dot mr-2"></i>Chemnitz, Germany</li>
+            <p class="text-sm text-slate-300 mb-5">If you're hiring, scoping a product, or reviewing technical work, these are the quickest paths.</p>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li><i class="fas fa-envelope mr-2"></i><a href="mailto:muhammadmotasimbin.shahid@gmail.com" class="hover:text-brand">muhammadmotasimbin.shahid@gmail.com</a></li>
+              <li><i class="fas fa-phone mr-2"></i><a href="tel:+4915212645064" class="hover:text-brand">+49 1521 264 5064</a></li>
             </ul>
-            <div class="flex items-center gap-3 mt-4">
-              <a class="text-xl hover:text-brand" href="https://linkedin.com/in/muhammad-motasim" target="_blank" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin"></i></a>
-              <a class="text-xl hover:text-brand" href="https://github.com/MuhammadMotasimBinShahid" target="_blank" aria-label="GitHub" rel="noopener"><i class="fab fa-github"></i></a>
-              <a class="text-xl hover:text-brand" href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" aria-label="GitLab" rel="noopener"><i class="fab fa-gitlab"></i></a>
-              <a class="text-xl hover:text-brand" href="https://www.upwork.com/freelancers/~017f94558c225d72b2?mp_source=share" target="_blank" aria-label="Upwork" rel="noopener"><i class="fab fa-upwork"></i></a>
+            <div class="mt-6 space-y-3">
+              <div class="rounded-lg border border-githubBorder bg-githubBg/70 p-4 js-tilt">
+                <div class="text-xs uppercase tracking-[0.2em] text-slate-500">Recruiters / Hiring Managers</div>
+                <p class="mt-2 text-sm text-slate-300">Review my background quickly with the CV and LinkedIn summary.</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <a id="cvDownload" href="#" class="px-4 py-2 rounded bg-brand text-white hover:shadow-card"><i class="fas fa-download mr-2"></i>Download CV</a>
+                  <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">View LinkedIn</a>
+                </div>
+              </div>
+              <div class="rounded-lg border border-githubBorder bg-githubBg/70 p-4 js-tilt">
+                <div class="text-xs uppercase tracking-[0.2em] text-slate-500">Clients</div>
+                <p class="mt-2 text-sm text-slate-300">Best fit for SaaS features, API work, integrations, and workflow-heavy product delivery.</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <a href="mailto:muhammadmotasimbin.shahid@gmail.com" class="px-4 py-2 rounded bg-brand text-white hover:shadow-card">Email Me</a>
+                  <a href="#contactForm" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">Use Contact Form</a>
+                </div>
+              </div>
+              <div class="rounded-lg border border-githubBorder bg-githubBg/70 p-4 js-tilt">
+                <div class="text-xs uppercase tracking-[0.2em] text-slate-500">Technical Reviewers</div>
+                <p class="mt-2 text-sm text-slate-300">Review selected product work first, then check public code where it is available.</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <a href="#projects" class="px-4 py-2 rounded bg-brand text-white hover:shadow-card">View Projects</a>
+                  <a href="https://github.com/MuhammadMotasimBinShahid" target="_blank" rel="noopener" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">View GitHub</a>
+                  <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">View GitLab</a>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-400">
+              <span class="text-xs uppercase tracking-[0.2em] text-slate-500">Other Profiles</span>
+              <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="hover:text-brand">GitLab</a>
+              <a href="https://www.upwork.com/freelancers/~017f94558c225d72b2?mp_source=share" target="_blank" rel="noopener" class="hover:text-brand">Upwork</a>
             </div>
           </div>
         </div>
@@ -605,7 +759,7 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
   </main>
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-6">
-    <div class="container mx-auto px-4 text-sm text-slate-600 dark:text-slate-400">© <span id="year">2025</span> Muhammad Motasim Bin Shahid</div>
+    <div class="container mx-auto px-4 text-sm text-slate-600 dark:text-slate-400">© <span id="year">2026</span> Muhammad Motasim Bin Shahid</div>
     </footer>
 
     <script src="script.js"></script>
@@ -646,4 +800,3 @@ Agile/Scrum, Code Review, Team Leadership, Testing, Performance, Security, Datab
     </nav>
 </body>
 </html> 
-
