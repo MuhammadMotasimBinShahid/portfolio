@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Motasim Bin Shahid — Full-Stack Engineer | Laravel, Node.js, Vue, React</title>
+  <title>Muhammad Motasim — Senior Full-Stack Engineer | Portfolio</title>
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="assets/images/profile.png">
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
@@ -28,6 +29,8 @@
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/octicons/19.8.0/build.css" rel="stylesheet">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     :root{--pointer-x:0;--pointer-y:0;--hero-scroll:0px;--hero-rotate-x:0deg;--hero-rotate-y:0deg}
     body{background:
@@ -77,31 +80,38 @@
     .hero-link-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem .95rem;border:1px solid rgba(148,163,184,.16);border-radius:999px;background:rgba(12,17,24,.52);color:#cbd5e1;transition:transform .25s ease, border-color .25s ease, color .25s ease}
     .hero-link-chip:hover{transform:translateY(-2px);border-color:rgba(88,166,255,.25);color:#fff}
     .hero-visual{position:relative;min-height:32rem;padding:1.8rem 5.1rem 1.9rem 1.6rem;perspective:1800px;transform-style:preserve-3d;display:flex;align-items:center;justify-content:flex-end;transform:rotateX(var(--hero-rotate-x)) rotateY(var(--hero-rotate-y));transition:transform .45s cubic-bezier(.22,1,.36,1)}
-    .hero-visual::before{content:"";position:absolute;inset:14% 8% 8% 14%;border-radius:38px;background:radial-gradient(circle at 30% 26%, rgba(217,74,69,.12), transparent 36%),radial-gradient(circle at 72% 60%, rgba(88,166,255,.12), transparent 34%);filter:blur(26px);pointer-events:none;z-index:0}
-    .hero-main-panel{position:relative;z-index:3;width:100%;max-width:44rem;margin-left:auto;padding:1.55rem;border-radius:30px;border:1px solid rgba(48,54,61,.92);background:linear-gradient(180deg, rgba(13,17,23,.94), rgba(9,13,20,.97));box-shadow:0 34px 90px rgba(0,0,0,.36)}
-    .hero-main-panel::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.08), transparent 28%, rgba(217,74,69,.08) 68%, transparent 100%);pointer-events:none}
+    .hero-visual::before{content:"";position:absolute;inset:8% 4% 4% 10%;border-radius:38px;background:radial-gradient(circle at 28% 24%, rgba(217,74,69,.16), transparent 38%),radial-gradient(circle at 74% 62%, rgba(88,166,255,.16), transparent 36%),radial-gradient(circle at 50% 90%, rgba(139,92,246,.08), transparent 30%);filter:blur(32px);pointer-events:none;z-index:0}
+    .hero-main-panel{position:relative;z-index:3;width:100%;max-width:44rem;margin-left:auto;padding:1.55rem;border-radius:30px;border:1px solid rgba(48,54,61,.92);background:linear-gradient(180deg, rgba(13,17,23,.96), rgba(9,13,20,.98));box-shadow:0 34px 90px rgba(0,0,0,.45),0 0 60px rgba(88,166,255,.04),0 0 120px rgba(217,74,69,.03)}
+    .hero-main-panel::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.1), transparent 30%, rgba(217,74,69,.08) 65%, transparent 100%);pointer-events:none}
+    .hero-main-panel::before{content:"";position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(88,166,255,.4),rgba(217,74,69,.3),transparent);z-index:5}
     .hero-panel-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.15rem;align-items:center}
-    .hero-avatar-shell{position:relative;width:7.35rem;height:7.35rem;padding:.34rem;border-radius:999px;background:conic-gradient(from 180deg, rgba(217,74,69,.9), rgba(88,166,255,.84), rgba(217,74,69,.9));box-shadow:0 0 0 1px rgba(255,255,255,.05),0 22px 58px rgba(0,0,0,.34)}
-    .hero-avatar-shell::before{content:"";position:absolute;inset:-16px;border-radius:999px;background:radial-gradient(circle, rgba(217,74,69,.18), transparent 70%);filter:blur(12px)}
-    .hero-avatar-shell img{position:relative;z-index:1;width:100%;height:100%;border-radius:999px;object-fit:cover;border:2px solid rgba(13,17,23,.84)}
+    .hero-avatar-shell{position:relative;width:7.35rem;height:7.35rem;border-radius:999px;box-shadow:0 0 0 1px rgba(255,255,255,.05),0 22px 58px rgba(0,0,0,.34),0 0 24px rgba(217,74,69,.2)}
+    .hero-avatar-ring{position:absolute;inset:0;border-radius:999px;background:conic-gradient(from 180deg, #eb564d, #d94a45, #c43e39, #d94a45, #eb564d);animation:avatarRingSpin 6s linear infinite}
+    @keyframes avatarRingSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .hero-avatar-shell::before{content:"";position:absolute;inset:-18px;border-radius:999px;background:radial-gradient(circle, rgba(217,74,69,.18), rgba(217,74,69,.08) 50%, transparent 72%);filter:blur(14px)}
+    .hero-avatar-shell img{position:relative;z-index:1;width:calc(100% - .68rem);height:calc(100% - .68rem);margin:.34rem;border-radius:999px;object-fit:cover;border:2px solid rgba(13,17,23,.84)}
+    .hero-avatar-status{position:absolute;bottom:6px;right:6px;width:16px;height:16px;border-radius:50%;background:#10b981;border:3px solid #0d1117;z-index:3;box-shadow:0 0 8px rgba(16,185,129,.5)}
     .hero-panel-kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#94A3B8}
     .hero-panel-title{margin-top:.35rem;max-width:15ch;font-size:1.52rem;line-height:1.08;font-weight:700;color:#f8fafc;text-wrap:balance}
     .hero-panel-subtitle{margin-top:.45rem;color:#cbd5e1;font-size:.98rem;line-height:1.55}
     .hero-panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:1.3rem}
-    .hero-panel-card{padding:1rem 1.05rem 1.1rem;border:1px solid rgba(48,54,61,.82);border-radius:20px;background:linear-gradient(180deg, rgba(13,17,23,.84), rgba(8,11,18,.9));min-height:7.2rem}
+    .hero-panel-card{position:relative;padding:1rem 1.05rem 1.1rem;border:1px solid rgba(48,54,61,.82);border-radius:20px;background:linear-gradient(180deg, rgba(13,17,23,.84), rgba(8,11,18,.9));min-height:7.2rem;overflow:hidden;transition:border-color .3s ease,transform .3s ease}
+    .hero-panel-card::before{content:"";position:absolute;top:0;left:1rem;right:1rem;height:2px;background:linear-gradient(90deg,transparent,var(--card-accent,rgba(88,166,255,.5)),transparent);opacity:.6}
+    .hero-panel-card:hover{border-color:var(--card-accent,rgba(88,166,255,.3));transform:translateY(-2px)}
     .hero-panel-card-wide{grid-column:1 / -1}
+    .hero-panel-card .card-icon{width:32px;height:32px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;margin-bottom:.5rem;background:var(--card-icon-bg,rgba(88,166,255,.1));border:1px solid var(--card-icon-border,rgba(88,166,255,.2));color:var(--card-icon-color,#7dd3fc)}
     .hero-panel-card small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
-    .hero-panel-card p{margin-top:.6rem;font-size:.95rem;line-height:1.55;color:#e2e8f0}
-    .hero-float-card{position:absolute;z-index:2;width:11rem;padding:.8rem .9rem;border:1px solid rgba(48,54,61,.88);border-radius:24px;background:linear-gradient(180deg, rgba(10,14,21,.96), rgba(18,24,34,.92));box-shadow:0 26px 68px rgba(0,0,0,.28);backdrop-filter:blur(16px);pointer-events:none;transform-style:preserve-3d;will-change:transform;animation:floatCard 8s ease-in-out infinite}
-    .hero-float-card::before{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.12), transparent 40%, rgba(217,74,69,.1));opacity:.72;pointer-events:none}
-    .hero-float-card small,.hero-float-card strong,.hero-float-card p{position:relative;z-index:1}
-    .hero-float-card small{display:block;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
-    .hero-float-card strong{display:block;margin-top:.42rem;font-size:1rem;line-height:1.16;color:#f8fafc}
-    .hero-float-card p{margin-top:.32rem;font-size:.74rem;line-height:1.4;color:#94A3B8}
-    .hero-float-feature{top:-.9rem;right:-1.55rem;--float-base:rotate(4deg) translate3d(0,0,24px)}
-    .hero-float-feature::before{background:linear-gradient(135deg, rgba(88,166,255,.16), transparent 44%, rgba(217,74,69,.09))}
-    .hero-float-ai{left:-4.4rem;bottom:-1.7rem;width:9.4rem;--float-base:rotate(-4deg) translate3d(0,0,18px);animation-delay:-3.2s}
-    .hero-float-ai::before{background:linear-gradient(135deg, rgba(217,74,69,.16), transparent 42%, rgba(88,166,255,.1))}
+    .hero-panel-card p{margin-top:.5rem;font-size:.92rem;line-height:1.55;color:#e2e8f0}
+    .hero-float-card{position:absolute;z-index:2;width:12rem;padding:.9rem 1rem;border:1px solid var(--float-border,rgba(48,54,61,.88));border-radius:24px;background:linear-gradient(180deg, rgba(10,14,21,.97), rgba(18,24,34,.94));box-shadow:0 26px 68px rgba(0,0,0,.38),0 0 30px var(--float-glow,transparent);backdrop-filter:blur(20px);pointer-events:none;transform-style:preserve-3d;will-change:transform;animation:floatCard 8s ease-in-out infinite;overflow:hidden}
+    .hero-float-card::before{content:"";position:absolute;top:0;left:.8rem;right:.8rem;height:2px;background:linear-gradient(90deg,transparent,var(--float-accent,rgba(88,166,255,.6)),transparent);z-index:2}
+    .hero-float-card::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, var(--float-bg-start,rgba(88,166,255,.06)), transparent 40%, var(--float-bg-end,rgba(217,74,69,.04)));pointer-events:none}
+    .hero-float-card small,.hero-float-card strong,.hero-float-card p,.hero-float-card .float-icon{position:relative;z-index:1}
+    .hero-float-card small{display:block;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--float-label,#94A3B8)}
+    .hero-float-card strong{display:block;margin-top:.4rem;font-size:1.05rem;line-height:1.16;color:#f8fafc;font-weight:700}
+    .hero-float-card p{margin-top:.3rem;font-size:.74rem;line-height:1.4;color:#94A3B8}
+    .float-icon{width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;margin-bottom:.4rem}
+    .hero-float-feature{top:-.9rem;right:-1.55rem;--float-base:rotate(4deg) translate3d(0,0,24px);--float-accent:rgba(217,74,69,.7);--float-border:rgba(217,74,69,.25);--float-glow:rgba(217,74,69,.08);--float-label:#f87171;--float-bg-start:rgba(217,74,69,.08);--float-bg-end:rgba(88,166,255,.03)}
+    .hero-float-ai{left:-4.4rem;bottom:-3.5rem;width:10rem;--float-base:rotate(-4deg) translate3d(0,0,18px);animation-delay:-3.2s;--float-accent:rgba(139,92,246,.7);--float-border:rgba(139,92,246,.25);--float-glow:rgba(139,92,246,.08);--float-label:#c4b5fd;--float-bg-start:rgba(139,92,246,.08);--float-bg-end:rgba(88,166,255,.03)}
     .section-lead{max-width:44rem;color:#94A3B8;font-size:1rem;line-height:1.75}
     .feature-frame{padding:1.4rem;border:1px solid rgba(48,54,61,.85);border-radius:30px;background:linear-gradient(180deg, rgba(13,17,23,.95), rgba(9,13,20,.96));box-shadow:0 30px 80px rgba(0,0,0,.28)}
     .feature-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(18rem,.8fr);gap:1.25rem}
@@ -147,51 +157,226 @@
       .hero-visual{padding:1rem 0 1.25rem}
       .hero-main-panel{max-width:100%}
     }
+    @media (max-width: 1023px){
+      .about-hook{font-size:clamp(1.4rem,4.5vw,2rem)}
+      .about-body{font-size:.98rem}
+      .stat-number{font-size:clamp(1.6rem,5vw,2.2rem)}
+      .feature-grid{grid-template-columns:1fr}
+      .feature-side{grid-template-columns:repeat(2,1fr)}
+    }
     @media (max-width: 767px){
-      .hero-stage{padding-top:1rem}
-      .hero-heading{max-width:100%;font-size:clamp(2.9rem, 12.5vw, 4rem)}
-      .hero-support{max-width:100%}
+      .hero-stage{padding-top:0}
+      .hero-heading{max-width:100%;font-size:clamp(2.2rem, 9vw, 3.2rem)}
+      .hero-support{max-width:100%;font-size:.95rem}
       .hero-panel-grid{grid-template-columns:1fr}
-      .feature-grid,.signal-grid,.skill-matrix,.cta-band{grid-template-columns:1fr}
-      .cta-band-actions{justify-content:flex-start}
       .hero-visual{min-height:auto;display:grid;gap:1rem;margin-top:1.25rem;padding:1rem 0 0}
       .hero-panel-top{grid-template-columns:1fr;justify-items:start}
       .hero-mesh{inset:20% 2% 8% 2%;opacity:.24}
+      .hero-actions{flex-direction:column;gap:.65rem}
+      .hero-btn-primary,.hero-btn-secondary,.hero-btn-ghost{width:100%;justify-content:center;padding:.85rem 1rem}
+      .hero-link-row{justify-content:center}
+      .avail-badge{font-size:.75rem;padding:.4rem .8rem}
+      .hero-avatar-shell{width:5.5rem;height:5.5rem}
+      .hero-panel-title{font-size:1.2rem}
+
+      /* About mobile */
+      .about-hook{font-size:clamp(1.3rem,5.5vw,1.8rem)}
+      .about-body{font-size:.92rem;line-height:1.7}
+      .about-highlight{padding:1.1rem;border-radius:16px}
+      .stat-card{padding:1rem}
+      .stat-number{font-size:clamp(1.5rem,7vw,2rem)}
+      .stat-label{font-size:.7rem}
+      .stat-sublabel{font-size:.78rem}
+
+      /* 3D icons mobile */
+      .icon-3d{width:44px;height:44px;min-width:44px;border-radius:12px;font-size:1.1rem}
+
+      /* Featured work mobile */
+      .feature-grid,.signal-grid,.skill-matrix,.cta-band{grid-template-columns:1fr}
+      .feature-side{grid-template-columns:1fr}
+      .feature-title{font-size:clamp(1.6rem,6vw,2.2rem)}
+      .feature-copy{font-size:.9rem}
+      .feature-kicker{font-size:.68rem}
+      .feature-frame{padding:1rem;border-radius:20px}
+
+      /* CTA mobile */
+      .cta-band{padding:1.1rem;border-radius:20px;gap:1rem}
+      .cta-band h3{font-size:clamp(1.2rem,5vw,1.6rem)}
+      .cta-band-actions{justify-content:stretch;flex-direction:column}
+      .cta-btn-primary,.cta-btn-secondary{width:100%;justify-content:center;text-align:center}
+      .cta-urgency{font-size:.72rem}
+
+      /* Skills mobile */
+      .skill-card{padding:1rem}
+      .skill-chip-list{gap:.4rem}
+      .skill-chip-list span{font-size:.75rem;padding:.35rem .6rem}
+
+      /* Project cards mobile */
+      .gradient-border-card{border-radius:18px}
+
+      /* Signal cards mobile */
+      .signal-card{padding:.9rem}
+      .signal-card p{font-size:.88rem}
+
+      /* Contact mobile */
+      .code-terminal{border-radius:14px}
+
+      /* Section spacing mobile */
+      section:not(#home){padding-top:3rem!important;padding-bottom:3rem!important}
+      section h2{font-size:1.5rem!important;margin-bottom:1.2rem!important}
+      .section-lead{font-size:.88rem}
+
+      /* Particle density on mobile */
+      #particles-canvas{opacity:.2}
     }
+    @media (max-width: 380px){
+      .hero-heading{font-size:clamp(1.9rem, 8vw, 2.4rem)}
+      .about-hook{font-size:1.2rem}
+      .stat-card{padding:.8rem}
+      .stat-number{font-size:1.4rem}
+      .icon-3d{width:38px;height:38px;min-width:38px;font-size:.95rem}
+      .hero-avatar-shell{width:4.5rem;height:4.5rem}
+    }
+
+    /* Mobile bottom nav */
+    .mob-nav-link{position:relative;display:flex;flex-direction:column;align-items:center;padding:.55rem .25rem .45rem;color:#94a3b8;transition:color .25s ease}
+    .mob-nav-link i{font-size:1.15rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+    .mob-nav-link span{margin-top:.2rem;font-size:.6rem;font-weight:500;letter-spacing:.03em;text-transform:uppercase;opacity:.7;transition:opacity .25s ease}
+    .mob-nav-link::after{content:"";position:absolute;top:0;left:50%;width:0;height:2.5px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#eb564d,#d94a45);transform:translateX(-50%);transition:width .3s cubic-bezier(.34,1.56,.64,1)}
+    .mob-nav-link.active{color:#eb564d}
+    .mob-nav-link.active i{transform:scale(1.18) translateY(-1px)}
+    .mob-nav-link.active span{opacity:1;color:#eb564d}
+    .mob-nav-link.active::after{width:28px}
+    @keyframes navTap{0%{transform:scale(1)}50%{transform:scale(.88)}100%{transform:scale(1)}}
+    .mob-nav-link:active i{animation:navTap .25s ease}
+    /* Availability badge */
+    .avail-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);font-size:.82rem;color:#6ee7b7;letter-spacing:.02em;margin-bottom:1.4rem}
+    .avail-dot{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 8px rgba(16,185,129,.6);animation:pulse-dot 2s ease-in-out infinite}
+    @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+
+    /* 3D icon containers */
+    .icon-3d{position:relative;width:56px;height:56px;min-width:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transform-style:preserve-3d;transform:perspective(600px) rotateX(0) rotateY(0);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+    .icon-3d::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:.15;z-index:0}
+    .icon-3d i,.icon-3d svg{position:relative;z-index:1}
+    .icon-3d:hover{transform:perspective(600px) rotateX(-8deg) rotateY(8deg) translateZ(8px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+    .icon-3d.red{background:linear-gradient(135deg,rgba(217,74,69,.2),rgba(217,74,69,.05));border:1px solid rgba(217,74,69,.25);color:#f87171}
+    .icon-3d.red::before{background:linear-gradient(135deg,#D94A45,#ff6b6b)}
+    .icon-3d.blue{background:linear-gradient(135deg,rgba(88,166,255,.2),rgba(88,166,255,.05));border:1px solid rgba(88,166,255,.25);color:#7dd3fc}
+    .icon-3d.blue::before{background:linear-gradient(135deg,#58A6FF,#38bdf8)}
+    .icon-3d.green{background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(16,185,129,.05));border:1px solid rgba(16,185,129,.25);color:#6ee7b7}
+    .icon-3d.green::before{background:linear-gradient(135deg,#10b981,#34d399)}
+    .icon-3d.purple{background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(139,92,246,.05));border:1px solid rgba(139,92,246,.25);color:#c4b5fd}
+    .icon-3d.purple::before{background:linear-gradient(135deg,#8b5cf6,#a78bfa)}
+    .icon-3d.amber{background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.25);color:#fcd34d}
+    .icon-3d.amber::before{background:linear-gradient(135deg,#f59e0b,#fbbf24)}
+
+    /* About section redesign */
+    .about-hook{font-size:clamp(1.6rem,2.5vw,2.4rem);line-height:1.15;font-weight:800;letter-spacing:-.04em;color:#fff}
+    .about-hook .gradient-text{background:linear-gradient(120deg,#fff 0%,#ffd6cf 40%,#ff998c 70%,#58A6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .about-body{font-size:1.05rem;line-height:1.8;color:#cbd5e1}
+    .about-body strong{color:#f1f5f9;font-weight:600}
+    .about-highlight{position:relative;padding:1.5rem;border-radius:20px;border:1px solid rgba(88,166,255,.15);background:linear-gradient(135deg,rgba(88,166,255,.04),rgba(217,74,69,.03));overflow:hidden}
+    .about-highlight::before{content:"";position:absolute;top:-1px;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(88,166,255,.5),transparent)}
+
+    /* Animated stat cards */
+    .stat-card{position:relative;padding:1.5rem;border-radius:22px;border:1px solid rgba(48,54,61,.8);background:linear-gradient(180deg,rgba(13,17,23,.85),rgba(9,13,20,.92));overflow:hidden;text-align:center}
+    .stat-card::before{content:"";position:absolute;top:-1px;left:25%;right:25%;height:2px;background:linear-gradient(90deg,transparent,var(--stat-accent,#58A6FF),transparent);opacity:.6}
+    .stat-number{font-size:clamp(2rem,3vw,2.8rem);font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,#fff,var(--stat-accent,#58A6FF));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .stat-label{margin-top:.5rem;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;color:#94A3B8}
+    .stat-sublabel{margin-top:.35rem;font-size:.88rem;color:#64748b}
+
+    /* Animated gradient border on hover */
+    .gradient-border-card{position:relative;border-radius:24px;overflow:hidden}
+    .gradient-border-card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:conic-gradient(from var(--gradient-angle,0deg),transparent 25%,rgba(88,166,255,.5) 50%,transparent 75%);opacity:0;transition:opacity .5s ease;z-index:0}
+    .gradient-border-card:hover::before{opacity:1}
+    .gradient-border-card>*{position:relative;z-index:1}
+
+    /* Particle canvas */
+    #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.4}
+
+    /* Section dividers */
+    .section-glow{position:relative}
+    .section-glow::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(88,166,255,.2),rgba(217,74,69,.15),transparent)}
+
+    /* Enhanced CTA */
+    .cta-urgency{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem;border-radius:999px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);font-size:.78rem;color:#fcd34d;letter-spacing:.04em}
+
+    /* Text reveal animation helper */
+    .text-reveal{clip-path:inset(0 100% 0 0);animation:none}
+    .text-reveal.revealed{clip-path:inset(0 0% 0 0);transition:clip-path 1s cubic-bezier(.77,0,.175,1)}
+
+    /* Smooth line drawing for experience timeline */
+    .timeline-line{position:absolute;left:18px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,rgba(88,166,255,.4),rgba(217,74,69,.3),rgba(88,166,255,.2));transform-origin:top;transform:scaleY(0)}
+    .timeline-dot{position:absolute;left:10px;width:18px;height:18px;border-radius:50%;border:2px solid rgba(88,166,255,.5);background:#0D1117;z-index:1;display:flex;align-items:center;justify-content:center}
+    .timeline-dot::after{content:"";width:6px;height:6px;border-radius:50%;background:#58A6FF}
+
     @media (prefers-reduced-motion: reduce){
-      .depth-layer,.tilt-card,.hero-orb,.hero-float-card{animation:none!important;transition:none!important}
+      .depth-layer,.tilt-card,.hero-orb,.hero-float-card,.avail-dot,.icon-3d{animation:none!important;transition:none!important}
+      .stat-number{background:none;color:#fff}
     }
   </style>
   <!-- SEO & Social -->
   <meta name="author" content="Muhammad Motasim Bin Shahid">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="Full-Stack Engineer building Laravel and Node.js backends with Vue and React frontends for SaaS platforms, APIs, and data-heavy products.">
+  <meta name="description" content="Senior Full-Stack Engineer in Germany with 4+ years building SaaS platforms, APIs, and data-heavy products using Laravel, Node.js, Vue, and React. Available for hire.">
   <link rel="canonical" href="https://muhammadmotasimbinshahid.com/">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <meta name="keywords" content="Senior Full‑Stack Software Engineer, Vue, React, Node, Laravel, JavaScript, TypeScript, Portfolio">
+  <meta name="keywords" content="Senior Full-Stack Engineer, Full-Stack Developer, Laravel Developer, Node.js Developer, Vue.js Developer, React Developer, SaaS Engineer, API Developer, TypeScript, PHP, JavaScript, hire full-stack developer Germany, freelance software engineer, portfolio">
   <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)">
-  <meta property="og:title" content="Muhammad Motasim Bin Shahid — Full-Stack Engineer | Laravel, Node.js, Vue, React">
-  <meta property="og:description" content="Full-Stack Engineer building Laravel and Node.js backends with Vue and React frontends for SaaS platforms, APIs, and data-heavy products.">
-    <meta property="og:site_name" content="Muhammad Motasim Bin Shahid">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://muhammadmotasimbinshahid.com/">
-    <meta property="og:image" content="https://muhammadmotasimbinshahid.com/assets/images/IMG_4469.jpeg">
-    <meta property="og:image:alt" content="Portrait of Muhammad Motasim Bin Shahid">
-    <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Muhammad Motasim Bin Shahid — Full-Stack Engineer | Laravel, Node.js, Vue, React">
-  <meta name="twitter:description" content="Full-Stack Engineer building Laravel and Node.js backends with Vue and React frontends for SaaS platforms, APIs, and data-heavy products.">
-    <meta name="twitter:image" content="https://muhammadmotasimbinshahid.com/assets/images/IMG_4469.jpeg">
-    <meta name="twitter:image:alt" content="Portrait of Muhammad Motasim Bin Shahid">
+  <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: light)">
+  <meta property="og:title" content="Muhammad Motasim — Senior Full-Stack Engineer | Portfolio">
+  <meta property="og:description" content="Senior Full-Stack Engineer in Germany with 4+ years building SaaS platforms, APIs, and data-heavy products using Laravel, Node.js, Vue, and React. Available for hire.">
+  <meta property="og:site_name" content="Muhammad Motasim Bin Shahid">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://muhammadmotasimbinshahid.com/">
+  <meta property="og:image" content="https://muhammadmotasimbinshahid.com/assets/images/profile.png">
+  <meta property="og:image:alt" content="Portrait of Muhammad Motasim Bin Shahid — Senior Full-Stack Engineer">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Muhammad Motasim — Senior Full-Stack Engineer | Portfolio">
+  <meta name="twitter:description" content="Senior Full-Stack Engineer in Germany. 4+ years shipping SaaS platforms, APIs, and data-heavy products across 6 industries. Available for hire.">
+  <meta name="twitter:image" content="https://muhammadmotasimbinshahid.com/assets/images/profile.png">
+  <meta name="twitter:image:alt" content="Portrait of Muhammad Motasim Bin Shahid">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Muhammad Motasim Bin Shahid",
+    "givenName": "Muhammad Motasim",
+    "familyName": "Bin Shahid",
     "url": "https://muhammadmotasimbinshahid.com/",
-    "image": "https://muhammadmotasimbinshahid.com/assets/images/IMG_4469.jpeg",
-    "jobTitle": "Full-Stack Engineer",
-    "description": "Full-Stack Engineer building Laravel and Node.js backends with Vue and React frontends for SaaS platforms, APIs, and data-heavy products.",
+    "image": "https://muhammadmotasimbinshahid.com/assets/images/profile.png",
+    "jobTitle": "Senior Full-Stack Engineer",
+    "description": "Senior Full-Stack Engineer with 4+ years building SaaS platforms, APIs, and data-heavy products using Laravel, Node.js, Vue, and React.",
+    "email": "muhammadmotasimbin.shahid@gmail.com",
+    "telephone": "+4915212645064",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Chemnitz",
+      "addressCountry": "DE"
+    },
+    "nationality": { "@type": "Country", "name": "Pakistan" },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "PLAYY",
+      "url": "https://playy.co.uk/"
+    },
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Technische Universität Chemnitz",
+        "url": "https://www.tu-chemnitz.de/"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Management and Technology",
+        "url": "https://www.umt.edu.pk/"
+      }
+    ],
+    "knowsAbout": ["Laravel", "Node.js", "Vue.js", "React", "TypeScript", "PHP", "JavaScript", "NestJS", "Nuxt", "MySQL", "PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "API Design", "SaaS Development", "Full-Stack Development"],
     "sameAs": [
       "https://linkedin.com/in/muhammad-motasim",
       "https://github.com/MuhammadMotasimBinShahid",
@@ -210,9 +395,11 @@
     </script>
 </head>
 <body class="min-h-screen bg-githubBg text-slate-100 overflow-x-hidden pb-16 md:pb-0">
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}.hero-float-card{display:none!important}#particles-canvas{display:none!important}</style></noscript>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
   <!-- Header / Nav (keeps .navbar, .hamburger, .nav-menu for script.js) -->
   <header class="sticky top-0 z-50 border-b border-slate-200/70 dark:border-githubBorder backdrop-blur supports-[backdrop-filter]:bg-[#F6F8FA]/80 dark:supports-[backdrop-filter]:bg-githubBg/80">
-    <nav class="navbar container mx-auto px-4 md:h-16 h-auto py-3 flex items-center justify-between">
+    <nav class="navbar container mx-auto px-4 md:h-16 h-auto py-3 flex items-center justify-between" aria-label="Main navigation">
       <a href="#home" class="font-extrabold tracking-tight text-xl flex-1 md:flex-none">MMS</a>
       <ul class="nav-menu hidden md:flex items-center gap-6 text-sm">
         <li><a class="nav-link hover:text-brand" href="#home">Home</a></li>
@@ -241,15 +428,16 @@
         <div class="hero-orb two"></div>
         <div class="hero-mesh depth-layer" style="--depth:.08;--base-transform:translate3d(0,0,0) rotateX(74deg) rotateZ(-18deg)"></div>
       </div>
-      <div class="container mx-auto px-4 py-20 hero-stage">
-        <div class="grid md:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] gap-12 xl:gap-14 items-center">
+      <div class="container mx-auto px-4 py-10 md:py-20 hero-stage">
+        <div class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] gap-8 md:gap-12 xl:gap-14 items-center">
           <div class="hero-copy relative z-10">
+            <div data-reveal class="avail-badge"><span class="avail-dot"></span>Available for senior roles &amp; contract work</div>
             <h1 data-reveal class="hero-heading font-extrabold tracking-tight text-white">
               Full-Stack Engineer
               <span class="hero-emphasis">for Laravel and Node.js</span>
               <span class="hero-accent">platforms shipped with Vue and React.</span>
             </h1>
-            <p data-reveal class="hero-support mt-6">I build SaaS products, APIs, internal tools, and reporting-heavy workflows where backend systems, integrations, and frontend delivery need to stay aligned.</p>
+            <p data-reveal class="hero-support mt-6">I build SaaS products, APIs, and data-heavy platforms that teams rely on after launch. 4+ years shipping across 6 industries, from healthcare to music tech.</p>
             <div data-reveal class="hero-actions">
               <a href="#projects" class="hero-btn-primary">View Projects</a>
               <a href="#contact" class="hero-btn-secondary">Contact Me</a>
@@ -263,19 +451,23 @@
           </div>
           <div class="hero-visual">
             <div class="hero-float-card hero-float-feature" aria-hidden="true">
+              <div class="float-icon" style="background:rgba(217,74,69,.15);border:1px solid rgba(217,74,69,.25);color:#f87171"><i class="fas fa-music"></i></div>
               <small>Featured Build</small>
               <strong>PLAYY.Music</strong>
-              <p>Social music, events, and PR flows.</p>
+              <p>Social music platform · 300+ artists · 15+ countries</p>
             </div>
             <div class="hero-float-card hero-float-ai" aria-hidden="true">
+              <div class="float-icon" style="background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.25);color:#c4b5fd"><i class="fas fa-robot"></i></div>
               <small>AI Workflows</small>
               <strong>Cursor / n8n</strong>
-              <p>Agents, automation, and IDE loops.</p>
+              <p>Agents, automation, IDE loops</p>
             </div>
             <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card hero-main-panel">
               <div class="hero-panel-top">
                 <div class="hero-avatar-shell">
-                  <img src="assets/images/IMG_4469.jpeg" alt="Muhammad Motasim Bin Shahid" width="132" height="132" fetchpriority="high" />
+                  <div class="hero-avatar-ring"></div>
+                  <img src="assets/images/profile.png" alt="Muhammad Motasim Bin Shahid" width="132" height="132" fetchpriority="high" />
+                  <span class="hero-avatar-status" title="Available for work"></span>
                 </div>
                 <div class="flex-1">
                   <div class="hero-panel-kicker">Portfolio Snapshot</div>
@@ -284,15 +476,18 @@
                 </div>
               </div>
               <div class="hero-panel-grid">
-                <div class="hero-panel-card">
+                <div class="hero-panel-card" style="--card-accent:rgba(88,166,255,.5);--card-icon-bg:rgba(88,166,255,.1);--card-icon-border:rgba(88,166,255,.2);--card-icon-color:#7dd3fc">
+                  <div class="card-icon"><i class="fas fa-code"></i></div>
                   <small>What I Ship</small>
                   <p>Backend APIs, integrations, admin tooling, reporting, and product-facing flows.</p>
                 </div>
-                <div class="hero-panel-card">
+                <div class="hero-panel-card" style="--card-accent:rgba(217,74,69,.5);--card-icon-bg:rgba(217,74,69,.1);--card-icon-border:rgba(217,74,69,.2);--card-icon-color:#f87171">
+                  <div class="card-icon"><i class="fas fa-cubes"></i></div>
                   <small>Product Shape</small>
                   <p>SaaS platforms, marketplaces, internal tools, and workflow-heavy applications.</p>
                 </div>
-                <div class="hero-panel-card hero-panel-card-wide">
+                <div class="hero-panel-card hero-panel-card-wide" style="--card-accent:rgba(16,185,129,.5);--card-icon-bg:rgba(16,185,129,.1);--card-icon-border:rgba(16,185,129,.2);--card-icon-color:#6ee7b7">
+                  <div class="card-icon"><i class="fas fa-rocket"></i></div>
                   <small>Build Style</small>
                   <p>Clear architecture, practical shipping, and systems that stay maintainable after launch.</p>
                 </div>
@@ -304,104 +499,109 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="container mx-auto px-4 py-16">
-      <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8">About</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Intro + Stats (from backup) -->
-        <div class="space-y-6">
+    <section id="about" class="container mx-auto px-4 py-20 section-glow">
+      <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-start">
+        <div class="space-y-8">
+          <h2 class="sr-only">About</h2>
           <div data-reveal>
-            <div class="code-terminal overflow-hidden js-tilt">
-              <div class="bar">
-                <span class="dot" style="background:#ff5f56"></span>
-                <span class="dot" style="background:#ffbd2e"></span>
-                <span class="dot" style="background:#27c93f"></span>
-                <span class="text-xs text-slate-400 ml-2">bash — ~/about</span>
-              </div>
-              <pre class="text-sm leading-6 text-slate-200 p-4 min-h-[320px]"><code>I build the kind of software teams rely on after launch.
+            <p class="about-hook" role="heading" aria-level="3">
+              I don't just write code —<br><span class="gradient-text">I build the products people actually pay for.</span>
+            </p>
+          </div>
 
-I'm Muhammad Motasim Bin Shahid, a full-stack engineer working mainly with Laravel and Node.js on the backend and Vue or React on the frontend. I build SaaS platforms, APIs, internal tools, and data-heavy workflows where clear architecture and steady execution matter.
-
-Over the last few years, I've shipped product and platform work across music and social commerce, marketing analytics, telehealth, digital identity, and hosting. That has meant owning APIs, realtime features, reporting, payments, admin tooling, and integrations in live systems that had to keep working under real product pressure.
-
-I'm looking for senior full-stack work where I can own meaningful scope end to end, stay close to product decisions, and keep building systems that scale without getting messy.</code></pre>
+          <div data-reveal class="about-body space-y-5">
+            <p>I'm Motasim, a full-stack engineer who turns product ideas into shipped software. I work across <strong>Laravel, Node.js, Vue, and React</strong> — but what I really do is own the full delivery: backend architecture, API design, frontend interfaces, and everything in between. If it needs to work in production, scale under real users, and stay maintainable after launch — that's where I operate.</p>
+            <p>Over <strong>4+ years of production engineering</strong>, I've shipped a social music platform used by 300+ artists across 15 countries, built marketing analytics tools processing data from Google, Facebook, and YouTube at scale, delivered telehealth systems handling sensitive patient workflows, and launched NFC-based digital identity products from zero to live customers. My work spans <strong>music &amp; social commerce, marketing analytics, healthcare, digital identity, and enterprise hosting</strong> — and in every case, I owned scope end to end.</p>
+            <div class="about-highlight">
+              <p>Right now, I'm open to <strong>senior full-stack roles</strong> where I can own meaningful product scope, make architectural decisions that matter, and work with teams that ship fast without cutting corners. I'm also exploring <strong>AI-augmented development workflows</strong> and building tools that bridge the gap between engineering and product thinking. If that sounds like your team — <a href="#contact" class="text-github hover:underline font-semibold">let's talk</a>.</p>
             </div>
           </div>
 
-          <div data-reveal class="grid grid-cols-2 gap-3">
-            <div class="gh-ach js-tilt">
-              <div class="gh-icon"><i class="fas fa-code"></i></div>
-              <div>
-                <div class="font-semibold">Product + Platform</div>
-                <div class="text-sm text-slate-400">Frontend, backend, and delivery</div>
-              </div>
+          <!-- Animated stat counters -->
+          <div data-reveal class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="stat-card js-tilt" style="--stat-accent:#D94A45">
+              <div class="stat-number" data-count="4" data-suffix="+">0</div>
+              <div class="stat-label">Years</div>
+              <div class="stat-sublabel">Production Work</div>
             </div>
-            <div class="gh-ach js-tilt">
-              <div class="gh-icon"><i class="fas fa-project-diagram"></i></div>
-              <div>
-                <div class="font-semibold">MSc at TU Chemnitz</div>
-                <div class="text-sm text-slate-400">Automotive Software Engineering</div>
-              </div>
+            <div class="stat-card js-tilt" style="--stat-accent:#58A6FF">
+              <div class="stat-number" data-count="6">0</div>
+              <div class="stat-label">Industries</div>
+              <div class="stat-sublabel">Shipped In</div>
             </div>
-            <div class="gh-ach js-tilt">
-              <div class="gh-icon"><i class="fas fa-users"></i></div>
-              <div>
-                <div class="font-semibold">Since 2021</div>
-                <div class="text-sm text-slate-400">Production Engineering Work</div>
-              </div>
+            <div class="stat-card js-tilt" style="--stat-accent:#10b981">
+              <div class="stat-number" data-count="300" data-suffix="+">0</div>
+              <div class="stat-label">Artists</div>
+              <div class="stat-sublabel">On PLAYY Platform</div>
             </div>
-            <div class="gh-ach js-tilt">
-              <div class="gh-icon"><i class="fas fa-trophy"></i></div>
-              <div>
-                <div class="font-semibold">Core Focus</div>
-                <div class="text-sm text-slate-400">SaaS, APIs, Data Workflows</div>
-              </div>
+            <div class="stat-card js-tilt" style="--stat-accent:#8b5cf6">
+              <div class="stat-number" data-count="15" data-suffix="+">0</div>
+              <div class="stat-label">Countries</div>
+              <div class="stat-sublabel">Product Reach</div>
             </div>
           </div>
         </div>
 
-        <!-- Competencies + Education (from backup) -->
+        <!-- Right column: 3D icon cards + Education -->
         <div class="space-y-6">
-          <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card js-tilt">
-            <h3 class="font-semibold mb-4"><i class="fas fa-graduation-cap mr-2"></i>Education &amp; Achievements</h3>
-            <div class="space-y-5">
-              <article class="rounded-xl p-0 border panel overflow-hidden js-tilt">
+          <div data-reveal class="grid grid-cols-2 gap-3 sm:gap-4">
+            <div class="rounded-2xl p-4 sm:p-5 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt gradient-border-card">
+              <div class="icon-3d red mb-3"><i class="fas fa-rocket"></i></div>
+              <div class="font-semibold text-sm">Product &amp; Platform</div>
+              <div class="text-xs text-slate-400 mt-1 hidden sm:block">End-to-end ownership from backend APIs to shipped frontend</div>
+            </div>
+            <div class="rounded-2xl p-4 sm:p-5 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt gradient-border-card">
+              <div class="icon-3d blue mb-3"><i class="fas fa-graduation-cap"></i></div>
+              <div class="font-semibold text-sm">MSc — TU Chemnitz</div>
+              <div class="text-xs text-slate-400 mt-1 hidden sm:block">Automotive Software Engineering (current)</div>
+            </div>
+            <div class="rounded-2xl p-4 sm:p-5 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt gradient-border-card">
+              <div class="icon-3d green mb-3"><i class="fas fa-bolt"></i></div>
+              <div class="font-semibold text-sm">Since 2021</div>
+              <div class="text-xs text-slate-400 mt-1 hidden sm:block">Shipping production code in real teams</div>
+            </div>
+            <div class="rounded-2xl p-4 sm:p-5 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt gradient-border-card">
+              <div class="icon-3d purple mb-3"><i class="fas fa-brain"></i></div>
+              <div class="font-semibold text-sm">AI + Automation</div>
+              <div class="text-xs text-slate-400 mt-1 hidden sm:block">Cursor, Claude, n8n, agentic workflows</div>
+            </div>
+          </div>
+
+          <div data-reveal class="rounded-2xl p-4 sm:p-6 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt">
+            <h3 class="font-semibold mb-4 flex items-center gap-2 text-sm sm:text-base"><div class="icon-3d amber" style="width:36px;height:36px;min-width:36px;border-radius:10px;font-size:.9rem"><i class="fas fa-award"></i></div>Education &amp; Achievements</h3>
+            <div class="space-y-4">
+              <article class="rounded-xl p-0 border border-githubBorder overflow-hidden">
                 <div class="px-4 py-3 border-b border-githubBorder flex items-center justify-between">
-                  <div class="flex items-center gap-2 text-slate-300"><span class="octicon octicon-repo"></span><span class="font-semibold">Master of Science — Automotive Software Engineering</span></div>
-                  <span class="text-xs px-2 py-0.5 rounded border border-githubBorder">Current</span>
+                  <span class="font-semibold text-sm text-slate-200">MSc — Automotive Software Engineering</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/25 text-green-400">Current</span>
                 </div>
                 <div class="p-4">
                   <div class="text-sm text-slate-400">Technische Universität Chemnitz</div>
                   <div class="text-xs text-slate-500 mt-1">2023 — Present</div>
-                  <div class="mt-3 flex flex-wrap gap-2">
-                    <span class="label-chip">Automotive Software</span>
-                    <span class="label-chip">Research Focus</span>
-                  </div>
                 </div>
               </article>
-
-              <article class="rounded-xl p-0 border panel overflow-hidden js-tilt">
+              <article class="rounded-xl p-0 border border-githubBorder overflow-hidden">
                 <div class="px-4 py-3 border-b border-githubBorder flex items-center justify-between">
-                  <div class="flex items-center gap-2 text-slate-300"><span class="octicon octicon-repo"></span><span class="font-semibold">BSc — Computer Science (Software Engineering)</span></div>
-                  <span class="text-xs px-2 py-0.5 rounded border border-githubBorder">Dean's Award</span>
+                  <span class="font-semibold text-sm text-slate-200">BSc — Computer Science (Software Engineering)</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400">Dean's Award</span>
                 </div>
                 <div class="p-4">
                   <div class="text-sm text-slate-400">University of Management and Technology</div>
-                  <div class="text-xs text-slate-500 mt-1">2017 — 2021 · GPA 3.61/4.00</div>
+                  <div class="text-xs text-slate-500 mt-1">2017 — 2021 · GPA 3.61 / 4.00</div>
                   <div class="mt-3 flex flex-wrap gap-2">
-                    <span class="label-chip">Dean's List</span>
-                    <span class="label-chip">Academic Excellence</span>
-                    <span class="label-chip">Software Engineering</span>
+                    <span class="label-chip text-xs">Dean's List</span>
+                    <span class="label-chip text-xs">Academic Excellence</span>
                   </div>
                 </div>
               </article>
             </div>
           </div>
-                        </div>
-                        </div>
+        </div>
+      </div>
     </section>
 
     <!-- Experience -->
-    <section id="experience" class="container mx-auto px-4 py-16">
+    <section id="experience" class="container mx-auto px-4 py-20 section-glow">
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8">Experience</h2>
       <div data-reveal class="code-terminal overflow-hidden shadow-card js-tilt">
         <div class="bar">
@@ -507,44 +707,51 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
     </section>
 
     <!-- Featured Work -->
-    <section id="featured-work" class="container mx-auto px-4 py-16">
+    <section id="featured-work" class="container mx-auto px-4 py-20 section-glow">
       <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
         <div>
           <h2 data-reveal class="text-2xl md:text-3xl font-bold">Featured Build Overview</h2>
-          <p data-reveal class="section-lead mt-3">A tighter product summary for PLAYY based on the documented build overview rather than broad portfolio shorthand.</p>
+          <p data-reveal class="section-lead mt-3">My most complex production build — a full-scale social music platform 15 years in the making, backed by a company that's worked with Ed Sheeran, FKJ, Novo Amor, and hundreds more.</p>
         </div>
       </div>
       <div data-reveal class="feature-frame js-tilt">
         <div class="feature-grid">
           <div>
-            <div class="feature-kicker">Featured Build</div>
-            <h3 class="feature-title">PLAYY.Music</h3>
-            <p class="feature-copy">PLAYY.Music is a social music platform that combines artist pages, community features, discovery, events, and commerce in one product.</p>
-            <p class="feature-copy">The build spans public landing experiences for music, media, records, and PR campaigns, plus account flows, artist profiles, social feeds, forums, marketplace pages, event purchasing, realtime messaging, and payments.</p>
+            <div class="feature-kicker"><i class="fas fa-music mr-2"></i>Featured Build</div>
+            <h3 class="feature-title"><a href="https://playy.co.uk/" target="_blank" rel="noopener" class="hover:text-github transition">PLAYY.Music</a></h3>
+            <p class="feature-copy">PLAYY.Music is an all-in-one social music platform and ecosystem built for independent artists — by PLAYY. (formerly The Playground), a UK music company with a 15-year track record in PR, events, and artist development. The company has worked with artists including Ed Sheeran, Porter Robinson, FKJ, Pendulum, Röyksopp, Steve Aoki, Franz Ferdinand, and hundreds more.</p>
+            <p class="feature-copy">The platform lets artists sell and stream music, license tracks for film and TV, sell merch and sample packs, run ticketed events and tours, crowdfund projects, access a music jobs marketplace, engage fans through groups, messaging, and video calls — all from one product, with real-time analytics and fair payouts.</p>
             <div class="mt-6 flex flex-wrap gap-2 text-xs text-slate-300">
               <span class="label-chip">Vue SPA</span>
-              <span class="label-chip">PR Campaigns</span>
+              <span class="label-chip">Music Streaming</span>
+              <span class="label-chip">Licensing</span>
+              <span class="label-chip">Ticketing</span>
               <span class="label-chip">Marketplace</span>
-              <span class="label-chip">Events</span>
-              <span class="label-chip">Realtime Messaging</span>
+              <span class="label-chip">Realtime Chat</span>
+              <span class="label-chip">Stripe Payments</span>
+              <span class="label-chip">PR Campaigns</span>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="https://playy.co.uk/" target="_blank" rel="noopener" class="hero-btn-primary text-sm"><i class="fas fa-external-link-alt mr-2"></i>Visit PLAYY.Music</a>
+              <a href="#contact" class="hero-btn-secondary text-sm"><i class="fas fa-comments mr-2"></i>Ask Me About This Build</a>
             </div>
           </div>
           <div class="feature-side">
             <div class="feature-stat">
-              <small>Who It Serves</small>
-              <p>Independent artists and creators first, with fan, label, and promoter-facing surfaces visible in the product.</p>
+              <small>Scale &amp; Reach</small>
+              <p>300+ artists across 15+ countries. The parent company has sold hundreds of thousands of event tickets and operated PR campaigns across the UK, US, Canada, France, Germany, Netherlands, Australia, and more.</p>
             </div>
             <div class="feature-stat">
-              <small>Build Overview</small>
-              <p>Landing pages, profiles, social and forum features, music discovery, PR campaign flows, marketplace pages, and event operations inside one application.</p>
+              <small>What I Own</small>
+              <p>Full product delivery across artist onboarding, commerce flows, social interactions, realtime messaging, event ticketing, marketplace pages, PR campaign flows, payments, and admin tooling.</p>
             </div>
             <div class="feature-stat">
               <small>Frontend Architecture</small>
-              <p>Vue 2.7 SPA with Vue Router, Vuex state, axios-based API wrappers, Stream chat and call integrations, and Stripe payment handling.</p>
+              <p>Vue 2.7 SPA with Vue Router, Vuex state, axios-based API wrappers, Stream chat and video call integrations, Stripe payment handling, and Laravel API backend.</p>
             </div>
             <div class="feature-stat">
-              <small>Review Note</small>
-              <p>The documented repo evidence covers the client application. I can walk through product scope, delivery ownership, and the broader system context in technical review.</p>
+              <small>Why It Matters</small>
+              <p>This is a real product under real product pressure — not a demo. I can walk through architecture decisions, delivery ownership, and system trade-offs in technical review.</p>
             </div>
           </div>
         </div>
@@ -552,11 +759,11 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
       <div class="signal-grid mt-6">
         <div data-reveal class="signal-card js-tilt">
           <small>Private Production Work</small>
-          <p>Most of my strongest recent work lives in company or client codebases, so this portfolio focuses on shipped scope and engineering ownership rather than public repo volume.</p>
+          <p>Most of my strongest recent work lives in company or client codebases. This portfolio focuses on shipped scope and engineering ownership rather than public repo volume.</p>
         </div>
         <div data-reveal class="signal-card js-tilt">
           <small>Public Review Paths</small>
-          <p>GitHub and GitLab are here as supplemental review material. For real product work, the better signal is architecture, delivery history, and how I explain tradeoffs.</p>
+          <p>GitHub and GitLab are supplemental. For real product work, the better signal is architecture, delivery history, and how I explain trade-offs in conversation.</p>
         </div>
         <div data-reveal class="signal-card js-tilt">
           <small>Best Use Of This Site</small>
@@ -566,11 +773,12 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="container mx-auto px-4 py-16">
+    <section id="skills" class="container mx-auto px-4 py-20 section-glow">
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-tools"></span> Skills</h2>
       <p data-reveal class="section-lead mb-8">Focused on the stack and problem spaces I want to keep being hired for.</p>
       <div class="skill-matrix">
-        <article data-reveal class="skill-card js-tilt">
+        <article data-reveal class="skill-card js-tilt gradient-border-card">
+          <div class="icon-3d blue mb-3"><i class="fas fa-layer-group"></i></div>
           <h3>Frontend Delivery</h3>
           <p>Interfaces for dashboards, admin tools, and product-facing flows.</p>
           <div class="skill-chip-list">
@@ -583,7 +791,8 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
             <span>Tailwind</span>
           </div>
         </article>
-        <article data-reveal class="skill-card js-tilt">
+        <article data-reveal class="skill-card js-tilt gradient-border-card">
+          <div class="icon-3d red mb-3"><i class="fas fa-server"></i></div>
           <h3>Backend Systems</h3>
           <p>API design, business logic, background jobs, and data-heavy application backends.</p>
           <div class="skill-chip-list">
@@ -595,7 +804,8 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
             <span>Redis</span>
           </div>
         </article>
-        <article data-reveal class="skill-card js-tilt">
+        <article data-reveal class="skill-card js-tilt gradient-border-card">
+          <div class="icon-3d green mb-3"><i class="fas fa-database"></i></div>
           <h3>Data &amp; Infrastructure</h3>
           <p>Persistence, delivery pipelines, and production support for live systems.</p>
           <div class="skill-chip-list">
@@ -607,7 +817,8 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
             <span>CI/CD</span>
           </div>
         </article>
-        <article data-reveal class="skill-card js-tilt">
+        <article data-reveal class="skill-card js-tilt gradient-border-card">
+          <div class="icon-3d purple mb-3"><i class="fas fa-plug"></i></div>
           <h3>Integrations</h3>
           <p>Payment, communication, analytics, and third-party product workflows.</p>
           <div class="skill-chip-list">
@@ -619,7 +830,8 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
             <span>Wallet Passes</span>
           </div>
         </article>
-        <article data-reveal class="skill-card js-tilt">
+        <article data-reveal class="skill-card js-tilt gradient-border-card">
+          <div class="icon-3d amber mb-3"><i class="fas fa-cogs"></i></div>
           <h3>Engineering Practice</h3>
           <p>The way I tend to work when the product and engineering side both matter.</p>
           <div class="skill-chip-list">
@@ -631,7 +843,8 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
             <span>Product Delivery</span>
           </div>
         </article>
-        <article data-reveal class="skill-card js-tilt">
+        <article data-reveal class="skill-card js-tilt gradient-border-card">
+          <div class="icon-3d red mb-3"><i class="fas fa-robot"></i></div>
           <h3>AI Agents &amp; Tooling</h3>
           <p>Applied use of AI-assisted IDE workflows, plugins, and agent-style tooling inside day-to-day delivery and review work.</p>
           <div class="skill-chip-list">
@@ -651,71 +864,83 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
     </section>
 
     <!-- Selected Projects (custom) -->
-    <section id="projects" class="container mx-auto px-4 py-16">
+    <section id="projects" class="container mx-auto px-4 py-20 section-glow">
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-repo"></span> Selected Projects</h2>
       <p data-reveal class="section-lead mb-8">Shorter snapshots of other shipped work. The featured case study above is the best place to start if you want depth.</p>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a data-reveal href="https://brandbreakerscard.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block js-tilt">
-          <div class="font-semibold text-lg mb-4">Brand Breakers</div>
+        <a data-reveal href="https://brandbreakerscard.com/" target="_blank" rel="noopener" class="rounded-lg p-4 sm:p-5 border panel hover:bg-githubPanel/80 transition block js-tilt gradient-border-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="icon-3d green" style="width:40px;height:40px;min-width:40px;border-radius:12px;font-size:1rem"><i class="fas fa-id-card"></i></div>
+            <div class="font-semibold text-lg">Brand Breakers</div>
+          </div>
           <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>NFC-based digital business card product with shareable profiles, wallet passes, and admin tooling.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Vue 3 and Laravel features for card management, Apple Wallet and Google Wallet passes, analytics, and contact workflows.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Laravel 11, Vue 3, MySQL, Wallet integrations.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Turned digital cards into a product with trackable sharing, reusable templates, and business-facing admin flows.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>NFC tap-and-go digital business card product with CRM dashboard, QR sharing, contact exchange, analytics, and customizable profiles. Serves entrepreneurs, real estate agents, sales teams, and influencers.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Full Vue 3 + Laravel backend for card management, Apple Wallet and Google Wallet pass generation, CRM integrations, insightful analytics dashboards, profile customization engine, and Shopify-connected e-commerce storefront.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Shipped a live product with tiered pricing ($50–$200), team packs, subscription features, and a CRM dashboard used by professionals across multiple industries.</div>
           </div>
           <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
             <span class="label-chip">Laravel 11</span>
             <span class="label-chip">Vue 3</span>
-            <span class="label-chip">MySQL</span>
             <span class="label-chip">Wallet Passes</span>
+            <span class="label-chip">CRM</span>
+            <span class="label-chip">Shopify</span>
           </div>
         </a>
 
-        <a data-reveal href="https://adash.io/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block js-tilt">
-          <div class="font-semibold text-lg mb-4">aDash</div>
+        <a data-reveal href="https://adash.io/" target="_blank" rel="noopener" class="rounded-lg p-4 sm:p-5 border panel hover:bg-githubPanel/80 transition block js-tilt gradient-border-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="icon-3d blue" style="width:40px;height:40px;min-width:40px;border-radius:12px;font-size:1rem"><i class="fas fa-chart-line"></i></div>
+            <div class="font-semibold text-lg">aDash</div>
+          </div>
           <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>SEO and marketing analytics platform for reporting across search, ads, and social channels.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Nuxt and Laravel dashboards, scheduled ingestion flows, and reporting features for data-heavy client accounts.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Nuxt, Laravel, Redis, third-party data APIs.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Centralized scattered reporting into one workflow and reduced manual analysis through scheduled product-driven summaries.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Marketing analytics platform that proves ROI of digital campaigns. Connects to Google Analytics, Google Ads, Google My Business, Facebook Organic, Facebook Ads, and YouTube — tracking traffic, leads, CTR, conversions, LTV, and more.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Nuxt + Laravel dashboards with scheduled data ingestion from 6+ third-party APIs, automated reporting workflows, real-time ROI visualization, and client-facing report generation.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Centralized scattered marketing data into one platform, enabling agencies to prove campaign value and cut manual reporting effort through automated, scheduled summaries.</div>
           </div>
           <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
             <span class="label-chip">Nuxt</span>
             <span class="label-chip">Laravel</span>
             <span class="label-chip">Redis</span>
-            <span class="label-chip">Data APIs</span>
+            <span class="label-chip">Google APIs</span>
+            <span class="label-chip">Facebook APIs</span>
           </div>
         </a>
 
-        <a data-reveal href="https://www.bionicwp.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block js-tilt">
-          <div class="font-semibold text-lg mb-4">BionicWP</div>
+        <a data-reveal href="https://www.bionicwp.com/" target="_blank" rel="noopener" class="rounded-lg p-4 sm:p-5 border panel hover:bg-githubPanel/80 transition block js-tilt gradient-border-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="icon-3d purple" style="width:40px;height:40px;min-width:40px;border-radius:12px;font-size:1rem"><i class="fas fa-bolt"></i></div>
+            <div class="font-semibold text-lg">BionicWP</div>
+          </div>
           <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Managed WordPress hosting platform built for performance, support, and operational scale.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Vue 3 and NestJS features across customer workflows, internal tooling, billing-related flows, and supporting services.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Vue 3, NestJS, TypeScript, Docker.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Helped ship a platform where frontend delivery, service design, and release discipline all had to work together.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Expert-managed WordPress hosting platform trusted by 500+ agencies. Delivers 90+ PageSpeed scores, 0.8s load times, 99.99% uptime, and unlimited edits. Rated 4.6 on Trustpilot and 5.0 on G2.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Vue 3 + NestJS features across customer-facing migration workflows, internal admin tooling, billing and subscription flows, white-label agency dashboards, and Docker-based microservices in a CI/CD pipeline.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Helped ship the platform that improved client sites from 42 to 98 PageSpeed scores on average, with zero-downtime migrations and enterprise-grade infrastructure.</div>
           </div>
           <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
             <span class="label-chip">Vue 3</span>
             <span class="label-chip">NestJS</span>
             <span class="label-chip">TypeScript</span>
             <span class="label-chip">Docker</span>
+            <span class="label-chip">AWS</span>
           </div>
         </a>
 
-        <a data-reveal href="https://eclinicx.com/" target="_blank" rel="noopener" class="rounded-lg p-5 border panel hover:bg-githubPanel/80 transition block js-tilt">
-          <div class="font-semibold text-lg mb-4">eClinicX</div>
+        <a data-reveal href="https://eclinicx.com/" target="_blank" rel="noopener" class="rounded-lg p-4 sm:p-5 border panel hover:bg-githubPanel/80 transition block js-tilt gradient-border-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="icon-3d red" style="width:40px;height:40px;min-width:40px;border-radius:12px;font-size:1rem"><i class="fas fa-heartbeat"></i></div>
+            <div class="font-semibold text-lg">eClinicX</div>
+          </div>
           <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Telehealth product for appointments, consultations, and patient record workflows.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Laravel and Nuxt features for scheduling, video consultation flows, notifications, and provider and patient interfaces.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Core Stack</span>Laravel, Nuxt, MySQL, Pusher.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Delivered a workflow-heavy healthcare product where secure data handling and usability both mattered.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Online doctor consultation platform enabling patients to book appointments, have video consultations, manage prescriptions, and access medical records — all in one secure, HIPAA-conscious workflow.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Laravel + Nuxt features for appointment scheduling, real-time video consultation flows, push notifications via Pusher, provider dashboards, patient record management, and responsive patient-facing interfaces.</div>
+            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Delivered a production telehealth product where secure data handling, real-time communication, and usability across devices all had to work together under regulatory constraints.</div>
           </div>
           <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
             <span class="label-chip">Laravel</span>
             <span class="label-chip">Nuxt</span>
-            <span class="label-chip">MySQL</span>
             <span class="label-chip">Pusher</span>
+            <span class="label-chip">Video Calls</span>
+            <span class="label-chip">Healthcare</span>
           </div>
         </a>
         </div>
@@ -724,14 +949,14 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
     <section class="container mx-auto px-4 pb-16">
       <div data-reveal class="cta-band js-tilt">
         <div>
-          <div class="feature-kicker">Next Step</div>
-          <h3 class="mt-4">Need the deeper version?</h3>
-          <p class="section-lead mt-4">Most recent production work is private. I can walk through architecture, ownership, and delivery decisions in a recruiter, client, or technical review conversation.</p>
+          <div class="cta-urgency"><span class="avail-dot"></span>Currently accepting new projects</div>
+          <h3 class="mt-4">Let's build something that ships.</h3>
+          <p class="section-lead mt-4">Whether you're hiring for a senior full-stack role, scoping a product build, or need someone who can own the full delivery — I'd love to hear about it. Most of my best work is private, but I can walk through architecture, ownership, and delivery decisions live.</p>
         </div>
         <div class="cta-band-actions">
-          <a href="#contact" class="cta-btn-primary">Contact Me</a>
-          <a href="Muhammad_Motasim_FullStack_Developer_CV.pdf" target="_blank" rel="noopener" class="cta-btn-secondary">View CV</a>
-          <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="cta-btn-secondary">View GitLab</a>
+          <a href="#contact" class="cta-btn-primary"><i class="fas fa-paper-plane mr-2"></i>Get In Touch</a>
+          <a href="Muhammad_Motasim_FullStack_Developer_CV.pdf" target="_blank" rel="noopener" class="cta-btn-secondary"><i class="fas fa-download mr-2"></i>Download CV</a>
+          <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener" class="cta-btn-secondary"><i class="fab fa-linkedin-in mr-2"></i>LinkedIn</a>
         </div>
       </div>
     </section>
@@ -742,7 +967,7 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
       <div id="repoGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
     <!-- Contact -->
-    <section id="contact" class="container mx-auto px-4 py-16">
+    <section id="contact" class="container mx-auto px-4 py-20 section-glow">
       <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-comment-discussion"></span> Let’s talk</h2>
       <div class="grid md:grid-cols-2 gap-8">
         <div data-reveal class="code-terminal overflow-hidden shadow-card">
@@ -755,7 +980,7 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
           <div class="p-4">
             <p class="text-sm text-slate-300 mb-5">If you're hiring, scoping a product, or reviewing technical work, these are the quickest paths.</p>
             <ul class="space-y-2 text-sm text-slate-300">
-              <li><i class="fas fa-envelope mr-2"></i><a href="mailto:muhammadmotasimbin.shahid@gmail.com" class="hover:text-brand">muhammadmotasimbin.shahid@gmail.com</a></li>
+              <li class="break-all sm:break-normal"><i class="fas fa-envelope mr-2"></i><a href="mailto:muhammadmotasimbin.shahid@gmail.com" class="hover:text-brand">muhammadmotasimbin.shahid@gmail.com</a></li>
               <li><i class="fas fa-phone mr-2"></i><a href="tel:+4915212645064" class="hover:text-brand">+49 1521 264 5064</a></li>
             </ul>
             <div class="mt-6 space-y-3">
@@ -801,11 +1026,11 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
           </div>
           <div class="p-4">
             <form id="contactForm" action="https://formspree.io/f/mnnzjrbl" method="POST" class="space-y-3">
-              <div><input class="w-full px-4 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/50" type="text" id="name" name="name" placeholder="Your Name" required></div>
-              <div><input class="w-full px-4 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/50" type="email" id="email" name="email" placeholder="Your Email" required></div>
-              <div><input class="w-full px-4 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/50" type="text" id="subject" name="subject" placeholder="Subject" required></div>
-              <div><textarea class="w-full px-4 py-2 rounded border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/50" id="message" name="message" rows="5" placeholder="Your Message" required></textarea></div>
-              <button type="submit" class="px-5 py-2.5 rounded bg-brand text-white hover:shadow-card">Send Message</button>
+              <div><input class="w-full px-4 py-3 rounded-lg border border-githubBorder bg-githubBg/70 text-slate-200 placeholder-slate-500 focus:border-github focus:outline-none focus:ring-1 focus:ring-github/30 transition text-sm" type="text" id="name" name="name" placeholder="Your Name" required></div>
+              <div><input class="w-full px-4 py-3 rounded-lg border border-githubBorder bg-githubBg/70 text-slate-200 placeholder-slate-500 focus:border-github focus:outline-none focus:ring-1 focus:ring-github/30 transition text-sm" type="email" id="email" name="email" placeholder="Your Email" required></div>
+              <div><input class="w-full px-4 py-3 rounded-lg border border-githubBorder bg-githubBg/70 text-slate-200 placeholder-slate-500 focus:border-github focus:outline-none focus:ring-1 focus:ring-github/30 transition text-sm" type="text" id="subject" name="subject" placeholder="Subject" required></div>
+              <div><textarea class="w-full px-4 py-3 rounded-lg border border-githubBorder bg-githubBg/70 text-slate-200 placeholder-slate-500 focus:border-github focus:outline-none focus:ring-1 focus:ring-github/30 transition text-sm" id="message" name="message" rows="5" placeholder="Your Message" required></textarea></div>
+              <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-brand text-white font-semibold hover:shadow-card transition hover:translate-y-[-2px]"><i class="fas fa-paper-plane mr-2"></i>Send Message</button>
             </form>
           </div>
         </div>
@@ -813,42 +1038,42 @@ I'm looking for senior full-stack work where I can own meaningful scope end to e
     </section>
   </main>
 
-  <footer class="border-t border-slate-200 dark:border-slate-800 py-6">
-    <div class="container mx-auto px-4 text-sm text-slate-600 dark:text-slate-400">© <span id="year">2026</span> Muhammad Motasim Bin Shahid</div>
-    </footer>
+  <footer class="border-t border-githubBorder py-6 pb-20 md:pb-6">
+    <div class="container mx-auto px-4 text-sm text-slate-500 text-center">© <span id="year">2026</span> Muhammad Motasim Bin Shahid · Built with purpose.</div>
+  </footer>
 
     <script src="script.js"></script>
     <!-- Mobile Bottom Nav -->
-    <nav class="fixed bottom-0 inset-x-0 md:hidden border-t border-githubBorder bg-githubPanel/95 backdrop-blur z-50">
-      <ul class="grid grid-cols-5 text-xs text-slate-300">
+    <nav class="fixed bottom-0 inset-x-0 md:hidden border-t border-githubBorder bg-githubPanel/95 backdrop-blur-lg z-50" aria-label="Mobile navigation">
+      <ul class="grid grid-cols-5">
         <li>
-          <a href="#home" aria-current="page" class="flex flex-col items-center py-2 hover:text-brand">
-            <i class="fas fa-house text-base"></i>
-            <span class="mt-1">Home</span>
+          <a href="#home" class="mob-nav-link active" data-nav-section="home">
+            <i class="fas fa-house"></i>
+            <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="#about" class="flex flex-col items-center py-2 hover:text-brand">
-            <i class="fas fa-user text-base"></i>
-            <span class="mt-1">About</span>
+          <a href="#about" class="mob-nav-link" data-nav-section="about">
+            <i class="fas fa-user"></i>
+            <span>About</span>
           </a>
         </li>
         <li>
-          <a href="#experience" class="flex flex-col items-center py-2 hover:text-brand">
-            <i class="fas fa-briefcase text-base"></i>
-            <span class="mt-1">Experience</span>
+          <a href="#experience" class="mob-nav-link" data-nav-section="experience">
+            <i class="fas fa-briefcase"></i>
+            <span>Work</span>
           </a>
         </li>
         <li>
-          <a href="#projects" class="flex flex-col items-center py-2 hover:text-brand">
-            <i class="fas fa-heart text-base"></i>
-            <span class="mt-1">Projects</span>
+          <a href="#projects" class="mob-nav-link" data-nav-section="projects">
+            <i class="fas fa-code"></i>
+            <span>Projects</span>
           </a>
         </li>
         <li>
-          <a href="#contact" class="flex flex-col items-center py-2 hover:text-brand">
-            <i class="fas fa-envelope text-base"></i>
-            <span class="mt-1">Contact</span>
+          <a href="#contact" class="mob-nav-link" data-nav-section="contact">
+            <i class="fas fa-paper-plane"></i>
+            <span>Contact</span>
           </a>
         </li>
       </ul>
