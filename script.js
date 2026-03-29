@@ -37,7 +37,7 @@ function initCvDownload() {
 
     function handleCvDownload(e) {
         e.preventDefault();
-        const cvUrl = 'Muhammad_Motasim_FullStack_Developer_CV.pdf';
+        const cvUrl = 'Muhammad_Motasim_Bin_Shahid_CV.pdf';
         const link = document.createElement('a');
         link.href = cvUrl;
         link.download = 'Muhammad_Motasim_CV.pdf';
