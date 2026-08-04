@@ -1,340 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Muhammad Motasim — Senior Full-Stack Engineer | Portfolio</title>
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="assets/images/profile.png">
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: '#D94A45',
-            github: '#58A6FF',
-            githubBg: '#0D1117',
-            githubPanel: '#161B22',
-            githubBorder: '#30363D'
-          },
-          boxShadow: { card: '0 10px 30px rgba(0,0,0,0.12)' }
-        }
-      }
-    }
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/octicons/19.8.0/build.css" rel="stylesheet">
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <style>
-    :root{--pointer-x:0;--pointer-y:0;--hero-scroll:0px;--hero-rotate-x:0deg;--hero-rotate-y:0deg}
-    body{background:
-      radial-gradient(circle at 12% 18%, rgba(88,166,255,.12), transparent 26%),
-      radial-gradient(circle at 82% 14%, rgba(217,74,69,.14), transparent 24%),
-      radial-gradient(circle at 56% 70%, rgba(88,166,255,.08), transparent 28%),
-      linear-gradient(180deg, #0b1118 0%, #0d1117 55%, #0b1016 100%);
-      background-attachment:fixed}
-    .code-terminal{background:rgba(22,27,34,.9);border:1px solid #30363D;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .code-terminal .bar{height:36px;border-bottom:1px solid #30363D;display:flex;align-items:center;padding:0 12px;gap:8px}
-    .code-terminal .dot{width:10px;height:10px;border-radius:50%}
-    .code-terminal pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; white-space: pre-wrap; word-break: break-word}
-    .terminal-font{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    /* GitHub-like label chips */
-    .label-chip{display:inline-flex;align-items:center;border-radius:9999px;border:1px solid #30363D;padding:4px 10px;background:transparent}
-    /* Unified panel background to match terminal */
-    .panel{background:rgba(22,27,34,.9) !important;border:1px solid #30363D !important}
-    /* GitHub achievements-like badges */
-    .gh-ach{display:flex;align-items:center;gap:12px;border:1px solid #30363D;background:rgba(22,27,34,.9);border-radius:9999px;padding:10px 14px}
-    .gh-ach .gh-icon{width:36px;height:36px;min-width:36px;min-height:36px;border-radius:50%;border:1px solid #30363D;background:#0D1117;display:flex;align-items:center;justify-content:center;color:#D94A45}
-    /* GitHub-like language dots for tech stacks */
-    .tech{display:inline-flex;align-items:center;gap:6px;color:#94A3B8}
-    .tech .dot{width:12px;height:12px;border-radius:50%;background:var(--tech-color,#2A2F36)}
-    .hero-shell{isolation:isolate;overflow:hidden;perspective:1600px}
-    .hero-shell::before{content:"";position:absolute;inset:0;background:linear-gradient(112deg, rgba(13,17,23,.12) 0%, rgba(217,74,69,.16) 46%, rgba(88,166,255,.09) 100%);pointer-events:none;z-index:0}
-    .hero-shell::after{content:"";position:absolute;inset:6rem 0 auto 0;height:34rem;background:radial-gradient(circle at 16% 28%, rgba(217,74,69,.18), transparent 30%),radial-gradient(circle at 70% 62%, rgba(88,166,255,.14), transparent 28%);filter:blur(44px);pointer-events:none;z-index:0}
-    .hero-stage{position:relative;z-index:1}
-    .hero-ambient{position:absolute;inset:-8% -6% 0;pointer-events:none;z-index:0}
-    .depth-layer{transform-style:preserve-3d;transform:var(--base-transform, translate3d(0,0,0)) translate3d(calc(var(--pointer-x, 0) * var(--depth, .1) * 22px), calc(var(--pointer-y, 0) * var(--depth, .1) * 18px + var(--hero-scroll, 0px) * var(--depth, .1)), calc(var(--depth, .1) * 120px));transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform}
-    .hero-orb{position:absolute;border-radius:9999px;filter:blur(24px);mix-blend-screen;opacity:.6;animation:drift 18s ease-in-out infinite alternate}
-    .hero-orb.one{top:2rem;left:-2rem;width:20rem;height:20rem;background:radial-gradient(circle, rgba(217,74,69,.52), transparent 72%)}
-    .hero-orb.two{right:3rem;bottom:2rem;width:19rem;height:19rem;background:radial-gradient(circle, rgba(88,166,255,.36), transparent 72%);animation-delay:-4s}
-    .hero-mesh{position:absolute;inset:18% 2% 10% 44%;border:1px solid rgba(88,166,255,.14);border-radius:36px;background-image:linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);background-size:34px 34px;box-shadow:inset 0 0 80px rgba(88,166,255,.08),0 0 60px rgba(13,17,23,.35);opacity:.42}
-    .hero-copy{max-width:42rem}
-    .hero-heading{max-width:11.8ch;font-size:clamp(3.15rem, 6vw, 5.15rem);line-height:.95;letter-spacing:-.055em;text-wrap:balance}
-    .hero-heading .hero-emphasis{display:block;background:linear-gradient(120deg, #ffffff 0%, #ffd6cf 55%, #ff998c 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero-heading .hero-accent{display:block;color:#d9e9ff}
-    .hero-support{max-width:36rem;color:#cbd5e1;font-size:clamp(1rem, .75vw + .95rem, 1.22rem);line-height:1.7}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.9rem}
-    .hero-btn-primary,.hero-btn-secondary,.hero-btn-ghost{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 1.2rem;border-radius:16px;font-weight:600;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
-    .hero-btn-primary{background:linear-gradient(135deg, #eb564d, #d94a45);color:#fff;box-shadow:0 20px 45px rgba(217,74,69,.32)}
-    .hero-btn-secondary{border:1px solid rgba(148,163,184,.22);background:rgba(12,17,24,.62);color:#f8fafc}
-    .hero-btn-ghost{color:#e2e8f0}
-    .hero-btn-primary:hover,.hero-btn-secondary:hover,.hero-btn-ghost:hover{transform:translateY(-2px)}
-    .hero-btn-secondary:hover{border-color:rgba(88,166,255,.26);box-shadow:0 18px 38px rgba(0,0,0,.22)}
-    .hero-link-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.1rem}
-    .hero-link-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem .95rem;border:1px solid rgba(148,163,184,.16);border-radius:999px;background:rgba(12,17,24,.52);color:#cbd5e1;transition:transform .25s ease, border-color .25s ease, color .25s ease}
-    .hero-link-chip:hover{transform:translateY(-2px);border-color:rgba(88,166,255,.25);color:#fff}
-    .hero-visual{position:relative;min-height:32rem;padding:1.8rem 5.1rem 1.9rem 1.6rem;perspective:1800px;transform-style:preserve-3d;display:flex;align-items:center;justify-content:flex-end;transform:rotateX(var(--hero-rotate-x)) rotateY(var(--hero-rotate-y));transition:transform .45s cubic-bezier(.22,1,.36,1)}
-    .hero-visual::before{content:"";position:absolute;inset:8% 4% 4% 10%;border-radius:38px;background:radial-gradient(circle at 28% 24%, rgba(217,74,69,.16), transparent 38%),radial-gradient(circle at 74% 62%, rgba(88,166,255,.16), transparent 36%),radial-gradient(circle at 50% 90%, rgba(139,92,246,.08), transparent 30%);filter:blur(32px);pointer-events:none;z-index:0}
-    .hero-main-panel{position:relative;z-index:3;width:100%;max-width:44rem;margin-left:auto;padding:1.55rem;border-radius:30px;border:1px solid rgba(48,54,61,.92);background:linear-gradient(180deg, rgba(13,17,23,.96), rgba(9,13,20,.98));box-shadow:0 34px 90px rgba(0,0,0,.45),0 0 60px rgba(88,166,255,.04),0 0 120px rgba(217,74,69,.03)}
-    .hero-main-panel::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, rgba(88,166,255,.1), transparent 30%, rgba(217,74,69,.08) 65%, transparent 100%);pointer-events:none}
-    .hero-main-panel::before{content:"";position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(88,166,255,.4),rgba(217,74,69,.3),transparent);z-index:5}
-    .hero-panel-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.15rem;align-items:center}
-    .hero-avatar-shell{position:relative;width:7.35rem;height:7.35rem;border-radius:999px;box-shadow:0 0 0 1px rgba(255,255,255,.05),0 22px 58px rgba(0,0,0,.34),0 0 24px rgba(217,74,69,.2)}
-    .hero-avatar-ring{position:absolute;inset:0;border-radius:999px;background:conic-gradient(from 180deg, #eb564d, #d94a45, #c43e39, #d94a45, #eb564d);animation:avatarRingSpin 6s linear infinite}
-    @keyframes avatarRingSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-    .hero-avatar-shell::before{content:"";position:absolute;inset:-18px;border-radius:999px;background:radial-gradient(circle, rgba(217,74,69,.18), rgba(217,74,69,.08) 50%, transparent 72%);filter:blur(14px)}
-    .hero-avatar-shell img{position:relative;z-index:1;width:calc(100% - .68rem);height:calc(100% - .68rem);margin:.34rem;border-radius:999px;object-fit:cover;border:2px solid rgba(13,17,23,.84)}
-    .hero-avatar-status{position:absolute;bottom:6px;right:6px;width:16px;height:16px;border-radius:50%;background:#10b981;border:3px solid #0d1117;z-index:3;box-shadow:0 0 8px rgba(16,185,129,.5)}
-    .hero-panel-kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#94A3B8}
-    .hero-panel-title{margin-top:.35rem;max-width:15ch;font-size:1.52rem;line-height:1.08;font-weight:700;color:#f8fafc;text-wrap:balance}
-    .hero-panel-subtitle{margin-top:.45rem;color:#cbd5e1;font-size:.98rem;line-height:1.55}
-    .hero-panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:1.3rem}
-    .hero-panel-card{position:relative;padding:1rem 1.05rem 1.1rem;border:1px solid rgba(48,54,61,.82);border-radius:20px;background:linear-gradient(180deg, rgba(13,17,23,.84), rgba(8,11,18,.9));min-height:7.2rem;overflow:hidden;transition:border-color .3s ease,transform .3s ease}
-    .hero-panel-card::before{content:"";position:absolute;top:0;left:1rem;right:1rem;height:2px;background:linear-gradient(90deg,transparent,var(--card-accent,rgba(88,166,255,.5)),transparent);opacity:.6}
-    .hero-panel-card:hover{border-color:var(--card-accent,rgba(88,166,255,.3));transform:translateY(-2px)}
-    .hero-panel-card-wide{grid-column:1 / -1}
-    .hero-panel-card .card-icon{width:32px;height:32px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;margin-bottom:.5rem;background:var(--card-icon-bg,rgba(88,166,255,.1));border:1px solid var(--card-icon-border,rgba(88,166,255,.2));color:var(--card-icon-color,#7dd3fc)}
-    .hero-panel-card small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
-    .hero-panel-card p{margin-top:.5rem;font-size:.92rem;line-height:1.55;color:#e2e8f0}
-    .hero-float-card{position:absolute;z-index:2;width:12rem;padding:.9rem 1rem;border:1px solid var(--float-border,rgba(48,54,61,.88));border-radius:24px;background:linear-gradient(180deg, rgba(10,14,21,.97), rgba(18,24,34,.94));box-shadow:0 26px 68px rgba(0,0,0,.38),0 0 30px var(--float-glow,transparent);backdrop-filter:blur(20px);pointer-events:none;transform-style:preserve-3d;will-change:transform;animation:floatCard 8s ease-in-out infinite;overflow:hidden}
-    .hero-float-card::before{content:"";position:absolute;top:0;left:.8rem;right:.8rem;height:2px;background:linear-gradient(90deg,transparent,var(--float-accent,rgba(88,166,255,.6)),transparent);z-index:2}
-    .hero-float-card::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(135deg, var(--float-bg-start,rgba(88,166,255,.06)), transparent 40%, var(--float-bg-end,rgba(217,74,69,.04)));pointer-events:none}
-    .hero-float-card small,.hero-float-card strong,.hero-float-card p,.hero-float-card .float-icon{position:relative;z-index:1}
-    .hero-float-card small{display:block;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--float-label,#94A3B8)}
-    .hero-float-card strong{display:block;margin-top:.4rem;font-size:1.05rem;line-height:1.16;color:#f8fafc;font-weight:700}
-    .hero-float-card p{margin-top:.3rem;font-size:.74rem;line-height:1.4;color:#94A3B8}
-    .float-icon{width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;margin-bottom:.4rem}
-    .hero-float-feature{top:-.9rem;right:-1.55rem;--float-base:rotate(4deg) translate3d(0,0,24px);--float-accent:rgba(217,74,69,.7);--float-border:rgba(217,74,69,.25);--float-glow:rgba(217,74,69,.08);--float-label:#f87171;--float-bg-start:rgba(217,74,69,.08);--float-bg-end:rgba(88,166,255,.03)}
-    .hero-float-ai{left:-4.4rem;bottom:-3.5rem;width:10rem;--float-base:rotate(-4deg) translate3d(0,0,18px);animation-delay:-3.2s;--float-accent:rgba(139,92,246,.7);--float-border:rgba(139,92,246,.25);--float-glow:rgba(139,92,246,.08);--float-label:#c4b5fd;--float-bg-start:rgba(139,92,246,.08);--float-bg-end:rgba(88,166,255,.03)}
-    .section-lead{max-width:44rem;color:#94A3B8;font-size:1rem;line-height:1.75}
-    .feature-frame{padding:1.4rem;border:1px solid rgba(48,54,61,.85);border-radius:30px;background:linear-gradient(180deg, rgba(13,17,23,.95), rgba(9,13,20,.96));box-shadow:0 30px 80px rgba(0,0,0,.28)}
-    .feature-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(18rem,.8fr);gap:1.25rem}
-    .feature-kicker{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem .85rem;border-radius:999px;background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.18);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#cbd5e1}
-    .feature-title{margin-top:1rem;font-size:clamp(2rem, 2vw + 1.3rem, 3rem);line-height:1;letter-spacing:-.04em;color:#fff}
-    .feature-copy{margin-top:1rem;max-width:40rem;color:#cbd5e1;line-height:1.75}
-    .feature-side{display:grid;gap:.85rem}
-    .feature-stat{padding:1rem 1.05rem;border:1px solid rgba(48,54,61,.8);border-radius:22px;background:linear-gradient(180deg, rgba(22,27,34,.7), rgba(10,14,20,.88))}
-    .feature-stat small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
-    .feature-stat p{margin-top:.55rem;color:#e2e8f0;line-height:1.65}
-    .signal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
-    .signal-card{padding:1.05rem 1.1rem;border:1px solid rgba(48,54,61,.82);border-radius:24px;background:linear-gradient(180deg, rgba(13,17,23,.82), rgba(9,13,20,.88))}
-    .signal-card small{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#94A3B8}
-    .signal-card p{margin-top:.55rem;color:#cbd5e1;line-height:1.65}
-    .skill-matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem}
-    .skill-card{padding:1.2rem;border:1px solid rgba(48,54,61,.82);border-radius:24px;background:linear-gradient(180deg, rgba(13,17,23,.82), rgba(9,13,20,.9));box-shadow:0 18px 45px rgba(0,0,0,.16)}
-    .skill-card h3{font-size:1.02rem;font-weight:600;color:#fff}
-    .skill-card p{margin-top:.55rem;color:#94A3B8;line-height:1.65}
-    .skill-chip-list{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}
-    .skill-chip-list span{display:inline-flex;align-items:center;padding:.45rem .75rem;border-radius:999px;border:1px solid rgba(88,166,255,.14);background:rgba(88,166,255,.06);font-size:.82rem;color:#e2e8f0}
-    .cta-band{display:grid;grid-template-columns:minmax(0,1.1fr) auto;gap:1.2rem;align-items:center;padding:1.4rem 1.5rem;border:1px solid rgba(48,54,61,.85);border-radius:28px;background:linear-gradient(135deg, rgba(13,17,23,.96), rgba(22,27,34,.9));box-shadow:0 24px 70px rgba(0,0,0,.24)}
-    .cta-band h3{font-size:clamp(1.6rem, 1.1vw + 1.1rem, 2.2rem);line-height:1.05;letter-spacing:-.04em;color:#fff}
-    .cta-band-actions{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:flex-end}
-    .cta-btn-primary,.cta-btn-secondary{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.15rem;border-radius:16px;font-weight:600;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
-    .cta-btn-primary{background:linear-gradient(135deg, #eb564d, #d94a45);color:#fff;box-shadow:0 16px 36px rgba(217,74,69,.28)}
-    .cta-btn-secondary{border:1px solid rgba(148,163,184,.22);background:rgba(12,17,24,.6);color:#f8fafc}
-    .cta-btn-primary:hover,.cta-btn-secondary:hover{transform:translateY(-2px)}
-    .tilt-card{position:relative;transform:perspective(1400px) var(--tilt-base, translateZ(0)) rotateX(var(--tilt-rotate-x, 0deg)) rotateY(var(--tilt-rotate-y, 0deg));transform-style:preserve-3d;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .35s ease;will-change:transform}
-    .tilt-card::before{content:"";position:absolute;inset:1px;border-radius:inherit;background:radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255,255,255,.12), transparent 35%),radial-gradient(circle at top right, rgba(88,166,255,.12), transparent 42%),radial-gradient(circle at bottom left, rgba(217,74,69,.1), transparent 42%);opacity:0;transition:opacity .25s ease;pointer-events:none}
-    .tilt-card.is-tilting{box-shadow:0 26px 60px rgba(0,0,0,.34);border-color:rgba(88,166,255,.22)!important}
-    .tilt-card.is-tilting::before,.tilt-card:hover::before{opacity:1}
-    .tilt-card > *{position:relative;z-index:1}
-    @keyframes floatCard{
-      0%,100%{transform:var(--float-base, translate3d(0,0,0))}
-      50%{transform:var(--float-base, translate3d(0,0,0)) translate3d(0,-10px,16px)}
-    }
-    @keyframes drift{
-      0%{transform:translate3d(0,0,0) scale(1)}
-      100%{transform:translate3d(18px,-18px,0) scale(1.08)}
-    }
-    @media (max-width: 1280px){
-      .hero-float-card{display:none}
-      .hero-visual{padding:1rem 0 1.25rem}
-      .hero-main-panel{max-width:100%}
-    }
-    @media (max-width: 1023px){
-      .about-hook{font-size:clamp(1.4rem,4.5vw,2rem)}
-      .about-body{font-size:.98rem}
-      .stat-number{font-size:clamp(1.6rem,5vw,2.2rem)}
-      .feature-grid{grid-template-columns:1fr}
-      .feature-side{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width: 767px){
-      .hero-stage{padding-top:0}
-      .hero-heading{max-width:100%;font-size:clamp(2.2rem, 9vw, 3.2rem)}
-      .hero-support{max-width:100%;font-size:.95rem}
-      .hero-panel-grid{grid-template-columns:1fr}
-      .hero-visual{min-height:auto;display:grid;gap:1rem;margin-top:1.25rem;padding:1rem 0 0}
-      .hero-panel-top{grid-template-columns:1fr;justify-items:start}
-      .hero-mesh{inset:20% 2% 8% 2%;opacity:.24}
-      .hero-actions{flex-direction:column;gap:.65rem}
-      .hero-btn-primary,.hero-btn-secondary,.hero-btn-ghost{width:100%;justify-content:center;padding:.85rem 1rem}
-      .hero-link-row{justify-content:center}
-      .avail-badge{font-size:.75rem;padding:.4rem .8rem}
-      .hero-avatar-shell{width:5.5rem;height:5.5rem}
-      .hero-panel-title{font-size:1.2rem}
 
-      /* About mobile */
-      .about-hook{font-size:clamp(1.3rem,5.5vw,1.8rem)}
-      .about-body{font-size:.92rem;line-height:1.7}
-      .about-highlight{padding:1.1rem;border-radius:16px}
-      .stat-card{padding:1rem}
-      .stat-number{font-size:clamp(1.5rem,7vw,2rem)}
-      .stat-label{font-size:.7rem}
-      .stat-sublabel{font-size:.78rem}
-
-      /* 3D icons mobile */
-      .icon-3d{width:44px;height:44px;min-width:44px;border-radius:12px;font-size:1.1rem}
-
-      /* Featured work mobile */
-      .feature-grid,.signal-grid,.skill-matrix,.cta-band{grid-template-columns:1fr}
-      .feature-side{grid-template-columns:1fr}
-      .feature-title{font-size:clamp(1.6rem,6vw,2.2rem)}
-      .feature-copy{font-size:.9rem}
-      .feature-kicker{font-size:.68rem}
-      .feature-frame{padding:1rem;border-radius:20px}
-
-      /* CTA mobile */
-      .cta-band{padding:1.1rem;border-radius:20px;gap:1rem}
-      .cta-band h3{font-size:clamp(1.2rem,5vw,1.6rem)}
-      .cta-band-actions{justify-content:stretch;flex-direction:column}
-      .cta-btn-primary,.cta-btn-secondary{width:100%;justify-content:center;text-align:center}
-      .cta-urgency{font-size:.72rem}
-
-      /* Skills mobile */
-      .skill-card{padding:1rem}
-      .skill-chip-list{gap:.4rem}
-      .skill-chip-list span{font-size:.75rem;padding:.35rem .6rem}
-
-      /* Project cards mobile */
-      .gradient-border-card{border-radius:18px}
-
-      /* Signal cards mobile */
-      .signal-card{padding:.9rem}
-      .signal-card p{font-size:.88rem}
-
-      /* Contact mobile */
-      .code-terminal{border-radius:14px}
-
-      /* Section spacing mobile */
-      section:not(#home){padding-top:3rem!important;padding-bottom:3rem!important}
-      section h2{font-size:1.5rem!important;margin-bottom:1.2rem!important}
-      .section-lead{font-size:.88rem}
-
-      /* Particle density on mobile */
-      #particles-canvas{opacity:.2}
-    }
-    @media (max-width: 380px){
-      .hero-heading{font-size:clamp(1.9rem, 8vw, 2.4rem)}
-      .about-hook{font-size:1.2rem}
-      .stat-card{padding:.8rem}
-      .stat-number{font-size:1.4rem}
-      .icon-3d{width:38px;height:38px;min-width:38px;font-size:.95rem}
-      .hero-avatar-shell{width:4.5rem;height:4.5rem}
-    }
-
-    /* Mobile bottom nav */
-    .mob-nav-link{position:relative;display:flex;flex-direction:column;align-items:center;padding:.55rem .25rem .45rem;color:#94a3b8;transition:color .25s ease}
-    .mob-nav-link i{font-size:1.15rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
-    .mob-nav-link span{margin-top:.2rem;font-size:.6rem;font-weight:500;letter-spacing:.03em;text-transform:uppercase;opacity:.7;transition:opacity .25s ease}
-    .mob-nav-link::after{content:"";position:absolute;top:0;left:50%;width:0;height:2.5px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#eb564d,#d94a45);transform:translateX(-50%);transition:width .3s cubic-bezier(.34,1.56,.64,1)}
-    .mob-nav-link.active{color:#eb564d}
-    .mob-nav-link.active i{transform:scale(1.18) translateY(-1px)}
-    .mob-nav-link.active span{opacity:1;color:#eb564d}
-    .mob-nav-link.active::after{width:28px}
-    @keyframes navTap{0%{transform:scale(1)}50%{transform:scale(.88)}100%{transform:scale(1)}}
-    .mob-nav-link:active i{animation:navTap .25s ease}
-    /* Availability badge */
-    .avail-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);font-size:.82rem;color:#6ee7b7;letter-spacing:.02em;margin-bottom:1.4rem}
-    .avail-dot{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 8px rgba(16,185,129,.6);animation:pulse-dot 2s ease-in-out infinite}
-    @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
-
-    /* 3D icon containers */
-    .icon-3d{position:relative;width:56px;height:56px;min-width:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transform-style:preserve-3d;transform:perspective(600px) rotateX(0) rotateY(0);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
-    .icon-3d::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:.15;z-index:0}
-    .icon-3d i,.icon-3d svg{position:relative;z-index:1}
-    .icon-3d:hover{transform:perspective(600px) rotateX(-8deg) rotateY(8deg) translateZ(8px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
-    .icon-3d.red{background:linear-gradient(135deg,rgba(217,74,69,.2),rgba(217,74,69,.05));border:1px solid rgba(217,74,69,.25);color:#f87171}
-    .icon-3d.red::before{background:linear-gradient(135deg,#D94A45,#ff6b6b)}
-    .icon-3d.blue{background:linear-gradient(135deg,rgba(88,166,255,.2),rgba(88,166,255,.05));border:1px solid rgba(88,166,255,.25);color:#7dd3fc}
-    .icon-3d.blue::before{background:linear-gradient(135deg,#58A6FF,#38bdf8)}
-    .icon-3d.green{background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(16,185,129,.05));border:1px solid rgba(16,185,129,.25);color:#6ee7b7}
-    .icon-3d.green::before{background:linear-gradient(135deg,#10b981,#34d399)}
-    .icon-3d.purple{background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(139,92,246,.05));border:1px solid rgba(139,92,246,.25);color:#c4b5fd}
-    .icon-3d.purple::before{background:linear-gradient(135deg,#8b5cf6,#a78bfa)}
-    .icon-3d.amber{background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.25);color:#fcd34d}
-    .icon-3d.amber::before{background:linear-gradient(135deg,#f59e0b,#fbbf24)}
-
-    /* About section redesign */
-    .about-hook{font-size:clamp(1.6rem,2.5vw,2.4rem);line-height:1.15;font-weight:800;letter-spacing:-.04em;color:#fff}
-    .about-hook .gradient-text{background:linear-gradient(120deg,#fff 0%,#ffd6cf 40%,#ff998c 70%,#58A6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .about-body{font-size:1.05rem;line-height:1.8;color:#cbd5e1}
-    .about-body strong{color:#f1f5f9;font-weight:600}
-    .about-highlight{position:relative;padding:1.5rem;border-radius:20px;border:1px solid rgba(88,166,255,.15);background:linear-gradient(135deg,rgba(88,166,255,.04),rgba(217,74,69,.03));overflow:hidden}
-    .about-highlight::before{content:"";position:absolute;top:-1px;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(88,166,255,.5),transparent)}
-
-    /* Animated stat cards */
-    .stat-card{position:relative;padding:1.5rem;border-radius:22px;border:1px solid rgba(48,54,61,.8);background:linear-gradient(180deg,rgba(13,17,23,.85),rgba(9,13,20,.92));overflow:hidden;text-align:center}
-    .stat-card::before{content:"";position:absolute;top:-1px;left:25%;right:25%;height:2px;background:linear-gradient(90deg,transparent,var(--stat-accent,#58A6FF),transparent);opacity:.6}
-    .stat-number{font-size:clamp(2rem,3vw,2.8rem);font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,#fff,var(--stat-accent,#58A6FF));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .stat-label{margin-top:.5rem;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;color:#94A3B8}
-    .stat-sublabel{margin-top:.35rem;font-size:.88rem;color:#64748b}
-
-    /* Animated gradient border on hover */
-    .gradient-border-card{position:relative;border-radius:24px;overflow:hidden}
-    .gradient-border-card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:conic-gradient(from var(--gradient-angle,0deg),transparent 25%,rgba(88,166,255,.5) 50%,transparent 75%);opacity:0;transition:opacity .5s ease;z-index:0}
-    .gradient-border-card:hover::before{opacity:1}
-    .gradient-border-card>*{position:relative;z-index:1}
-
-    /* Particle canvas */
-    #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.4}
-
-    /* Section dividers */
-    .section-glow{position:relative}
-    .section-glow::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(88,166,255,.2),rgba(217,74,69,.15),transparent)}
-
-    /* Enhanced CTA */
-    .cta-urgency{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem;border-radius:999px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);font-size:.78rem;color:#fcd34d;letter-spacing:.04em}
-
-    /* Text reveal animation helper */
-    .text-reveal{clip-path:inset(0 100% 0 0);animation:none}
-    .text-reveal.revealed{clip-path:inset(0 0% 0 0);transition:clip-path 1s cubic-bezier(.77,0,.175,1)}
-
-    /* Smooth line drawing for experience timeline */
-    .timeline-line{position:absolute;left:18px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,rgba(88,166,255,.4),rgba(217,74,69,.3),rgba(88,166,255,.2));transform-origin:top;transform:scaleY(0)}
-    .timeline-dot{position:absolute;left:10px;width:18px;height:18px;border-radius:50%;border:2px solid rgba(88,166,255,.5);background:#0D1117;z-index:1;display:flex;align-items:center;justify-content:center}
-    .timeline-dot::after{content:"";width:6px;height:6px;border-radius:50%;background:#58A6FF}
-
-    @media (prefers-reduced-motion: reduce){
-      .depth-layer,.tilt-card,.hero-orb,.hero-float-card,.avail-dot,.icon-3d{animation:none!important;transition:none!important}
-      .stat-number{background:none;color:#fff}
-    }
-  </style>
   <!-- SEO & Social -->
   <meta name="author" content="Muhammad Motasim Bin Shahid">
-  <meta name="robots" content="index, follow">
-  <meta name="description" content="Senior Full-Stack Engineer in Germany with 4+ years building SaaS platforms, APIs, and data-heavy products using Laravel, Node.js, Vue, and React. Available for hire.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="description" content="Senior Full-Stack Engineer in Germany. 4+ years building SaaS platforms, APIs, and data-heavy products with Laravel, Node.js, Vue, and React. Open to hire.">
   <link rel="canonical" href="https://muhammadmotasimbinshahid.com/">
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <meta name="keywords" content="Senior Full-Stack Engineer, Full-Stack Developer, Laravel Developer, Node.js Developer, Vue.js Developer, React Developer, SaaS Engineer, API Developer, TypeScript, PHP, JavaScript, hire full-stack developer Germany, freelance software engineer, portfolio">
-  <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: light)">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://muhammadmotasimbinshahid.com/sitemap.xml">
+  <meta name="keywords" content="Senior Full-Stack Engineer, Full-Stack Developer Germany, Laravel Developer, Node.js Developer, Vue.js Developer, React Developer, SaaS Engineer, API Developer, hire full-stack developer Chemnitz, freelance software engineer Germany">
+  <meta name="geo.region" content="DE-SN">
+  <meta name="geo.placename" content="Chemnitz">
+  <meta name="theme-color" content="#0b0f14">
   <meta property="og:title" content="Muhammad Motasim — Senior Full-Stack Engineer | Portfolio">
-  <meta property="og:description" content="Senior Full-Stack Engineer in Germany with 4+ years building SaaS platforms, APIs, and data-heavy products using Laravel, Node.js, Vue, and React. Available for hire.">
+  <meta property="og:description" content="Senior Full-Stack Engineer in Germany. 4+ years building SaaS platforms, APIs, and data-heavy products with Laravel, Node.js, Vue, and React. Open to hire.">
   <meta property="og:site_name" content="Muhammad Motasim Bin Shahid">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="profile">
   <meta property="og:url" content="https://muhammadmotasimbinshahid.com/">
   <meta property="og:image" content="https://muhammadmotasimbinshahid.com/assets/images/profile.png">
+  <meta property="og:image:secure_url" content="https://muhammadmotasimbinshahid.com/assets/images/profile.png">
   <meta property="og:image:alt" content="Portrait of Muhammad Motasim Bin Shahid — Senior Full-Stack Engineer">
-  <meta property="og:image:width" content="600">
-  <meta property="og:image:height" content="800">
+  <meta property="og:image:width" content="682">
+  <meta property="og:image:height" content="1024">
   <meta property="og:image:type" content="image/png">
   <meta property="og:locale" content="en_US">
+  <meta property="profile:first_name" content="Muhammad Motasim">
+  <meta property="profile:last_name" content="Bin Shahid">
+  <meta property="profile:username" content="muhammadmotasim">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Muhammad Motasim — Senior Full-Stack Engineer | Portfolio">
   <meta name="twitter:description" content="Senior Full-Stack Engineer in Germany. 4+ years shipping SaaS platforms, APIs, and data-heavy products across 6 industries. Available for hire.">
@@ -343,740 +45,786 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Muhammad Motasim Bin Shahid",
-    "givenName": "Muhammad Motasim",
-    "familyName": "Bin Shahid",
-    "url": "https://muhammadmotasimbinshahid.com/",
-    "image": "https://muhammadmotasimbinshahid.com/assets/images/profile.png",
-    "jobTitle": "Senior Full-Stack Engineer",
-    "description": "Senior Full-Stack Engineer with 4+ years building SaaS platforms, APIs, and data-heavy products using Laravel, Node.js, Vue, and React.",
-    "email": "muhammadmotasimbin.shahid@gmail.com",
-    "telephone": "+4915212645064",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Chemnitz",
-      "addressCountry": "DE"
-    },
-    "nationality": { "@type": "Country", "name": "Pakistan" },
-    "worksFor": {
-      "@type": "Organization",
-      "name": "PLAYY",
-      "url": "https://playy.co.uk/"
-    },
-    "alumniOf": [
+    "@graph": [
       {
-        "@type": "CollegeOrUniversity",
-        "name": "Technische Universität Chemnitz",
-        "url": "https://www.tu-chemnitz.de/"
+        "@type": "WebSite",
+        "@id": "https://muhammadmotasimbinshahid.com/#website",
+        "url": "https://muhammadmotasimbinshahid.com/",
+        "name": "Muhammad Motasim Bin Shahid — Portfolio",
+        "description": "Portfolio of Muhammad Motasim Bin Shahid, Senior Full-Stack Engineer specializing in Laravel, Node.js, Vue, and React.",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://muhammadmotasimbinshahid.com/#person" }
       },
       {
-        "@type": "CollegeOrUniversity",
-        "name": "University of Management and Technology",
-        "url": "https://www.umt.edu.pk/"
+        "@type": "ProfilePage",
+        "@id": "https://muhammadmotasimbinshahid.com/#webpage",
+        "url": "https://muhammadmotasimbinshahid.com/",
+        "name": "Muhammad Motasim — Senior Full-Stack Engineer | Portfolio",
+        "description": "Senior Full-Stack Engineer in Germany. 4+ years building SaaS platforms, APIs, and data-heavy products with Laravel, Node.js, Vue, and React. Open to hire.",
+        "isPartOf": { "@id": "https://muhammadmotasimbinshahid.com/#website" },
+        "about": { "@id": "https://muhammadmotasimbinshahid.com/#person" },
+        "mainEntity": { "@id": "https://muhammadmotasimbinshahid.com/#person" },
+        "inLanguage": "en",
+        "dateModified": "2026-08-04"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://muhammadmotasimbinshahid.com/#person",
+        "name": "Muhammad Motasim Bin Shahid",
+        "givenName": "Muhammad Motasim",
+        "familyName": "Bin Shahid",
+        "alternateName": ["Motasim Shahid", "Muhammad Motasim"],
+        "url": "https://muhammadmotasimbinshahid.com/",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://muhammadmotasimbinshahid.com/assets/images/profile.png",
+          "width": 682,
+          "height": 1024,
+          "caption": "Portrait of Muhammad Motasim Bin Shahid"
+        },
+        "jobTitle": "Senior Full-Stack Engineer",
+        "description": "Senior Full-Stack Engineer with 4+ years building SaaS platforms, APIs, and data-heavy products using Laravel, Node.js, Vue, and React.",
+        "email": "mailto:muhammadmotasimbin.shahid@gmail.com",
+        "homeLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Chemnitz",
+            "addressRegion": "Saxony",
+            "addressCountry": "DE"
+          }
+        },
+        "nationality": { "@type": "Country", "name": "Pakistan" },
+        "knowsLanguage": ["en"],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PLAYY",
+          "url": "https://playy.co.uk/"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "Technische Universität Chemnitz", "url": "https://www.tu-chemnitz.de/" },
+          { "@type": "CollegeOrUniversity", "name": "University of Management and Technology", "url": "https://www.umt.edu.pk/" }
+        ],
+        "knowsAbout": [
+          "Laravel", "Node.js", "Vue.js", "React", "TypeScript", "PHP", "JavaScript",
+          "NestJS", "Nuxt", "MySQL", "PostgreSQL", "MongoDB", "Redis", "AWS", "Docker",
+          "API Design", "SaaS Development", "Full-Stack Development", "Stripe Integrations",
+          "Healthcare Software", "Music Tech"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/muhammad-motasim",
+          "https://github.com/MuhammadMotasimBinShahid",
+          "https://gitlab.com/muhammadmotasimbin.shahid",
+          "https://www.upwork.com/freelancers/~017f94558c225d72b2"
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Full-Stack Engineer",
+          "occupationLocation": {
+            "@type": "Country",
+            "name": "Germany"
+          },
+          "skills": "Laravel, Node.js, Vue.js, React, TypeScript, AWS, API Design"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://muhammadmotasimbinshahid.com/#projects",
+        "name": "Selected Projects",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 5,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "PLAYY.Music",
+              "url": "https://playy.co.uk/",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "description": "Social music platform for independent artists — streaming, commerce, ticketing, messaging, and analytics. Built with Vue, Laravel, Stripe, and Stream.",
+              "image": "https://muhammadmotasimbinshahid.com/assets/images/projects/playy.png",
+              "author": { "@id": "https://muhammadmotasimbinshahid.com/#person" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Brand Breakers",
+              "url": "https://brandbreakerscard.com/",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "description": "NFC digital business card product with CRM dashboard, QR sharing, wallet passes, and analytics.",
+              "image": "https://muhammadmotasimbinshahid.com/assets/images/projects/brandbreakers.png",
+              "author": { "@id": "https://muhammadmotasimbinshahid.com/#person" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "aDash",
+              "url": "https://adash.io/",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "description": "Marketing analytics platform connecting Google Analytics, Ads, Facebook, and YouTube data to prove campaign ROI.",
+              "image": "https://muhammadmotasimbinshahid.com/assets/images/projects/adash.png",
+              "author": { "@id": "https://muhammadmotasimbinshahid.com/#person" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "BionicWP",
+              "url": "https://www.bionicwp.com/",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "description": "Expert-managed WordPress hosting platform for agencies — performance, uptime, and internal tooling.",
+              "image": "https://muhammadmotasimbinshahid.com/assets/images/projects/bionicwp.png",
+              "author": { "@id": "https://muhammadmotasimbinshahid.com/#person" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "eClinicX",
+              "url": "https://eclinicx.com/",
+              "applicationCategory": "HealthApplication",
+              "operatingSystem": "Web",
+              "description": "Online doctor consultation platform with appointments, video consults, prescriptions, and medical records.",
+              "author": { "@id": "https://muhammadmotasimbinshahid.com/#person" }
+            }
+          }
+        ]
       }
-    ],
-    "knowsAbout": ["Laravel", "Node.js", "Vue.js", "React", "TypeScript", "PHP", "JavaScript", "NestJS", "Nuxt", "MySQL", "PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "API Design", "SaaS Development", "Full-Stack Development"],
-    "sameAs": [
-      "https://linkedin.com/in/muhammad-motasim",
-      "https://github.com/MuhammadMotasimBinShahid",
-      "https://gitlab.com/muhammadmotasimbin.shahid",
-      "https://www.upwork.com/freelancers/~017f94558c225d72b2?mp_source=share"
     ]
   }
   </script>
-  <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6GNGB62HD"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-C6GNGB62HD', { 'anonymize_ip': true });
-    </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6GNGB62HD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C6GNGB62HD', { 'anonymize_ip': true });
+  </script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:#0b0f14;scroll-padding-top:60px;scroll-padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+    body{margin:0;background:#0b0f14;color:#f2efe9;font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    ::selection{background:#e8543a;color:#0b0f14}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit}
+    strong{font-weight:600;color:#f2efe9}
+
+    .font-display{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;letter-spacing:-0.01em}
+    .font-mono{font-family:'JetBrains Mono',monospace}
+
+    .clay{background:#131922;border-radius:20px;box-shadow:9px 9px 20px rgba(0,0,0,.55),-6px -6px 16px rgba(255,255,255,.03)}
+    .clay-btn{display:inline-flex;align-items:center;justify-content:center;background:#e8543a;border:none;border-radius:16px;box-shadow:6px 6px 14px rgba(0,0,0,.5),-4px -4px 10px rgba(255,255,255,.02);color:#0b0f14;text-decoration:none;font-weight:600;transition:box-shadow .2s ease,transform .2s ease;cursor:pointer}
+    .clay-btn:hover{box-shadow:3px 3px 8px rgba(0,0,0,.5),-2px -2px 6px rgba(255,255,255,.02);transform:translateY(1px)}
+    .clay-btn-outline{display:inline-flex;align-items:center;justify-content:center;background:#131922;border-radius:16px;box-shadow:6px 6px 14px rgba(0,0,0,.5),-4px -4px 10px rgba(255,255,255,.03);color:#f2efe9;text-decoration:none;font-weight:600;transition:box-shadow .2s ease,transform .2s ease}
+    .clay-btn-outline:hover{box-shadow:3px 3px 8px rgba(0,0,0,.5),-2px -2px 6px rgba(255,255,255,.03);transform:translateY(1px)}
+    .clay-inset{background:#0e1319;border-radius:14px;box-shadow:inset 4px 4px 10px rgba(0,0,0,.5),inset -3px -3px 8px rgba(255,255,255,.02);border:none;color:#f2efe9;font-family:'Archivo',sans-serif;font-size:14px;outline:none;width:100%}
+    .clay-inset::placeholder{color:#5c6570}
+    .clay-img{border-radius:20px;box-shadow:9px 9px 20px rgba(0,0,0,.55),-6px -6px 16px rgba(255,255,255,.03);overflow:hidden}
+
+    .site-shell{display:flex;flex-wrap:wrap;align-items:flex-start;min-height:100vh;min-height:100dvh}
+
+    /* Sidebar */
+    .sidebar{flex:0 0 clamp(220px,22vw,268px);width:clamp(220px,22vw,268px);border-right:1px solid rgba(255,255,255,.08);padding:clamp(28px,3vw,40px) clamp(20px,2.5vw,30px);display:flex;flex-direction:column;gap:clamp(20px,2.5vw,32px);position:sticky;top:0;align-self:flex-start;height:100vh;height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .sidebar::-webkit-scrollbar{width:0}
+    .sidebar-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .sidebar-brand img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .sidebar-avatar{width:48px;height:48px;padding:0;overflow:hidden;flex-shrink:0;border-radius:16px}
+    .sidebar-name{font-size:14.5px;line-height:1.3;color:#f2efe9}
+    .sidebar-role{font-size:11px;color:#5c6570;margin-top:2px}
+    .sidebar-nav{display:flex;flex-direction:column;gap:4px;font-size:13px}
+    .nav-link{padding:9px 12px;border-radius:12px;text-decoration:none;color:#8b939c;transition:color .2s ease,background .2s ease,box-shadow .2s ease}
+    .nav-link:hover{color:#f2efe9}
+    .nav-link.active{color:#f2efe9;background:#131922;box-shadow:4px 4px 10px rgba(0,0,0,.5),-3px -3px 8px rgba(255,255,255,.02)}
+    .sidebar-actions{display:flex;flex-direction:column;gap:12px}
+    .sidebar-actions .clay-btn,.sidebar-actions .clay-btn-outline{padding:12px 16px;font-size:13px}
+    .sidebar-social{display:flex;gap:16px;font-size:12px}
+    .sidebar-social a{color:#5c6570;text-decoration:none;transition:color .2s ease}
+    .sidebar-social a:hover{color:#e8543a}
+    .sidebar-footer{margin-top:auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:#5c6570}
+
+    /* Mobile header */
+    .mobile-header{display:none;width:100%;flex:0 0 auto;order:-1;position:sticky;top:0;z-index:40;align-items:center;justify-content:space-between;padding:max(14px,env(safe-area-inset-top,0px)) 20px 14px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(11,15,20,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .mobile-header-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .mobile-header-avatar{width:36px;height:36px;border-radius:12px;overflow:hidden}
+    .mobile-header-name{font-size:13px;font-weight:600;line-height:1.2}
+
+    /* Main */
+    .main{flex:1 1 0;min-width:0;width:100%;max-width:100%;padding-bottom:0}
+    .section-inner{max-width:min(820px,100%);margin:0 auto;padding:clamp(40px,6vw,80px) clamp(20px,4vw,32px);border-top:1px solid rgba(255,255,255,.08)}
+    .section-inner:first-child{border-top:none}
+    .section-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#e8543a;margin-bottom:20px}
+    .section-title{font-size:clamp(1.5rem,2.6vw,2rem);margin:0 0 44px;line-height:1.15}
+    .text-muted{color:#8b939c}
+    .text-dim{color:#5c6570}
+    .accent{color:#e8543a}
+
+    /* Hero */
+    #home .section-inner{padding-top:clamp(64px,10vw,120px);padding-bottom:clamp(56px,8vw,96px)}
+    .hero-title{font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.15;margin:0 0 24px;max-width:min(20ch,100%);text-wrap:balance}
+    .hero-lead{font-size:clamp(1rem,1.3vw,1.2rem);line-height:1.7;color:#8b939c;max-width:min(52ch,100%);margin:0 0 36px}
+    .hero-links{display:flex;flex-wrap:wrap;gap:24px;font-size:14px}
+    .link-primary{color:#f2efe9;text-decoration:none;border-bottom:1px solid #e8543a;padding-bottom:3px}
+    .link-secondary{color:#8b939c;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:3px;transition:color .2s ease,border-color .2s ease}
+    .link-secondary:hover{color:#f2efe9;border-color:rgba(255,255,255,.3)}
+
+    /* About */
+    .about-grid{display:grid;grid-template-columns:minmax(240px,1.2fr) minmax(180px,.8fr);gap:clamp(28px,4vw,56px)}
+    .about-hook{font-size:clamp(1.25rem,2.2vw,1.8rem);line-height:1.35;margin:0 0 28px;max-width:min(24ch,100%);font-weight:600}
+    .about-body{font-size:1rem;line-height:1.85;color:#9aa3ad;display:flex;flex-direction:column;gap:20px}
+    .about-body p{margin:0}
+    .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:24px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08)}
+    .stat-value{font-size:clamp(1.7rem,2.6vw,2.2rem);letter-spacing:-0.02em;color:#f2efe9}
+    .stat-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#5c6570;margin-top:6px}
+    .about-side{display:flex;flex-direction:column;gap:14px}
+    .side-card{padding:18px 20px}
+    .side-card-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#5c6570;margin-bottom:8px}
+    .side-card p{margin:0;font-size:13.5px;line-height:1.7;color:#9aa3ad}
+    .side-card-title{font-weight:600;font-size:13.5px;color:#f2efe9;margin-bottom:4px}
+    .side-card-meta{font-size:12.5px;color:#5c6570}
+
+    /* Experience */
+    .exp-list{display:flex;flex-direction:column}
+    .exp-item{padding:26px 0;border-top:1px solid rgba(255,255,255,.08)}
+    .exp-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-bottom:8px}
+    .exp-role{font-size:1.1rem;color:#f2efe9}
+    .exp-role span{color:#8b939c;font-weight:400}
+    .exp-date{font-size:11.5px;color:#5c6570}
+    .exp-meta{font-size:12.5px;color:#5c6570;margin-bottom:10px}
+    .exp-desc{font-size:14px;line-height:1.75;color:#8b939c;margin:0}
+
+    /* Featured */
+    .featured-img{display:block;margin-bottom:28px;text-decoration:none}
+    .featured-img img{width:100%;object-fit:cover;object-position:top}
+    .featured-title{font-size:clamp(1.5rem,2.8vw,2rem);margin:0 0 16px}
+    .featured-title a{color:#f2efe9;text-decoration:none}
+    .featured-copy{font-size:14.5px;line-height:1.8;color:#8b939c;margin:0 0 14px}
+    .featured-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-bottom:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
+    .featured-meta-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#5c6570;margin-bottom:6px}
+    .featured-meta p{margin:0;font-size:13px;line-height:1.65;color:#8b939c}
+
+    /* Skills */
+    .skill-row{display:grid;grid-template-columns:minmax(160px,220px) 1fr;gap:20px;padding:20px 0;border-top:1px solid rgba(255,255,255,.08)}
+    .skill-name{font-size:15px;color:#f2efe9}
+    .skill-tags{font-size:13.5px;color:#8b939c;line-height:1.6}
+    .skill-row.highlight .skill-name{color:#e8543a}
+
+    /* Projects */
+    .project-link{display:block;text-decoration:none;padding:28px 0;border-top:1px solid rgba(255,255,255,.08);transition:opacity .2s ease}
+    .project-link:hover{opacity:.92}
+    .project-grid{display:grid;grid-template-columns:minmax(160px,260px) 1fr;gap:24px;align-items:start}
+    .project-grid img{width:100%;object-fit:cover;object-position:top}
+    .project-title{font-size:17px;color:#f2efe9;margin-bottom:8px}
+    .project-desc{margin:0 0 8px;font-size:13.5px;line-height:1.6;color:#8b939c}
+    .project-stack{margin:0;font-size:13px;line-height:1.6;color:#5c6570}
+    .project-placeholder{aspect-ratio:900/560;display:flex;align-items:center;justify-content:center}
+    .project-placeholder span{font-size:11px;color:#3d4650;letter-spacing:.05em}
+
+    /* CTA */
+    .cta-title{font-size:clamp(1.5rem,2.6vw,2rem);margin:0 0 14px}
+    .cta-lead{margin:0 0 28px;font-size:14.5px;line-height:1.7;color:#8b939c;max-width:52ch}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:minmax(220px,1fr) minmax(240px,1fr);gap:40px}
+    .contact-intro{font-size:13.5px;color:#8b939c;margin:0 0 22px;line-height:1.7}
+    .contact-links{display:flex;flex-direction:column;gap:2px;margin-bottom:28px;font-size:13.5px}
+    .contact-links a{color:#f2efe9;text-decoration:none;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .contact-links a.accent-link{color:#e8543a;border-bottom:none}
+    .contact-block{margin-bottom:20px}
+    .contact-block-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#5c6570;margin-bottom:8px}
+    .contact-block p{margin:0 0 10px;font-size:13px;color:#8b939c;line-height:1.6}
+    .contact-block-links{display:flex;flex-wrap:wrap;gap:16px;font-size:12.5px}
+    .contact-block-links a{color:#f2efe9;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2)}
+    #contactForm{display:flex;flex-direction:column;gap:14px}
+    #contactForm .clay-inset{padding:14px 16px}
+    #contactForm textarea{resize:vertical;min-height:100px}
+    #contactForm .clay-btn{align-self:flex-start;margin-top:6px;padding:13px 28px;font-size:14px}
+
+    .page-footer{padding:24px clamp(20px,4vw,32px);padding-bottom:max(24px,env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.08);max-width:min(820px,100%);margin:0 auto;font-size:11.5px;color:#5c6570}
+
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.is-visible{opacity:1;transform:translateY(0)}
+
+    /* Mobile bottom nav */
+    .mob-nav{position:fixed;bottom:0;left:0;right:0;z-index:50;border-top:1px solid rgba(255,255,255,.08);background:rgba(19,25,34,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;padding-bottom:env(safe-area-inset-bottom,0px)}
+    .mob-nav ul{display:grid;grid-template-columns:repeat(5, 1fr);list-style:none;margin:0;padding:0}
+    .mob-nav-link{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:52px;padding:.55rem .35rem .45rem;color:#8b939c;text-decoration:none;transition:color .25s ease;-webkit-tap-highlight-color:transparent}
+    .mob-nav-link svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;transition:transform .35s cubic-bezier(.34,1.56,.64,1),color .25s ease}
+    .mob-nav-link svg .icon-fill{fill:currentColor;opacity:0;transition:opacity .25s ease}
+    .mob-nav-link span{margin-top:.28rem;font-size:.6rem;font-weight:500;letter-spacing:.03em;text-transform:uppercase;opacity:.7;font-family:'JetBrains Mono',monospace}
+    .mob-nav-link::after{content:"";position:absolute;top:0;left:50%;width:0;height:2.5px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#eb564d,#e8543a);transform:translateX(-50%);transition:width .3s cubic-bezier(.34,1.56,.64,1)}
+    .mob-nav-link.active{color:#e8543a}
+    .mob-nav-link.active span{opacity:1;color:#e8543a}
+    .mob-nav-link.active::after{width:28px}
+    .mob-nav-link.active svg{transform:scale(1.1) translateY(-1px)}
+    .mob-nav-link.active svg .icon-fill{opacity:.22}
+    .mob-nav-link:active svg{transform:scale(.9)}
+
+    .notification{position:fixed;top:max(20px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));left:max(16px,env(safe-area-inset-left,0px));margin-left:auto;padding:1rem 1.5rem;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:10000;transform:translateX(120%);transition:transform .4s cubic-bezier(.22,1,.36,1);max-width:400px;color:#fff}
+
+    /* ── Large desktop ── */
+    @media (min-width: 1400px){
+      .section-inner{max-width:860px}
+      .page-footer{max-width:860px}
+    }
+
+    /* ── Laptop / small desktop ── */
+    @media (max-width: 1199px) and (min-width: 901px){
+      .sidebar-name{font-size:13.5px}
+      .sidebar-actions .clay-btn,.sidebar-actions .clay-btn-outline{font-size:12px;padding:11px 14px}
+      .section-inner{padding-left:28px;padding-right:28px}
+    }
+
+    /* ── Tablet + mobile shell ── */
+    @media (max-width: 900px){
+      html{scroll-padding-top:56px}
+      .site-shell{flex-direction:column}
+      .sidebar{display:none}
+      .mobile-header{display:flex}
+      .mob-nav{display:block}
+      .main{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+      .about-grid,.contact-grid{grid-template-columns:1fr}
+      .skill-row{grid-template-columns:1fr;gap:8px;padding:16px 0}
+      .section-title{margin-bottom:32px}
+      .exp-item{padding:22px 0}
+      #contactForm .clay-btn{width:100%;justify-content:center}
+    }
+
+    /* ── Tablet portrait / landscape ── */
+    @media (min-width: 601px) and (max-width: 900px){
+      .section-inner{padding-left:clamp(28px,5vw,48px);padding-right:clamp(28px,5vw,48px)}
+      #home .section-inner{padding-top:clamp(48px,8vw,72px)}
+      .hero-title{max-width:100%;font-size:clamp(2.2rem,5vw,3rem)}
+      .about-side{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+      .about-side .side-card:first-child{grid-column:1/-1}
+      .stat-row{grid-template-columns:repeat(4,1fr)}
+      .project-grid{grid-template-columns:minmax(140px,220px) 1fr;gap:20px}
+      .featured-meta{grid-template-columns:repeat(3,1fr)}
+      .contact-grid{grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+      .mob-nav-link{min-height:56px}
+      .mob-nav-link svg{width:21px;height:21px}
+      .mob-nav-link span{font-size:.65rem}
+    }
+
+    /* ── Phone ── */
+    @media (max-width: 600px){
+      .mobile-header{padding-left:16px;padding-right:16px}
+      .section-inner{padding-left:16px;padding-right:16px;padding-top:36px;padding-bottom:36px}
+      #home .section-inner{padding-top:clamp(28px,6vw,48px);padding-bottom:clamp(36px,6vw,56px)}
+      .hero-title{font-size:clamp(1.85rem,8.5vw,2.35rem);line-height:1.2;margin-bottom:18px}
+      .hero-lead{font-size:.98rem;margin-bottom:28px}
+      .hero-links{flex-direction:column;align-items:flex-start;gap:14px;font-size:13px}
+      .about-hook{font-size:clamp(1.15rem,5.5vw,1.45rem);max-width:100%}
+      .about-body{font-size:.95rem;line-height:1.75;gap:16px}
+      .about-side{grid-template-columns:1fr}
+      .stat-row{grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;padding-top:22px}
+      .stat-value{font-size:clamp(1.5rem,6vw,1.85rem)}
+      .section-label{font-size:11px;margin-bottom:14px}
+      .section-title{font-size:clamp(1.35rem,5.5vw,1.65rem);margin-bottom:24px}
+      .exp-role{font-size:1rem}
+      .exp-date{font-size:10.5px;width:100%}
+      .exp-desc,.featured-copy,.project-desc{font-size:13.5px}
+      .project-grid{grid-template-columns:1fr;gap:16px}
+      .project-link{padding:22px 0}
+      .featured-meta{grid-template-columns:1fr;gap:16px}
+      .contact-grid{grid-template-columns:1fr;gap:28px}
+      .contact-links a{font-size:13px;word-break:break-word}
+      .page-footer{text-align:center;padding-left:16px;padding-right:16px}
+      .cta-lead{font-size:14px}
+      .clay-btn,.clay-btn-outline{min-height:44px}
+      .mob-nav-link svg{width:19px;height:19px}
+      .mob-nav-link span{font-size:.58rem}
+      .notification{left:12px;right:12px;max-width:none}
+    }
+
+    /* ── Very small phones ── */
+    @media (max-width: 380px){
+      .hero-title{font-size:1.75rem}
+      .mob-nav-link span{display:none}
+      .mob-nav-link{min-height:48px;padding:.5rem .2rem}
+      .mob-nav-link.active::after{width:22px}
+    }
+
+    /* ── Desktop: reset scroll padding ── */
+    @media (min-width: 901px){
+      html{scroll-padding-top:0;scroll-padding-bottom:0}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
+      .clay-btn,.clay-btn-outline,.nav-link,.mob-nav-link{transition:none}
+    }
+
+    noscript .reveal{opacity:1!important;transform:none!important}
+  </style>
 </head>
-<body class="min-h-screen bg-githubBg text-slate-100 overflow-x-hidden pb-16 md:pb-0">
-  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}.hero-float-card{display:none!important}#particles-canvas{display:none!important}</style></noscript>
-  <canvas id="particles-canvas" aria-hidden="true"></canvas>
-  <!-- Header / Nav (keeps .navbar, .hamburger, .nav-menu for script.js) -->
-  <header class="sticky top-0 z-50 border-b border-slate-200/70 dark:border-githubBorder backdrop-blur supports-[backdrop-filter]:bg-[#F6F8FA]/80 dark:supports-[backdrop-filter]:bg-githubBg/80">
-    <nav class="navbar container mx-auto px-4 md:h-16 h-auto py-3 flex items-center justify-between" aria-label="Main navigation">
-      <a href="#home" class="font-extrabold tracking-tight text-xl flex-1 md:flex-none">MMS</a>
-      <ul class="nav-menu hidden md:flex items-center gap-6 text-sm">
-        <li><a class="nav-link hover:text-brand" href="#home">Home</a></li>
-        <li><a class="nav-link hover:text-brand" href="#about">About</a></li>
-        <li><a class="nav-link hover:text-brand" href="#experience">Experience</a></li>
-        <li><a class="nav-link hover:text-brand" href="#skills">Skills</a></li>
-        <li><a class="nav-link hover:text-brand" href="#projects">Projects</a></li>
-        <li><a class="nav-link hover:text-brand" href="#contact">Contact</a></li>
-       </ul>
-      <div class="flex items-center gap-2 z-50">
-        <button id="themeToggle" class="hidden" aria-label="Toggle theme">
-          <i class="fas fa-sun dark:hidden"></i>
-          <i class="fas fa-moon hidden dark:inline"></i>
-        </button>
-        <button class="hidden" aria-label="Toggle navigation"></button>
-      </div>
-    </nav>
-  </header>
+<body>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
-  <main>
-    <!-- Hero -->
-    <section id="home" class="relative hero-shell">
-      <div class="absolute inset-0 bg-gradient-to-b from-brand/10 via-transparent to-transparent dark:from-brand/20 pointer-events-none"></div>
-      <div class="hero-ambient" aria-hidden="true">
-        <div class="hero-orb one"></div>
-        <div class="hero-orb two"></div>
-        <div class="hero-mesh depth-layer" style="--depth:.08;--base-transform:translate3d(0,0,0) rotateX(74deg) rotateZ(-18deg)"></div>
-      </div>
-      <div class="container mx-auto px-4 py-10 md:py-20 hero-stage">
-        <div class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] gap-8 md:gap-12 xl:gap-14 items-center">
-          <div class="hero-copy relative z-10">
-            <div data-reveal class="avail-badge"><span class="avail-dot"></span>Available for senior roles &amp; contract work</div>
-            <h1 data-reveal class="hero-heading font-extrabold tracking-tight text-white">
-              Full-Stack Engineer
-              <span class="hero-emphasis">for Laravel and Node.js</span>
-              <span class="hero-accent">platforms shipped with Vue and React.</span>
-            </h1>
-            <p data-reveal class="hero-support mt-6">I build SaaS products, APIs, and data-heavy platforms that teams rely on after launch. 4+ years shipping across 6 industries, from healthcare to music tech.</p>
-            <div data-reveal class="hero-actions">
-              <a href="#projects" class="hero-btn-primary">View Projects</a>
-              <a href="#contact" class="hero-btn-secondary">Contact Me</a>
-                  <a id="cvDownloadHero" href="Muhammad_Motasim_Bin_Shahid_CV.pdf" target="_blank" rel="noopener" class="hero-btn-ghost"><i class="fas fa-download"></i>Download CV</a>
-            </div>
-            <div data-reveal class="hero-link-row">
-              <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener" class="hero-link-chip"><i class="fab fa-linkedin-in"></i>LinkedIn</a>
-              <a href="https://github.com/MuhammadMotasimBinShahid" target="_blank" rel="noopener" class="hero-link-chip"><i class="fab fa-github"></i>GitHub</a>
-              <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="hero-link-chip"><i class="fab fa-gitlab"></i>GitLab</a>
-            </div>
-          </div>
-          <div class="hero-visual">
-            <div class="hero-float-card hero-float-feature" aria-hidden="true">
-              <div class="float-icon" style="background:rgba(217,74,69,.15);border:1px solid rgba(217,74,69,.25);color:#f87171"><i class="fas fa-music"></i></div>
-              <small>Featured Build</small>
-              <strong>PLAYY.Music</strong>
-              <p>Social music platform · 300+ artists · 15+ countries</p>
-            </div>
-            <div class="hero-float-card hero-float-ai" aria-hidden="true">
-              <div class="float-icon" style="background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.25);color:#c4b5fd"><i class="fas fa-robot"></i></div>
-              <small>AI Workflows</small>
-              <strong>Cursor / n8n</strong>
-              <p>Agents, automation, IDE loops</p>
-            </div>
-            <div data-reveal class="rounded-xl p-6 border panel backdrop-blur shadow-card hero-main-panel">
-              <div class="hero-panel-top">
-                <div class="hero-avatar-shell">
-                  <div class="hero-avatar-ring"></div>
-                  <img src="assets/images/profile.png" alt="Muhammad Motasim Bin Shahid" width="132" height="132" fetchpriority="high" />
-                  <span class="hero-avatar-status" title="Available for work"></span>
-                </div>
-                <div class="flex-1">
-                  <div class="hero-panel-kicker">Portfolio Snapshot</div>
-                  <h3 class="hero-panel-title">Muhammad Motasim Bin Shahid</h3>
-                  <p class="hero-panel-subtitle">Senior full-stack engineer focused on product delivery across backend systems and frontend applications.</p>
-                </div>
-              </div>
-              <div class="hero-panel-grid">
-                <div class="hero-panel-card" style="--card-accent:rgba(88,166,255,.5);--card-icon-bg:rgba(88,166,255,.1);--card-icon-border:rgba(88,166,255,.2);--card-icon-color:#7dd3fc">
-                  <div class="card-icon"><i class="fas fa-code"></i></div>
-                  <small>What I Ship</small>
-                  <p>Backend APIs, integrations, admin tooling, reporting, and product-facing flows.</p>
-                </div>
-                <div class="hero-panel-card" style="--card-accent:rgba(217,74,69,.5);--card-icon-bg:rgba(217,74,69,.1);--card-icon-border:rgba(217,74,69,.2);--card-icon-color:#f87171">
-                  <div class="card-icon"><i class="fas fa-cubes"></i></div>
-                  <small>Product Shape</small>
-                  <p>SaaS platforms, marketplaces, internal tools, and workflow-heavy applications.</p>
-                </div>
-                <div class="hero-panel-card hero-panel-card-wide" style="--card-accent:rgba(16,185,129,.5);--card-icon-bg:rgba(16,185,129,.1);--card-icon-border:rgba(16,185,129,.2);--card-icon-color:#6ee7b7">
-                  <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                  <small>Build Style</small>
-                  <p>Clear architecture, practical shipping, and systems that stay maintainable after launch.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="site-shell">
+    <!-- Desktop sidebar -->
+    <aside class="sidebar" aria-label="Site navigation">
+      <a href="#home" class="sidebar-brand">
+        <div class="clay sidebar-avatar">
+          <img src="assets/images/profile-crop2.png" alt="Muhammad Motasim Bin Shahid, Senior Full-Stack Engineer" width="48" height="48" fetchpriority="high" decoding="async">
         </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="container mx-auto px-4 py-20 section-glow">
-      <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-start">
-        <div class="space-y-8">
-          <h2 class="sr-only">About</h2>
-          <div data-reveal>
-            <p class="about-hook" role="heading" aria-level="3">
-              I don't just write code —<br><span class="gradient-text">I build the products people actually pay for.</span>
-            </p>
-          </div>
-
-          <div data-reveal class="about-body space-y-5">
-            <p>I'm Motasim, a full-stack engineer who turns product ideas into shipped software. I work across <strong>Laravel, Node.js, Vue, and React</strong> — but what I really do is own the full delivery: backend architecture, API design, frontend interfaces, and everything in between. If it needs to work in production, scale under real users, and stay maintainable after launch — that's where I operate.</p>
-            <p>Over <strong>4+ years of production engineering</strong>, I've shipped a social music platform used by 300+ artists across 15 countries, built marketing analytics tools processing data from Google, Facebook, and YouTube at scale, delivered telehealth systems handling sensitive patient workflows, and launched NFC-based digital identity products from zero to live customers. My work spans <strong>music &amp; social commerce, marketing analytics, healthcare, digital identity, and enterprise hosting</strong> — and in every case, I owned scope end to end.</p>
-            <div class="about-highlight">
-              <p>Right now, I'm open to <strong>senior full-stack roles</strong> where I can own meaningful product scope, make architectural decisions that matter, and work with teams that ship fast without cutting corners. I'm also exploring <strong>AI-augmented development workflows</strong> and building tools that bridge the gap between engineering and product thinking. If that sounds like your team — <a href="#contact" class="text-github hover:underline font-semibold">let's talk</a>.</p>
-            </div>
-          </div>
-
-          <!-- Animated stat counters -->
-          <div data-reveal class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="stat-card js-tilt" style="--stat-accent:#D94A45">
-              <div class="stat-number" data-count="4" data-suffix="+">0</div>
-              <div class="stat-label">Years</div>
-              <div class="stat-sublabel">Production Work</div>
-            </div>
-            <div class="stat-card js-tilt" style="--stat-accent:#58A6FF">
-              <div class="stat-number" data-count="6">0</div>
-              <div class="stat-label">Industries</div>
-              <div class="stat-sublabel">Shipped In</div>
-            </div>
-            <div class="stat-card js-tilt" style="--stat-accent:#10b981">
-              <div class="stat-number" data-count="300" data-suffix="+">0</div>
-              <div class="stat-label">Artists</div>
-              <div class="stat-sublabel">On PLAYY Platform</div>
-            </div>
-            <div class="stat-card js-tilt" style="--stat-accent:#8b5cf6">
-              <div class="stat-number" data-count="15" data-suffix="+">0</div>
-              <div class="stat-label">Countries</div>
-              <div class="stat-sublabel">Product Reach</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right column: 3D icon cards + Education -->
-        <div class="space-y-6">
-          <div data-reveal class="grid grid-cols-2 gap-3 sm:gap-4">
-            <div class="rounded-2xl p-4 sm:p-5 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt gradient-border-card">
-              <div class="icon-3d red mb-3"><i class="fas fa-rocket"></i></div>
-              <div class="font-semibold text-sm">Product &amp; Platform</div>
-              <div class="text-xs text-slate-400 mt-1 hidden sm:block">End-to-end ownership from backend APIs to shipped frontend</div>
-            </div>
-            <div class="rounded-2xl p-4 sm:p-5 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt gradient-border-card">
-              <div class="icon-3d blue mb-3"><i class="fas fa-graduation-cap"></i></div>
-              <div class="font-semibold text-sm">MSc — TU Chemnitz</div>
-              <div class="text-xs text-slate-400 mt-1 hidden sm:block">Automotive Software Engineering (current)</div>
-            </div>
-            <div class="rounded-2xl p-4 sm:p-5 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt gradient-border-card">
-              <div class="icon-3d green mb-3"><i class="fas fa-bolt"></i></div>
-              <div class="font-semibold text-sm">Since 2021</div>
-              <div class="text-xs text-slate-400 mt-1 hidden sm:block">Shipping production code in real teams</div>
-            </div>
-            <div class="rounded-2xl p-4 sm:p-5 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt gradient-border-card">
-              <div class="icon-3d purple mb-3"><i class="fas fa-brain"></i></div>
-              <div class="font-semibold text-sm">AI + Automation</div>
-              <div class="text-xs text-slate-400 mt-1 hidden sm:block">Cursor, Claude, n8n, agentic workflows</div>
-            </div>
-          </div>
-
-          <div data-reveal class="rounded-2xl p-4 sm:p-6 border border-githubBorder bg-gradient-to-b from-githubPanel/90 to-[#0a0e15]/90 js-tilt">
-            <h3 class="font-semibold mb-4 flex items-center gap-2 text-sm sm:text-base"><div class="icon-3d amber" style="width:36px;height:36px;min-width:36px;border-radius:10px;font-size:.9rem"><i class="fas fa-award"></i></div>Education &amp; Achievements</h3>
-            <div class="space-y-4">
-              <article class="rounded-xl p-0 border border-githubBorder overflow-hidden">
-                <div class="px-4 py-3 border-b border-githubBorder flex items-center justify-between">
-                  <span class="font-semibold text-sm text-slate-200">MSc — Automotive Software Engineering</span>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/25 text-green-400">Current</span>
-                </div>
-                <div class="p-4">
-                  <div class="text-sm text-slate-400">Technische Universität Chemnitz</div>
-                  <div class="text-xs text-slate-500 mt-1">2023 — Present</div>
-                </div>
-              </article>
-              <article class="rounded-xl p-0 border border-githubBorder overflow-hidden">
-                <div class="px-4 py-3 border-b border-githubBorder flex items-center justify-between">
-                  <span class="font-semibold text-sm text-slate-200">BSc — Computer Science (Software Engineering)</span>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400">Dean's Award</span>
-                </div>
-                <div class="p-4">
-                  <div class="text-sm text-slate-400">University of Management and Technology</div>
-                  <div class="text-xs text-slate-500 mt-1">2017 — 2021 · GPA 3.61 / 4.00</div>
-                  <div class="mt-3 flex flex-wrap gap-2">
-                    <span class="label-chip text-xs">Dean's List</span>
-                    <span class="label-chip text-xs">Academic Excellence</span>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience -->
-    <section id="experience" class="container mx-auto px-4 py-20 section-glow">
-      <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8">Experience</h2>
-      <div data-reveal class="code-terminal overflow-hidden shadow-card js-tilt">
-        <div class="bar">
-          <span class="dot" style="background:#ff5f56"></span>
-          <span class="dot" style="background:#ffbd2e"></span>
-          <span class="dot" style="background:#27c93f"></span>
-          <span class="text-xs text-slate-400 ml-2">bash — ~/experience</span>
-        </div>
-        <div class="p-4 terminal-font">
-        <ul class="space-y-6">
-          <li>
-            <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
-              <div>
-                <div class="font-semibold leading-tight">Full Stack Engineer · PLAYY</div>
-                <div class="text-sm text-slate-400">Full-time • Music and social commerce platform • Laravel, Vue, Redis, AWS</div>
-                <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Own product and platform work across artist onboarding, commerce flows, social interactions, and realtime messaging for a platform used by 300+ artists across 15+ countries.</li>
-            <li>Build and maintain Laravel APIs, Vue interfaces, Redis-backed jobs, and WebSocket flows that support day-to-day product operations.</li>
-            <li>Deliver integrations across payments and external services while keeping the platform practical to operate as the product grows.</li>
-          </ul>
-              </div>
-              <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Nov 2024 — Present · Remote</div>
-            </div>
-          </li>
-
-          <li>
-            <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
-              <div>
-                <div class="font-semibold leading-tight">Software Developer (JavaScript) · Mindrift</div>
-                <div class="text-sm text-slate-400">Part-time • QA and AI training • JavaScript evaluation</div>
-                <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Reviewed JavaScript-focused tasks and model outputs for correctness, edge cases, and instruction adherence.</li>
-                  <li>Wrote reference solutions and QA notes to improve the reliability of coding evaluations and training data.</li>
-                  <li>Worked part-time on quality-sensitive technical review where precision mattered more than volume.</li>
-          </ul>
-              </div>
-              <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Aug 2025 — Dec 2025 · Remote</div>
-            </div>
-          </li>
-
-          <li>
-            <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
-              <div>
-                <div class="font-semibold leading-tight">Full Stack Engineer · dotX</div>
-                <div class="text-sm text-slate-400">Part-time • NFC digital cards • Wallet passes • Analytics</div>
-                <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Built product and admin workflows for NFC digital business cards, Apple Wallet and Google Wallet passes, QR sharing, and reporting.</li>
-            <li>Delivered Laravel and Vue 3 features for contact sync, scheduling, imports, and business-facing analytics.</li>
-                  <li>Supported a live product alongside a full-time role with delivery focused on practical customer workflows.</li>
-          </ul>
-              </div>
-              <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Apr 2024 — Apr 2025 · Remote</div>
-            </div>
-          </li>
-
-          <li>
-            <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
-              <div>
-                <div class="font-semibold leading-tight">Senior Full Stack Engineer · Septem Systems</div>
-                <div class="text-sm text-slate-400">Full-time • Hosting platform • Vue 3, NestJS, TypeScript • CI/CD</div>
-                <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Led delivery across a small engineering team for an enterprise WordPress hosting platform serving the US market.</li>
-                  <li>Built Vue 3 and NestJS features across customer-facing workflows, internal tools, and supporting services in a microservice environment.</li>
-                  <li>Improved release consistency and operational visibility through CI/CD, Docker and AWS deployment work, and monitoring.</li>
-          </ul>
-              </div>
-              <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Jun 2023 — Oct 2023 · Pakistan</div>
-            </div>
-          </li>
-
-          <li>
-            <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
-              <div>
-                <div class="font-semibold leading-tight">Full Stack Engineer · Septem Systems</div>
-                <div class="text-sm text-slate-400">Full-time • aDash • Nuxt, Laravel, Redis • Marketing analytics</div>
-                <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Built product features for aDash, an SEO and marketing analytics platform combining data from Google Analytics, Ads, Facebook, YouTube, and other channels.</li>
-            <li>Developed Nuxt and Laravel dashboards, scheduled data ingestion, and reporting workflows for data-heavy client accounts.</li>
-            <li>Reduced manual reporting effort by automating recurring summaries and surfacing insight workflows inside the product.</li>
-          </ul>
-              </div>
-              <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Nov 2021 — May 2023 · Pakistan</div>
-            </div>
-          </li>
-
-          <li>
-            <div class="md:grid md:grid-cols-[1fr_auto] md:gap-6">
-              <div>
-                <div class="font-semibold leading-tight">Web Developer · Pi Technologies SMC Private Limited</div>
-                <div class="text-sm text-slate-400">Full-time(Jun 2021 - Oct 2021) • Part-time(Nov 2021 - Jan 2022) • eClinicX • Telehealth • Scheduling • Patient records</div>
-                <ul class="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-                  <li>Built scheduling, consultation, and medical record workflows for an online doctor consultation product.</li>
-                  <li>Worked across Laravel and Nuxt to deliver appointments, video consultations, notifications, and provider and patient interfaces.</li>
-                  <li>Focused on responsive UI and secure handling of healthcare data in a workflow-heavy product.</li>
-                </ul>
-              </div>
-              <div class="text-xs text-slate-500 mt-1 md:mt-0 whitespace-nowrap">Jun 2021 — Jan 2022 · Pakistan</div>
-            </div>
-          </li>
-          </ul>
-        </div>
-        </div>
-    </section>
-
-    <!-- Featured Work -->
-    <section id="featured-work" class="container mx-auto px-4 py-20 section-glow">
-      <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
         <div>
-          <h2 data-reveal class="text-2xl md:text-3xl font-bold">Featured Build Overview</h2>
-          <p data-reveal class="section-lead mt-3">My most complex production build — a full-scale social music platform 15 years in the making, backed by a company that's worked with Ed Sheeran, FKJ, Novo Amor, and hundreds more.</p>
+          <div class="font-display sidebar-name">Muhammad Motasim Bin Shahid</div>
+          <div class="font-mono sidebar-role">Full-Stack Engineer</div>
         </div>
+      </a>
+
+      <nav class="sidebar-nav font-mono" aria-label="Main navigation">
+        <a href="#home" class="nav-link active" data-nav="home">Home</a>
+        <a href="#about" class="nav-link" data-nav="about">About</a>
+        <a href="#experience" class="nav-link" data-nav="experience">Experience</a>
+        <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
+        <a href="#projects" class="nav-link" data-nav="projects">Projects</a>
+        <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
+      </nav>
+
+      <div class="sidebar-actions">
+        <a id="cvDownload" href="Muhammad_Motasim_Bin_Shahid_CV.pdf" target="_blank" rel="noopener" class="clay-btn">Download Resume</a>
+        <a href="https://calendly.com/muhammadmotasimbin-shahid/intro-with-muhammad-motasim-bin-shahid" target="_blank" rel="noopener" class="clay-btn-outline">Book a Call</a>
       </div>
-      <div data-reveal class="feature-frame js-tilt">
-        <div class="feature-grid">
+
+      <div class="sidebar-social font-mono">
+        <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/MuhammadMotasimBinShahid" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener">GitLab</a>
+      </div>
+
+      <div class="sidebar-footer font-mono">© <span id="year">2026</span></div>
+    </aside>
+
+    <!-- Mobile header -->
+    <header class="mobile-header">
+      <a href="#home" class="mobile-header-brand">
+        <div class="clay mobile-header-avatar">
+          <img src="assets/images/profile-crop2.png" alt="" width="36" height="36" decoding="async">
+        </div>
+        <span class="font-display mobile-header-name">Motasim Shahid</span>
+      </a>
+      <a href="https://calendly.com/muhammadmotasimbin-shahid/intro-with-muhammad-motasim-bin-shahid" target="_blank" rel="noopener" class="link-primary font-mono" style="font-size:12px">Book a Call →</a>
+    </header>
+
+    <main class="main">
+      <!-- Hero -->
+      <section id="home">
+        <div class="section-inner reveal">
+          <h1 class="font-display hero-title">
+            Full-stack engineer for <span class="accent">Laravel</span> and <span class="accent">Node.js</span> platforms.
+          </h1>
+          <p class="hero-lead">I build SaaS products, APIs, and data-heavy platforms that teams rely on after launch. 4+ years shipping across 6 industries, from healthcare to music tech.</p>
+          <div class="hero-links font-mono">
+            <a href="#projects" class="link-primary">View Projects →</a>
+            <a href="#contact" class="link-secondary">Contact Me</a>
+            <a id="cvDownloadHero" href="Muhammad_Motasim_Bin_Shahid_CV.pdf" target="_blank" rel="noopener" class="link-secondary">Download CV</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about">
+        <div class="section-inner reveal">
+          <div class="about-grid">
+            <div>
+              <div class="section-label font-mono">01 — About</div>
+              <h2 class="font-display about-hook">I don't just write code — I build the products people actually pay for.</h2>
+              <div class="about-body">
+                <p>I'm Motasim, a full-stack engineer who turns product ideas into shipped software. I work across <strong>Laravel, Node.js, Vue, and React</strong> — but what I really do is own the full delivery: backend architecture, API design, frontend interfaces, and everything in between.</p>
+                <p>Over <strong>4+ years of production engineering</strong>, I've shipped a social music platform used by 300+ artists across 15 countries, built marketing analytics tools processing data from Google, Facebook, and YouTube at scale, delivered telehealth systems handling sensitive patient workflows, and launched NFC-based digital identity products from zero to live customers. My work spans <strong>music &amp; social commerce, marketing analytics, healthcare, digital identity, and enterprise hosting</strong>.</p>
+                <p>Right now, I'm open to <strong>full-stack roles</strong> where I can own meaningful product scope and work with teams that ship fast without cutting corners. I'm also exploring <strong>AI-augmented development workflows</strong>. If that sounds like your team — <a href="#contact" class="accent" style="text-decoration:none;border-bottom:1px solid #e8543a;font-weight:600">let's talk</a>.</p>
+              </div>
+              <div class="stat-row">
+                <div>
+                  <div class="font-display stat-value" data-count="4" data-suffix="+">0</div>
+                  <div class="font-mono stat-label">Years</div>
+                </div>
+                <div>
+                  <div class="font-display stat-value" data-count="6">0</div>
+                  <div class="font-mono stat-label">Industries</div>
+                </div>
+                <div>
+                  <div class="font-display stat-value" data-count="300" data-suffix="+">0</div>
+                  <div class="font-mono stat-label">Artists</div>
+                </div>
+                <div>
+                  <div class="font-display stat-value" data-count="15" data-suffix="+">0</div>
+                  <div class="font-mono stat-label">Countries</div>
+                </div>
+              </div>
+            </div>
+            <div class="about-side">
+              <div class="clay side-card">
+                <div class="font-mono side-card-label">Currently</div>
+                <p>Shipping product at <strong>PLAYY</strong> and finishing an MSc at TU Chemnitz.</p>
+              </div>
+              <div class="clay side-card">
+                <div class="side-card-title">MSc — Automotive SW Engineering</div>
+                <div class="side-card-meta">TU Chemnitz · 2023 — Present</div>
+              </div>
+              <div class="clay side-card">
+                <div class="side-card-title">BSc — Computer Science</div>
+                <div class="side-card-meta">UMT · 2017 — 2021 · GPA 3.61/4.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience">
+        <div class="section-inner reveal">
+          <div class="section-label font-mono">02 — Experience</div>
+          <h2 class="font-display section-title">Where I've shipped.</h2>
+          <div class="exp-list">
+            <article class="exp-item">
+              <div class="exp-head">
+                <div class="font-display exp-role">Full Stack Engineer <span>· PLAYY</span></div>
+                <div class="font-mono exp-date">Nov 2024 — Present · Remote</div>
+              </div>
+              <div class="exp-meta">Full-time · Music and social commerce platform · Laravel, Vue, Redis, AWS</div>
+              <p class="exp-desc">Own product and platform work across artist onboarding, commerce flows, social interactions, and realtime messaging for a platform used by 300+ artists across 15+ countries. Build and maintain Laravel APIs, Vue interfaces, Redis-backed jobs, and WebSocket flows, plus payment integrations that keep the platform practical to operate as it grows.</p>
+            </article>
+            <article class="exp-item">
+              <div class="exp-head">
+                <div class="font-display exp-role">Software Developer (JS) <span>· Mindrift</span></div>
+                <div class="font-mono exp-date">Aug 2025 — Dec 2025 · Remote</div>
+              </div>
+              <div class="exp-meta">Part-time · QA and AI training · JavaScript evaluation</div>
+              <p class="exp-desc">Reviewed JavaScript-focused tasks and model outputs for correctness, edge cases, and instruction adherence. Wrote reference solutions and QA notes to improve the reliability of coding evaluations and training data.</p>
+            </article>
+            <article class="exp-item">
+              <div class="exp-head">
+                <div class="font-display exp-role">Full Stack Engineer <span>· dotX</span></div>
+                <div class="font-mono exp-date">Apr 2024 — Apr 2025 · Remote</div>
+              </div>
+              <div class="exp-meta">Part-time · NFC digital cards · Wallet passes · Analytics</div>
+              <p class="exp-desc">Built product and admin workflows for NFC digital business cards, Apple Wallet and Google Wallet passes, QR sharing, and reporting. Delivered Laravel and Vue 3 features for contact sync, scheduling, imports, and business-facing analytics.</p>
+            </article>
+            <article class="exp-item">
+              <div class="exp-head">
+                <div class="font-display exp-role">Senior Full Stack Engineer <span>· Septem Systems</span></div>
+                <div class="font-mono exp-date">Jun 2023 — Oct 2023 · Pakistan</div>
+              </div>
+              <div class="exp-meta">Full-time · Hosting platform · Vue 3, NestJS, TypeScript · CI/CD</div>
+              <p class="exp-desc">Led delivery across a small engineering team for an enterprise WordPress hosting platform serving the US market. Built Vue 3 and NestJS features across customer-facing workflows and internal tools, and improved release consistency through CI/CD, Docker, and AWS deployment work.</p>
+            </article>
+            <article class="exp-item">
+              <div class="exp-head">
+                <div class="font-display exp-role">Full Stack Engineer <span>· Septem Systems</span></div>
+                <div class="font-mono exp-date">Nov 2021 — May 2023 · Pakistan</div>
+              </div>
+              <div class="exp-meta">Full-time · aDash · Nuxt, Laravel, Redis · Marketing analytics</div>
+              <p class="exp-desc">Built product features for aDash, an SEO and marketing analytics platform combining data from Google Analytics, Ads, Facebook, YouTube, and other channels. Developed Nuxt and Laravel dashboards and reporting workflows, cutting manual reporting effort for data-heavy client accounts.</p>
+            </article>
+            <article class="exp-item">
+              <div class="exp-head">
+                <div class="font-display exp-role">Web Developer <span>· Pi Technologies</span></div>
+                <div class="font-mono exp-date">Jun 2021 — Jan 2022 · Pakistan</div>
+              </div>
+              <div class="exp-meta">eClinicX · Telehealth · Scheduling · Patient records</div>
+              <p class="exp-desc">Built scheduling, consultation, and medical record workflows for an online doctor consultation product across Laravel and Nuxt — appointments, video consultations, notifications, and provider/patient interfaces, with a focus on secure handling of healthcare data.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured -->
+      <section id="featured-work">
+        <div class="section-inner reveal">
+          <div class="section-label font-mono">03 — Featured Build</div>
+          <p class="text-muted" style="font-size:1rem;line-height:1.7;margin:0 0 32px">My most complex production build — a full-scale social music platform, backed by a company that's worked with Ed Sheeran, FKJ, Novo Amor, and hundreds more.</p>
+          <a href="https://playy.co.uk/" target="_blank" rel="noopener noreferrer" class="clay-img featured-img">
+            <img src="assets/images/projects/playy.png" alt="PLAYY.Music social music platform dashboard screenshot" width="900" height="472" loading="lazy" decoding="async">
+          </a>
+          <h2 class="font-display featured-title"><a href="https://playy.co.uk/" target="_blank" rel="noopener noreferrer">PLAYY.Music</a></h2>
+          <p class="featured-copy">PLAYY.Music is an all-in-one social music platform and ecosystem built for independent artists — by PLAYY. (formerly The Playground), a UK music company with a 15-year track record in PR, events, and artist development. The company has worked with artists including Ed Sheeran, Porter Robinson, FKJ, Pendulum, Röyksopp, Steve Aoki, Franz Ferdinand, and hundreds more.</p>
+          <p class="featured-copy">The platform lets artists sell and stream music, license tracks for film and TV, sell merch and sample packs, run ticketed events and tours, crowdfund projects, access a music jobs marketplace, and engage fans through groups, messaging, and video calls — all with real-time analytics and fair payouts.</p>
+          <div class="featured-meta">
+            <div>
+              <div class="font-mono featured-meta-label">Scale &amp; Reach</div>
+              <p>300+ artists across 15+ countries.</p>
+            </div>
+            <div>
+              <div class="font-mono featured-meta-label">What I Own</div>
+              <p>Onboarding, commerce, social, messaging, ticketing, payments, admin tooling.</p>
+            </div>
+            <div>
+              <div class="font-mono featured-meta-label">Stack</div>
+              <p>Vue 2.7 SPA, Vuex, Stream chat/video, Stripe, Laravel API.</p>
+            </div>
+          </div>
+          <div class="hero-links font-mono">
+            <a href="https://playy.co.uk/" target="_blank" rel="noopener" class="link-primary">Visit PLAYY.Music ↗</a>
+            <a href="#contact" class="link-secondary">Ask Me About This Build</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills">
+        <div class="section-inner reveal">
+          <div class="section-label font-mono">04 — Skills</div>
+          <h2 class="font-display section-title">Focused on the stack I want to keep being hired for.</h2>
           <div>
-            <div class="feature-kicker"><i class="fas fa-music mr-2"></i>Featured Build</div>
-            <h3 class="feature-title"><a href="https://playy.co.uk/" target="_blank" rel="noopener" class="hover:text-github transition">PLAYY.Music</a></h3>
-            <p class="feature-copy">PLAYY.Music is an all-in-one social music platform and ecosystem built for independent artists — by PLAYY. (formerly The Playground), a UK music company with a 15-year track record in PR, events, and artist development. The company has worked with artists including Ed Sheeran, Porter Robinson, FKJ, Pendulum, Röyksopp, Steve Aoki, Franz Ferdinand, and hundreds more.</p>
-            <p class="feature-copy">The platform lets artists sell and stream music, license tracks for film and TV, sell merch and sample packs, run ticketed events and tours, crowdfund projects, access a music jobs marketplace, engage fans through groups, messaging, and video calls — all from one product, with real-time analytics and fair payouts.</p>
-            <div class="mt-6 flex flex-wrap gap-2 text-xs text-slate-300">
-              <span class="label-chip">Vue SPA</span>
-              <span class="label-chip">Music Streaming</span>
-              <span class="label-chip">Licensing</span>
-              <span class="label-chip">Ticketing</span>
-              <span class="label-chip">Marketplace</span>
-              <span class="label-chip">Realtime Chat</span>
-              <span class="label-chip">Stripe Payments</span>
-              <span class="label-chip">PR Campaigns</span>
-            </div>
-            <div class="mt-6 flex flex-wrap gap-3">
-              <a href="https://playy.co.uk/" target="_blank" rel="noopener" class="hero-btn-primary text-sm"><i class="fas fa-external-link-alt mr-2"></i>Visit PLAYY.Music</a>
-              <a href="#contact" class="hero-btn-secondary text-sm"><i class="fas fa-comments mr-2"></i>Ask Me About This Build</a>
-            </div>
-          </div>
-          <div class="feature-side">
-            <div class="feature-stat">
-              <small>Scale &amp; Reach</small>
-              <p>300+ artists across 15+ countries. The parent company has sold hundreds of thousands of event tickets and operated PR campaigns across the UK, US, Canada, France, Germany, Netherlands, Australia, and more.</p>
-            </div>
-            <div class="feature-stat">
-              <small>What I Own</small>
-              <p>Full product delivery across artist onboarding, commerce flows, social interactions, realtime messaging, event ticketing, marketplace pages, PR campaign flows, payments, and admin tooling.</p>
-            </div>
-            <div class="feature-stat">
-              <small>Frontend Architecture</small>
-              <p>Vue 2.7 SPA with Vue Router, Vuex state, axios-based API wrappers, Stream chat and video call integrations, Stripe payment handling, and Laravel API backend.</p>
-            </div>
-            <div class="feature-stat">
-              <small>Why It Matters</small>
-              <p>This is a real product under real product pressure — not a demo. I can walk through architecture decisions, delivery ownership, and system trade-offs in technical review.</p>
-            </div>
+            <div class="skill-row"><div class="font-display skill-name">Frontend Delivery</div><div class="skill-tags">Vue 2/3, Nuxt, React, Next.js, TypeScript, Tailwind</div></div>
+            <div class="skill-row"><div class="font-display skill-name">Backend Systems</div><div class="skill-tags">Laravel, PHP, Node.js, NestJS, Express, Redis</div></div>
+            <div class="skill-row"><div class="font-display skill-name">Data &amp; Infrastructure</div><div class="skill-tags">MySQL, PostgreSQL, MongoDB, AWS, Docker, CI/CD</div></div>
+            <div class="skill-row"><div class="font-display skill-name">Integrations</div><div class="skill-tags">Stripe, Pusher, Twilio, OAuth/JWT, Google APIs, Wallet Passes</div></div>
+            <div class="skill-row"><div class="font-display skill-name">Engineering Practice</div><div class="skill-tags">API Design, Code Review, Testing, Performance, Security</div></div>
+            <div class="skill-row highlight"><div class="font-display skill-name">AI Agents &amp; Tooling</div><div class="skill-tags">Cursor, Claude, n8n, Agentic IDEs, Workflow Automation</div></div>
           </div>
         </div>
-      </div>
-      <div class="signal-grid mt-6">
-        <div data-reveal class="signal-card js-tilt">
-          <small>Private Production Work</small>
-          <p>Most of my strongest recent work lives in company or client codebases. This portfolio focuses on shipped scope and engineering ownership rather than public repo volume.</p>
-        </div>
-        <div data-reveal class="signal-card js-tilt">
-          <small>Public Review Paths</small>
-          <p>GitHub and GitLab are supplemental. For real product work, the better signal is architecture, delivery history, and how I explain trade-offs in conversation.</p>
-        </div>
-        <div data-reveal class="signal-card js-tilt">
-          <small>Best Use Of This Site</small>
-          <p>Use the case study, experience timeline, and contact section together if you are screening for senior full-stack product work.</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Skills -->
-    <section id="skills" class="container mx-auto px-4 py-20 section-glow">
-      <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-tools"></span> Skills</h2>
-      <p data-reveal class="section-lead mb-8">Focused on the stack and problem spaces I want to keep being hired for.</p>
-      <div class="skill-matrix">
-        <article data-reveal class="skill-card js-tilt gradient-border-card">
-          <div class="icon-3d blue mb-3"><i class="fas fa-layer-group"></i></div>
-          <h3>Frontend Delivery</h3>
-          <p>Interfaces for dashboards, admin tools, and product-facing flows.</p>
-          <div class="skill-chip-list">
-            <span>Vue 2/3</span>
-            <span>Nuxt</span>
-            <span>React</span>
-            <span>Next.js</span>
-            <span>TypeScript</span>
-            <span>Three.js</span>
-            <span>Tailwind</span>
-          </div>
-        </article>
-        <article data-reveal class="skill-card js-tilt gradient-border-card">
-          <div class="icon-3d red mb-3"><i class="fas fa-server"></i></div>
-          <h3>Backend Systems</h3>
-          <p>API design, business logic, background jobs, and data-heavy application backends.</p>
-          <div class="skill-chip-list">
-            <span>Laravel</span>
-            <span>PHP</span>
-            <span>Node.js</span>
-            <span>NestJS</span>
-            <span>Express</span>
-            <span>Redis</span>
-          </div>
-        </article>
-        <article data-reveal class="skill-card js-tilt gradient-border-card">
-          <div class="icon-3d green mb-3"><i class="fas fa-database"></i></div>
-          <h3>Data &amp; Infrastructure</h3>
-          <p>Persistence, delivery pipelines, and production support for live systems.</p>
-          <div class="skill-chip-list">
-            <span>MySQL</span>
-            <span>PostgreSQL</span>
-            <span>MongoDB</span>
-            <span>AWS</span>
-            <span>Docker</span>
-            <span>CI/CD</span>
-          </div>
-        </article>
-        <article data-reveal class="skill-card js-tilt gradient-border-card">
-          <div class="icon-3d purple mb-3"><i class="fas fa-plug"></i></div>
-          <h3>Integrations</h3>
-          <p>Payment, communication, analytics, and third-party product workflows.</p>
-          <div class="skill-chip-list">
-            <span>Stripe</span>
-            <span>Pusher</span>
-            <span>Twilio</span>
-            <span>OAuth / JWT</span>
-            <span>Google APIs</span>
-            <span>Wallet Passes</span>
-          </div>
-        </article>
-        <article data-reveal class="skill-card js-tilt gradient-border-card">
-          <div class="icon-3d amber mb-3"><i class="fas fa-cogs"></i></div>
-          <h3>Engineering Practice</h3>
-          <p>The way I tend to work when the product and engineering side both matter.</p>
-          <div class="skill-chip-list">
-            <span>API Design</span>
-            <span>Code Review</span>
-            <span>Testing</span>
-            <span>Performance</span>
-            <span>Security</span>
-            <span>Product Delivery</span>
-          </div>
-        </article>
-        <article data-reveal class="skill-card js-tilt gradient-border-card">
-          <div class="icon-3d red mb-3"><i class="fas fa-robot"></i></div>
-          <h3>AI Agents &amp; Tooling</h3>
-          <p>Applied use of AI-assisted IDE workflows, plugins, and agent-style tooling inside day-to-day delivery and review work.</p>
-          <div class="skill-chip-list">
-            <span>Cursor</span>
-            <span>Claude</span>
-            <span>Lovable</span>
-            <span>AI Agents</span>
-            <span>AI Plugins</span>
-            <span>Agentic IDEs</span>
-            <span>n8n</span>
-            <span>Workflow Automation</span>
-            <span>Prompt-to-Code</span>
-            <span>Code Review Loops</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Selected Projects (custom) -->
-    <section id="projects" class="container mx-auto px-4 py-20 section-glow">
-      <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-repo"></span> Selected Projects</h2>
-      <p data-reveal class="section-lead mb-8">Shorter snapshots of other shipped work. The featured case study above is the best place to start if you want depth.</p>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a data-reveal href="https://brandbreakerscard.com/" target="_blank" rel="noopener" class="rounded-lg p-4 sm:p-5 border panel hover:bg-githubPanel/80 transition block js-tilt gradient-border-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="icon-3d green" style="width:40px;height:40px;min-width:40px;border-radius:12px;font-size:1rem"><i class="fas fa-id-card"></i></div>
-            <div class="font-semibold text-lg">Brand Breakers</div>
-          </div>
-          <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>NFC tap-and-go digital business card product with CRM dashboard, QR sharing, contact exchange, analytics, and customizable profiles. Serves entrepreneurs, real estate agents, sales teams, and influencers.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Full Vue 3 + Laravel backend for card management, Apple Wallet and Google Wallet pass generation, CRM integrations, insightful analytics dashboards, profile customization engine, and Shopify-connected e-commerce storefront.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Shipped a live product with tiered pricing ($50–$200), team packs, subscription features, and a CRM dashboard used by professionals across multiple industries.</div>
-          </div>
-          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
-            <span class="label-chip">Laravel 11</span>
-            <span class="label-chip">Vue 3</span>
-            <span class="label-chip">Wallet Passes</span>
-            <span class="label-chip">CRM</span>
-            <span class="label-chip">Shopify</span>
-          </div>
-        </a>
-
-        <a data-reveal href="https://adash.io/" target="_blank" rel="noopener" class="rounded-lg p-4 sm:p-5 border panel hover:bg-githubPanel/80 transition block js-tilt gradient-border-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="icon-3d blue" style="width:40px;height:40px;min-width:40px;border-radius:12px;font-size:1rem"><i class="fas fa-chart-line"></i></div>
-            <div class="font-semibold text-lg">aDash</div>
-          </div>
-          <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Marketing analytics platform that proves ROI of digital campaigns. Connects to Google Analytics, Google Ads, Google My Business, Facebook Organic, Facebook Ads, and YouTube — tracking traffic, leads, CTR, conversions, LTV, and more.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Nuxt + Laravel dashboards with scheduled data ingestion from 6+ third-party APIs, automated reporting workflows, real-time ROI visualization, and client-facing report generation.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Centralized scattered marketing data into one platform, enabling agencies to prove campaign value and cut manual reporting effort through automated, scheduled summaries.</div>
-          </div>
-          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
-            <span class="label-chip">Nuxt</span>
-            <span class="label-chip">Laravel</span>
-            <span class="label-chip">Redis</span>
-            <span class="label-chip">Google APIs</span>
-            <span class="label-chip">Facebook APIs</span>
-          </div>
-        </a>
-
-        <a data-reveal href="https://www.bionicwp.com/" target="_blank" rel="noopener" class="rounded-lg p-4 sm:p-5 border panel hover:bg-githubPanel/80 transition block js-tilt gradient-border-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="icon-3d purple" style="width:40px;height:40px;min-width:40px;border-radius:12px;font-size:1rem"><i class="fas fa-bolt"></i></div>
-            <div class="font-semibold text-lg">BionicWP</div>
-          </div>
-          <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Expert-managed WordPress hosting platform trusted by 500+ agencies. Delivers 90+ PageSpeed scores, 0.8s load times, 99.99% uptime, and unlimited edits. Rated 4.6 on Trustpilot and 5.0 on G2.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Vue 3 + NestJS features across customer-facing migration workflows, internal admin tooling, billing and subscription flows, white-label agency dashboards, and Docker-based microservices in a CI/CD pipeline.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Helped ship the platform that improved client sites from 42 to 98 PageSpeed scores on average, with zero-downtime migrations and enterprise-grade infrastructure.</div>
-          </div>
-          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
-            <span class="label-chip">Vue 3</span>
-            <span class="label-chip">NestJS</span>
-            <span class="label-chip">TypeScript</span>
-            <span class="label-chip">Docker</span>
-            <span class="label-chip">AWS</span>
-          </div>
-        </a>
-
-        <a data-reveal href="https://eclinicx.com/" target="_blank" rel="noopener" class="rounded-lg p-4 sm:p-5 border panel hover:bg-githubPanel/80 transition block js-tilt gradient-border-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="icon-3d red" style="width:40px;height:40px;min-width:40px;border-radius:12px;font-size:1rem"><i class="fas fa-heartbeat"></i></div>
-            <div class="font-semibold text-lg">eClinicX</div>
-          </div>
-          <div class="space-y-3 text-sm text-slate-300">
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What It Is</span>Online doctor consultation platform enabling patients to book appointments, have video consultations, manage prescriptions, and access medical records — all in one secure, HIPAA-conscious workflow.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">What I Built</span>Laravel + Nuxt features for appointment scheduling, real-time video consultation flows, push notifications via Pusher, provider dashboards, patient record management, and responsive patient-facing interfaces.</div>
-            <div><span class="block text-xs uppercase tracking-[0.2em] text-slate-500 mb-1">Outcome</span>Delivered a production telehealth product where secure data handling, real-time communication, and usability across devices all had to work together under regulatory constraints.</div>
-          </div>
-          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
-            <span class="label-chip">Laravel</span>
-            <span class="label-chip">Nuxt</span>
-            <span class="label-chip">Pusher</span>
-            <span class="label-chip">Video Calls</span>
-            <span class="label-chip">Healthcare</span>
-          </div>
-        </a>
-        </div>
-    </section>
-
-    <section class="container mx-auto px-4 pb-16">
-      <div data-reveal class="cta-band js-tilt">
-        <div>
-          <div class="cta-urgency"><span class="avail-dot"></span>Currently accepting new projects</div>
-          <h3 class="mt-4">Let's build something that ships.</h3>
-          <p class="section-lead mt-4">Whether you're hiring for a senior full-stack role, scoping a product build, or need someone who can own the full delivery — I'd love to hear about it. Most of my best work is private, but I can walk through architecture, ownership, and delivery decisions live.</p>
-        </div>
-        <div class="cta-band-actions">
-          <a href="#contact" class="cta-btn-primary"><i class="fas fa-paper-plane mr-2"></i>Get In Touch</a>
-          <a href="Muhammad_Motasim_Bin_Shahid_CV.pdf" target="_blank" rel="noopener" class="cta-btn-secondary"><i class="fas fa-download mr-2"></i>Download CV</a>
-          <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener" class="cta-btn-secondary"><i class="fab fa-linkedin-in mr-2"></i>LinkedIn</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects (GitHub Repositories) -->
-    <section id="repos" class="container mx-auto px-4 py-12" hidden>
-      <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-repo"></span> GitHub Repositories</h2>
-      <div id="repoGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    </section>
-    <!-- Contact -->
-    <section id="contact" class="container mx-auto px-4 py-20 section-glow">
-      <h2 data-reveal class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-2"><span class="octicon octicon-comment-discussion"></span> Let’s talk</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div data-reveal class="code-terminal overflow-hidden shadow-card">
-          <div class="bar">
-            <span class="dot" style="background:#ff5f56"></span>
-            <span class="dot" style="background:#ffbd2e"></span>
-            <span class="dot" style="background:#27c93f"></span>
-            <span class="text-xs text-slate-400 ml-2">bash — ~/contact/info</span>
-          </div>
-          <div class="p-4">
-            <p class="text-sm text-slate-300 mb-5">If you're hiring, scoping a product, or reviewing technical work, these are the quickest paths.</p>
-            <ul class="space-y-2 text-sm text-slate-300">
-              <li class="break-all sm:break-normal"><i class="fas fa-envelope mr-2"></i><a href="mailto:muhammadmotasimbin.shahid@gmail.com" class="hover:text-brand">muhammadmotasimbin.shahid@gmail.com</a></li>
-              <li><i class="fas fa-phone mr-2"></i><a href="tel:+4915212645064" class="hover:text-brand">+49 1521 264 5064</a></li>
-            </ul>
-            <div class="mt-6 space-y-3">
-              <div class="rounded-lg border border-githubBorder bg-githubBg/70 p-4 js-tilt">
-                <div class="text-xs uppercase tracking-[0.2em] text-slate-500">Recruiters / Hiring Managers</div>
-                <p class="mt-2 text-sm text-slate-300">Review my background quickly with the CV and LinkedIn summary.</p>
-                <div class="mt-3 flex flex-wrap gap-2">
-                  <a id="cvDownload" href="Muhammad_Motasim_Bin_Shahid_CV.pdf" target="_blank" rel="noopener" class="px-4 py-2 rounded bg-brand text-white hover:shadow-card"><i class="fas fa-download mr-2"></i>Download CV</a>
-                  <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">View LinkedIn</a>
+      <!-- Projects -->
+      <section id="projects">
+        <div class="section-inner reveal">
+          <div class="section-label font-mono">05 — Selected Projects</div>
+          <h2 class="font-display section-title">Shorter snapshots of other shipped work.</h2>
+          <div>
+            <a href="https://brandbreakerscard.com/" target="_blank" rel="noopener" class="project-link">
+              <div class="project-grid">
+                <div class="clay-img"><img src="assets/images/projects/brandbreakers.png" alt="Brand Breakers NFC digital business card product interface" width="900" height="472" loading="lazy" decoding="async"></div>
+                <div>
+                  <div class="font-display project-title">Brand Breakers ↗</div>
+                  <p class="project-desc">NFC tap-and-go digital business card product with CRM dashboard, QR sharing, contact exchange, and analytics.</p>
+                  <p class="project-stack">Vue 3 + Laravel · Wallet Passes · Shopify</p>
                 </div>
               </div>
-              <div class="rounded-lg border border-githubBorder bg-githubBg/70 p-4 js-tilt">
-                <div class="text-xs uppercase tracking-[0.2em] text-slate-500">Clients</div>
-                <p class="mt-2 text-sm text-slate-300">Best fit for SaaS features, API work, integrations, and workflow-heavy product delivery.</p>
-                <div class="mt-3 flex flex-wrap gap-2">
-                  <a href="mailto:muhammadmotasimbin.shahid@gmail.com" class="px-4 py-2 rounded bg-brand text-white hover:shadow-card">Email Me</a>
-                  <a href="#contactForm" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">Use Contact Form</a>
+            </a>
+            <a href="https://adash.io/" target="_blank" rel="noopener" class="project-link">
+              <div class="project-grid">
+                <div class="clay-img"><img src="assets/images/projects/adash.png" alt="aDash marketing analytics dashboard connecting Google and social ad data" width="900" height="472" loading="lazy" decoding="async"></div>
+                <div>
+                  <div class="font-display project-title">aDash ↗</div>
+                  <p class="project-desc">Marketing analytics platform proving ROI of digital campaigns — connecting Google Analytics, Ads, Facebook, and YouTube data.</p>
+                  <p class="project-stack">Nuxt + Laravel · Redis · Google APIs</p>
                 </div>
               </div>
-              <div class="rounded-lg border border-githubBorder bg-githubBg/70 p-4 js-tilt">
-                <div class="text-xs uppercase tracking-[0.2em] text-slate-500">Technical Reviewers</div>
-                <p class="mt-2 text-sm text-slate-300">Review selected product work first, then check public code where it is available.</p>
-                <div class="mt-3 flex flex-wrap gap-2">
-                  <a href="#projects" class="px-4 py-2 rounded bg-brand text-white hover:shadow-card">View Projects</a>
-                  <a href="https://github.com/MuhammadMotasimBinShahid" target="_blank" rel="noopener" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">View GitHub</a>
-                  <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="px-4 py-2 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">View GitLab</a>
+            </a>
+            <a href="https://www.bionicwp.com/" target="_blank" rel="noopener" class="project-link">
+              <div class="project-grid">
+                <div class="clay-img"><img src="assets/images/projects/bionicwp.png" alt="BionicWP managed WordPress hosting platform interface" width="900" height="472" loading="lazy" decoding="async"></div>
+                <div>
+                  <div class="font-display project-title">BionicWP ↗</div>
+                  <p class="project-desc">Expert-managed WordPress hosting trusted by 500+ agencies — 90+ PageSpeed scores, 0.8s loads, 99.99% uptime.</p>
+                  <p class="project-stack">Vue 3 + NestJS · Docker · AWS</p>
+                </div>
+              </div>
+            </a>
+            <a href="https://eclinicx.com/" target="_blank" rel="noopener" class="project-link">
+              <div class="project-grid">
+                <div class="clay-inset project-placeholder"><span class="font-mono">No preview</span></div>
+                <div>
+                  <div class="font-display project-title">eClinicX ↗</div>
+                  <p class="project-desc">Online doctor consultation platform — appointments, video consults, prescriptions, and records in one secure workflow.</p>
+                  <p class="project-stack">Laravel + Nuxt · Pusher · Healthcare</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section id="cta">
+        <div class="section-inner reveal">
+          <h2 class="font-display cta-title">Let's build something that ships.</h2>
+          <p class="cta-lead">Whether you're hiring for a full-stack role or scoping a product build — I'd love to hear about it.</p>
+          <div class="hero-links font-mono">
+            <a href="https://calendly.com/muhammadmotasimbin-shahid/intro-with-muhammad-motasim-bin-shahid" target="_blank" rel="noopener" class="link-primary">Book a Call ↗</a>
+            <a href="#contact" class="link-secondary">Get In Touch</a>
+            <a href="Muhammad_Motasim_Bin_Shahid_CV.pdf" target="_blank" rel="noopener" class="link-secondary">Download CV</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="section-inner reveal">
+          <div class="section-label font-mono">06 — Contact</div>
+          <h2 class="font-display section-title">Let's talk.</h2>
+          <div class="contact-grid">
+            <div>
+              <p class="contact-intro">If you're hiring, scoping a product, or reviewing technical work, these are the quickest paths.</p>
+              <div class="contact-links font-mono">
+                <a href="mailto:muhammadmotasimbin.shahid@gmail.com">muhammadmotasimbin.shahid@gmail.com</a>
+                <a href="https://calendly.com/muhammadmotasimbin-shahid/intro-with-muhammad-motasim-bin-shahid" target="_blank" rel="noopener" class="accent-link">Book a Call ↗</a>
+              </div>
+              <div class="contact-block">
+                <div class="font-mono contact-block-label">Recruiters / Hiring Managers</div>
+                <p>Review my background quickly with the CV and LinkedIn summary.</p>
+                <div class="contact-block-links font-mono">
+                  <a href="Muhammad_Motasim_Bin_Shahid_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+                  <a href="https://linkedin.com/in/muhammad-motasim" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+              </div>
+              <div class="contact-block">
+                <div class="font-mono contact-block-label">Technical Reviewers</div>
+                <p>Review selected product work first, then check public code where available.</p>
+                <div class="contact-block-links font-mono">
+                  <a href="https://github.com/MuhammadMotasimBinShahid" target="_blank" rel="noopener">GitHub</a>
+                  <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener">GitLab</a>
+                  <a href="https://www.upwork.com/freelancers/~017f94558c225d72b2?mp_source=share" target="_blank" rel="noopener">Upwork</a>
                 </div>
               </div>
             </div>
-            <div class="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-400">
-              <span class="text-xs uppercase tracking-[0.2em] text-slate-500">Other Profiles</span>
-              <a href="https://gitlab.com/muhammadmotasimbin.shahid" target="_blank" rel="noopener" class="hover:text-brand">GitLab</a>
-              <a href="https://www.upwork.com/freelancers/~017f94558c225d72b2?mp_source=share" target="_blank" rel="noopener" class="hover:text-brand">Upwork</a>
-            </div>
-          </div>
-        </div>
-        <div data-reveal class="code-terminal overflow-hidden shadow-card">
-          <div class="bar">
-            <span class="dot" style="background:#ff5f56"></span>
-            <span class="dot" style="background:#ffbd2e"></span>
-            <span class="dot" style="background:#27c93f"></span>
-            <span class="text-xs text-slate-400 ml-2">bash — ~/contact/form</span>
-          </div>
-          <div class="p-4">
-            <form id="contactForm" action="https://formspree.io/f/mnnzjrbl" method="POST" class="space-y-3">
-              <div><input class="w-full px-4 py-3 rounded-lg border border-githubBorder bg-githubBg/70 text-slate-200 placeholder-slate-500 focus:border-github focus:outline-none focus:ring-1 focus:ring-github/30 transition text-sm" type="text" id="name" name="name" placeholder="Your Name" required></div>
-              <div><input class="w-full px-4 py-3 rounded-lg border border-githubBorder bg-githubBg/70 text-slate-200 placeholder-slate-500 focus:border-github focus:outline-none focus:ring-1 focus:ring-github/30 transition text-sm" type="email" id="email" name="email" placeholder="Your Email" required></div>
-              <div><input class="w-full px-4 py-3 rounded-lg border border-githubBorder bg-githubBg/70 text-slate-200 placeholder-slate-500 focus:border-github focus:outline-none focus:ring-1 focus:ring-github/30 transition text-sm" type="text" id="subject" name="subject" placeholder="Subject" required></div>
-              <div><textarea class="w-full px-4 py-3 rounded-lg border border-githubBorder bg-githubBg/70 text-slate-200 placeholder-slate-500 focus:border-github focus:outline-none focus:ring-1 focus:ring-github/30 transition text-sm" id="message" name="message" rows="5" placeholder="Your Message" required></textarea></div>
-              <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-brand text-white font-semibold hover:shadow-card transition hover:translate-y-[-2px]"><i class="fas fa-paper-plane mr-2"></i>Send Message</button>
+            <form id="contactForm" action="https://formspree.io/f/mnnzjrbl" method="POST">
+              <input type="text" name="name" placeholder="Your Name" required class="clay-inset">
+              <input type="email" name="email" placeholder="Your Email" required class="clay-inset">
+              <input type="text" name="subject" placeholder="Subject" required class="clay-inset">
+              <textarea name="message" rows="4" placeholder="Your Message" required class="clay-inset"></textarea>
+              <button type="submit" class="clay-btn">Send Message →</button>
             </form>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="border-t border-githubBorder py-6 pb-20 md:pb-6">
-    <div class="container mx-auto px-4 text-sm text-slate-500 text-center">© <span id="year">2026</span> Muhammad Motasim Bin Shahid · Built with purpose.</div>
-  </footer>
+      <footer class="page-footer font-mono">© <span id="yearFooter">2026</span> Muhammad Motasim Bin Shahid</footer>
+    </main>
+  </div>
 
-    <script src="script.js"></script>
-    <!-- Mobile Bottom Nav -->
-    <nav class="fixed bottom-0 inset-x-0 md:hidden border-t border-githubBorder bg-githubPanel/95 backdrop-blur-lg z-50" aria-label="Mobile navigation">
-      <ul class="grid grid-cols-5">
-        <li>
-          <a href="#home" class="mob-nav-link active" data-nav-section="home">
-            <i class="fas fa-house"></i>
-            <span>Home</span>
-          </a>
-        </li>
-        <li>
-          <a href="#about" class="mob-nav-link" data-nav-section="about">
-            <i class="fas fa-user"></i>
-            <span>About</span>
-          </a>
-        </li>
-        <li>
-          <a href="#experience" class="mob-nav-link" data-nav-section="experience">
-            <i class="fas fa-briefcase"></i>
-            <span>Work</span>
-          </a>
-        </li>
-        <li>
-          <a href="#projects" class="mob-nav-link" data-nav-section="projects">
-            <i class="fas fa-code"></i>
-            <span>Projects</span>
-          </a>
-        </li>
-        <li>
-          <a href="#contact" class="mob-nav-link" data-nav-section="contact">
-            <i class="fas fa-paper-plane"></i>
-            <span>Contact</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+  <!-- Mobile bottom nav -->
+  <nav class="mob-nav" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="#home" class="mob-nav-link active" data-nav-section="home" aria-label="Home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-fill" d="M4 10.5 12 3.5l8 7V20a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 20z"/><path d="M4 10.5 12 3.5l8 7V20a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 20z"/><path d="M9.5 21.5v-6h5v6"/></svg>
+        <span>Home</span></a></li>
+      <li><a href="#about" class="mob-nav-link" data-nav-section="about" aria-label="About">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle class="icon-fill" cx="12" cy="8" r="3.75"/><path class="icon-fill" d="M5 20.25c0-3.45 2.9-6.25 7-6.25s7 2.8 7 6.25"/><circle cx="12" cy="8" r="3.75"/><path d="M5 20.25c0-3.45 2.9-6.25 7-6.25s7 2.8 7 6.25"/></svg>
+        <span>About</span></a></li>
+      <li><a href="#experience" class="mob-nav-link" data-nav-section="experience" aria-label="Work">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect class="icon-fill" x="3" y="7.5" width="18" height="12.5" rx="2.2"/><rect x="3" y="7.5" width="18" height="12.5" rx="2.2"/><path d="M8 7.5V5.8A1.8 1.8 0 0 1 9.8 4h4.4A1.8 1.8 0 0 1 16 5.8v1.7"/><path d="M3 12.5h18"/></svg>
+        <span>Work</span></a></li>
+      <li><a href="#projects" class="mob-nav-link" data-nav-section="projects" aria-label="Projects">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-fill" d="M4 4.8h6.2v6.2H4z"/><path class="icon-fill" d="M13.8 4.8H20v6.2h-6.2z"/><path class="icon-fill" d="M4 13.8h6.2V20H4z"/><path class="icon-fill" d="M13.8 13.8H20V20h-6.2z"/><rect x="4" y="4.8" width="6.2" height="6.2" rx="1.4"/><rect x="13.8" y="4.8" width="6.2" height="6.2" rx="1.4"/><rect x="4" y="13.8" width="6.2" height="6.2" rx="1.4"/><rect x="13.8" y="13.8" width="6.2" height="6.2" rx="1.4"/></svg>
+        <span>Projects</span></a></li>
+      <li><a href="#contact" class="mob-nav-link" data-nav-section="contact" aria-label="Contact">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-fill" d="M4.5 5.5h15a1.8 1.8 0 0 1 1.8 1.8v8.2a1.8 1.8 0 0 1-1.8 1.8H11l-4.2 3.2v-3.2H4.5A1.8 1.8 0 0 1 2.7 15.5V7.3A1.8 1.8 0 0 1 4.5 5.5z"/><path d="M4.5 5.5h15a1.8 1.8 0 0 1 1.8 1.8v8.2a1.8 1.8 0 0 1-1.8 1.8H11l-4.2 3.2v-3.2H4.5A1.8 1.8 0 0 1 2.7 15.5V7.3A1.8 1.8 0 0 1 4.5 5.5z"/></svg>
+        <span>Contact</span></a></li>
+    </ul>
+  </nav>
+
+  <script src="script.js"></script>
 </body>
-</html> 
+</html>
